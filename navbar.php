@@ -39,7 +39,7 @@
                 <?php else : ?>
 
                     <div class='col-lg-12'>
-                        <p><a href='login.php'>Sign In</a> or <a href='signup.html'>Sign Up</a></p>
+                        <p><a href='signin.php'>Sign In</a> or <a href='signup.html'>Sign Up</a></p>
                     </div>
 
                 <?php endif; ?>
@@ -80,7 +80,7 @@
                 <?php else : ?>
 
                     <p class='nav-link'>
-                        <a href='login.php'>Sign In</a>
+                        <a href='signin.php'>Sign In</a>
                         or
                         <a href='signup.html'>Sign Up</a>
                     </p>

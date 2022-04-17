@@ -352,7 +352,7 @@ textarea::placeholder {
 textarea::placeholder {
 	color: var(--manatee);
 	opacity: 0.8;
-	font-style: italic;
+	font-style: none;
 	font-size: small;
 }
 
