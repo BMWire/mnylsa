@@ -23,7 +23,7 @@ validation
                            return json.available;
                        });
             },
-            errorMessage: "email already taken"
+            errorMessage: "It seems like that email is already taken"
         }
     ])
     .addField("#password", [
