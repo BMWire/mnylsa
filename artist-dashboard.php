@@ -45,25 +45,29 @@ if (isset($_SESSION['user_id'])) {
     <div class='container-flex' style='padding-left:7%; padding-right:8%;'>
         <div class='row'>
             <nav class='col-md-3 col-lg-2 d-md-block'>
-                <div class='position-sticky pt-3'>
+                <div class='position-sticky pt-3 background-cultured'>
                     <ul class='nav flex-column'>
                         <li class='nav-item'>
                             <a class='nav-link active' aria-current='page' href='#'>
+                                <i class='bi bi-bar-chart-fill imperial-red' style='font-size: 22px;'></i>
                                 Dashboard
                             </a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='#'>
+                                <i class='bi bi-card-checklist' style='font-size: 22px;'></i>
                                 Orders
                             </a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='#'>
+                                <i class='bi bi-box-seam' style='font-size: 22px;'></i>
                                 Pieces
                             </a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='#'>
+                                <i class='bi bi-building' style='font-size: 22px;'></i>
                                 Galleries
                             </a>
                         </li>

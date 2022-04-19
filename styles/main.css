@@ -184,7 +184,7 @@ a {
 	text-decoration: underline solid var(--imperial-red);
 }
 .background-cultured {
-	background-color: var(--cultured);
+	background-color: var(--cultured) !important;
 }
 
 .imperial-red {
