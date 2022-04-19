@@ -44,6 +44,8 @@ if (isset($_SESSION['user_id'])) {
     <!-- Start of main -->
     <div class='container-flex' style='padding-left:7%; padding-right:8%;'>
         <div class='row'>
+
+            <!-- Start of aside navbar -->
             <nav class='col-md-3 col-lg-2 d-md-block'>
                 <div class='position-sticky pt-3 background-cultured'>
                     <ul class='nav flex-column'>
@@ -60,13 +62,13 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='#'>
+                            <a class='nav-link' href='artist-pieces.php'>
                                 <i class='bi bi-box-seam' style='font-size: 22px;'></i>
                                 Pieces
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='#'>
+                            <a class='nav-link' href='artist-galleries.php'>
                                 <i class='bi bi-building' style='font-size: 22px;'></i>
                                 Galleries
                             </a>
@@ -74,12 +76,14 @@ if (isset($_SESSION['user_id'])) {
                     </ul>
                 </div>
             </nav>
+            <!-- End of aside navbar -->
 
+            <!-- Start of main -->
             <main class='col-md-9 col-lg-10'>
                 <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
                     <h1 class='fs-2'>Dashboard</h1>
                     <p class='fs-6 ps-4 space-cadet'>
-                        What picture does your recent numbers paint? Get it here. 
+                        What picture does your recent numbers paint? Get it here.
                     </p>
                 </div>
 
@@ -121,9 +125,10 @@ if (isset($_SESSION['user_id'])) {
                     </table>
                 </div>
             </main>
+            <!-- End of main -->
+
         </div>
     </div>
-    <!-- End of main -->
 
 
 </body>

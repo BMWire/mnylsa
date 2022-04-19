@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Orders | <?= $user['name'] ?>
+    <title>Pieces | <?= $user['name'] ?>
     </title>
 
     <!-- Styling imports -->
@@ -54,13 +54,13 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='#'>
+                            <a class='nav-link active' aria-current='page' href='artist-orders.php'>
                                 <i class='bi bi-card-checklist imperial-red' style='font-size: 22px;'></i>
                                 Orders
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='artist-pieces.php'>
+                            <a class='nav-link' href='#'>
                                 <i class='bi bi-box-seam' style='font-size: 22px;'></i>
                                 Pieces
                             </a>
@@ -78,53 +78,27 @@ if (isset($_SESSION['user_id'])) {
 
             <!-- Start of main -->
             <main class='col-md-9 col-lg-10'>
-                <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
-                    <h1 class='fs-2'>Orders.</h1>
-                    <p class='fs-6 ps-4 space-cadet'>
-                        Get to view the orders that were made by people who bought your art.
-                    </p>
+                <div class='row'>
+                    <div class='col-lg-6 col-md-6 pt-3 pb-2 mb-3'>
+                        <h1 class='fs-2'>Pieces.</h1>
+                        <p class='fs-6 ps-4 space-cadet'>
+                            All the pieces that you have posted and the engagement on them.
+                        </p>
+                    </div>
+                    <div class='col-lg-6 col-md-6 mt-6'>
+                        <center>
+                            <a href='artist-add-piece.php'>
+                                <button class='btn btn-lg btn-imperial'>
+                                    Add a piece
+                                </button>
+                            </a>
+                        </center>
+                    </div>
                 </div>
+                <hr class='mobile-hide hr-max' />
 
-                <h2>Section title</h2>
-                <div class='table-responsive'>
-                    <table class='table table-striped table-sm'>
-                        <thead>
-                            <tr>
-                                <th scope='col'>#</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1,001</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>1,002</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>data</td>
-                                <td>rich</td>
-                                <td>dashboard</td>
-                                <td>tabular</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </main>
             <!-- End of main -->
-
 
         </div>
     </div>
