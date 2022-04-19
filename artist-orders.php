@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Dashboard | <?= $user['name'] ?>
+    <title>Orders | <?= $user['name'] ?>
     </title>
 
     <!-- Styling imports -->
@@ -48,14 +48,14 @@ if (isset($_SESSION['user_id'])) {
                 <div class='position-sticky pt-3 background-cultured'>
                     <ul class='nav flex-column'>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='#'>
-                                <i class='bi bi-bar-chart imperial-red' style='font-size: 22px;'></i>
+                            <a class='nav-link' href='artist-dashboard.php'>
+                                <i class='bi bi-bar-chart' style='font-size: 22px;'></i>
                                 Dashboard
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='artist-orders.php'>
-                                <i class='bi bi-card-checklist' style='font-size: 22px;'></i>
+                            <a class='nav-link active' aria-current='page' href='#'>
+                                <i class='bi bi-card-checklist imperial-red' style='font-size: 22px;'></i>
                                 Orders
                             </a>
                         </li>
@@ -77,9 +77,9 @@ if (isset($_SESSION['user_id'])) {
 
             <main class='col-md-9 col-lg-10'>
                 <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
-                    <h1 class='fs-2'>Dashboard</h1>
+                    <h1 class='fs-2'>Orders.</h1>
                     <p class='fs-6 ps-4 space-cadet'>
-                        What picture does your recent numbers paint? Get it here. 
+                        Get to view the orders that were made by people who bought your art.
                     </p>
                 </div>
 
