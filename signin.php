@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             session_regenerate_id();
 
             // Check if the isAdmin field in the table users is set to 1 for the logged in user
-            if ($user["isArtist"] == 1) {
+            if ($user["isArtist"] == "Yes") {
                 $_SESSION["isArtist"] = true;
                 $_SESSION["user_id"] = $user["id"];
 

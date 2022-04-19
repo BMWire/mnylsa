@@ -28,8 +28,8 @@ $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
 $mysqli = require __DIR__ . "/database.php";
 
-$sql = "INSERT INTO users (name, email, password_hash)
-        VALUES (?, ?, ?)";
+$sql = "INSERT INTO users (name, email, password_hash, isArtist)
+        VALUES (?, ?, ?, ?)";
 
 $stmt = $mysqli->stmt_init();
 
@@ -38,10 +38,11 @@ if (!$stmt->prepare($sql)) {
 }
 
 $stmt->bind_param(
-    "sss",
+    "ssss",
     $_POST["name"],
     $_POST["email"],
-    $password_hash
+    $password_hash,
+    $_POST["isArtist"]
 );
 
 if ($stmt->execute()) {
