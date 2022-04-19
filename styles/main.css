@@ -178,7 +178,7 @@ a {
 }
 
 .cultured {
-	color: var(--cultured);
+	color: var(--cultured) !important;
 }
 .cultured-underlined {
 	text-decoration: underline solid var(--imperial-red);

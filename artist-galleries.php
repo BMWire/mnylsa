@@ -38,7 +38,7 @@ if (isset($_SESSION['user_id'])) {
     <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'> -->
 </head>
 
-<body>
+<body class='background-cultured'>
     <?php include __DIR__ . '/dashboard-navbar.php'; ?>
 
     <div class='container-flex' style='padding-left:7%; padding-right:8%;'>
