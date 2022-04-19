@@ -23,7 +23,8 @@ if (isset($_SESSION["user_id"])) {
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Home</title>
+    <title>Dashboard | <?= $user['name'] ?>
+    </title>
 
     <!-- Styling imports -->
     <link rel='stylesheet' href='styles/main.css'>
@@ -42,7 +43,7 @@ if (isset($_SESSION["user_id"])) {
     <main>
 
         <h1>Home</h1>
-        
+
 
     </main>
     <!-- End of main -->
