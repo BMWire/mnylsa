@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Dashboard | <?= $user['name'] ?>
+    <title>Galleries | <?= $user['name'] ?>
     </title>
 
     <!-- Styling imports -->
@@ -41,17 +41,15 @@ if (isset($_SESSION['user_id'])) {
 <body>
     <?php include __DIR__ . '/dashboard-navbar.php'; ?>
 
-    <!-- Start of main -->
     <div class='container-flex' style='padding-left:7%; padding-right:8%;'>
         <div class='row'>
-
             <!-- Start of aside navbar -->
             <nav class='col-md-3 col-lg-2 d-md-block'>
                 <div class='position-sticky pt-3 background-cultured'>
                     <ul class='nav flex-column'>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='#'>
-                                <i class='bi bi-bar-chart imperial-red' style='font-size: 22px;'></i>
+                            <a class='nav-link' href='artist-dashboard.php'>
+                                <i class='bi bi-bar-chart' style='font-size: 22px;'></i>
                                 Dashboard
                             </a>
                         </li>
@@ -68,7 +66,7 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='artist-galleries.php'>
+                            <a class='nav-link active' aria-current='page' href='artist-galleries.php'>
                                 <i class='bi bi-building' style='font-size: 22px;'></i>
                                 Galleries
                             </a>
@@ -80,53 +78,25 @@ if (isset($_SESSION['user_id'])) {
 
             <!-- Start of main -->
             <main class='col-md-9 col-lg-10'>
-                <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
-                    <h1 class='fs-2'>Dashboard</h1>
-                    <p class='fs-6 ps-4 space-cadet'>
-                        What picture does your recent numbers paint? Get it here.
-                    </p>
+                <div class='row'>
+                    <div class='col-lg-6 col-md-6 pt-3 pb-2 mb-3'>
+                        <h1 class='fs-2'>Galleries.</h1>
+                        <p class='fs-6 ps-4 space-cadet'>
+                            All the galleries that you have hosted and how people engaged with them.
+                        </p>
+                    </div>
+                    <div class='col-lg-6 col-md-6 mt-6'>
+                        <center>
+                            <a href='artist-create-gallery.php'>
+                                <button class='btn btn-lg btn-imperial'>
+                                    Create a gallery
+                                </button>
+                            </a>
+                        </center>
+                    </div>
                 </div>
-
                 <hr class='mobile-hide hr' />
 
-
-                <h2>Section title</h2>
-                <div class='table-responsive'>
-                    <table class='table table-striped table-sm'>
-                        <thead>
-                            <tr>
-                                <th scope='col'>#</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1,001</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>1,002</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>data</td>
-                                <td>rich</td>
-                                <td>dashboard</td>
-                                <td>tabular</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </main>
             <!-- End of main -->
 

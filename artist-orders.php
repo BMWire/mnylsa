@@ -84,6 +84,8 @@ if (isset($_SESSION['user_id'])) {
                         Get to view the orders that were made by people who bought your art.
                     </p>
                 </div>
+                <hr class='mobile-hide hr' />
+
 
                 <h2>Section title</h2>
                 <div class='table-responsive'>

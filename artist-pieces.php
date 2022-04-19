@@ -54,13 +54,13 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='artist-orders.php'>
-                                <i class='bi bi-card-checklist imperial-red' style='font-size: 22px;'></i>
+                            <a class='nav-link' href='artist-orders.php'>
+                                <i class='bi bi-card-checklist' style='font-size: 22px;'></i>
                                 Orders
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='#'>
+                            <a class='nav-link active' aria-current='page' href='#'>
                                 <i class='bi bi-box-seam' style='font-size: 22px;'></i>
                                 Pieces
                             </a>
@@ -87,7 +87,7 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                     <div class='col-lg-6 col-md-6 mt-6'>
                         <center>
-                            <a href='artist-add-piece.php'>
+                            <a href='artist-create-piece.php'>
                                 <button class='btn btn-lg btn-imperial'>
                                     Add a piece
                                 </button>
@@ -95,7 +95,7 @@ if (isset($_SESSION['user_id'])) {
                         </center>
                     </div>
                 </div>
-                <hr class='mobile-hide hr-max' />
+                <hr class='mobile-hide hr' />
 
             </main>
             <!-- End of main -->
