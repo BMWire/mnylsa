@@ -253,26 +253,32 @@ a {
 	--gutter-x: 0;
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: calc(-1 * var(--bs-gutter-y));
-	margin-right: calc(-0.5 * var(--bs-gutter-x));
-	margin-left: calc(-0.5 * var(--bs-gutter-x));
+	margin-top: calc(-1 * var(--gutter-y));
+	margin-right: calc(-0.5 * var(--gutter-x));
+	margin-left: calc(-0.5 * var(--gutter-x));
 }
 
 .row > * {
 	flex-shrink: 0;
 	width: 100%;
 	max-width: 100%;
-	padding-right: calc(var(--bs-gutter-x) * 0.5);
-	padding-left: calc(var(--bs-gutter-x) * 0.5);
-	margin-top: var(--bs-gutter-y);
+	padding-right: calc(var(--gutter-x) * 0.5);
+	padding-left: calc(var(--gutter-x) * 0.5);
+	margin-top: var(--gutter-y);
 }
 
 .flex-column {
 	flex-direction: column;
 }
 
+.flex {
+	display: flex !important;
+}
+
 .table {
-	width: 100%;
+	--table-accent-bg: transparent;
+	--table-striped-bg: var(--cultured);
+	width: 90%;
 	margin-bottom: 1rem;
 	color: var(--space-cadet);
 	vertical-align: top;
@@ -300,6 +306,15 @@ a {
 }
 .table > :not(:first-child) {
 	border-top: 2px solid currentColor;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+	--table-accent-bg: var(--table-striped-bg);
+	color: var(--table-striped-color);
+}
+
+.table-sm > :not(caption) > * > * {
+	padding: 0.25rem 0.25rem;
 }
 
 /* ------------------------------------------------ */
@@ -445,7 +460,7 @@ textarea::placeholder {
 	min-width: 250px;
 	background-color: var(--imperial-red);
 	border: 1px solid var(--imperial-red);
-	text-align:center;
+	text-align: center;
 	color: var(--cultured);
 	font-size: 1rem;
 	vertical-align: middle;
@@ -553,13 +568,16 @@ textarea::placeholder {
 /* ------------------------------------------------ */
 
 /* ------------------------------------------------ */
-/* Artist Page Starts */
+/* Artist Dashboard Page Starts */
 /* ------------------------------------------------ */
 
-.img-
+.position-sticky {
+	position: -webkit-sticky !important;
+	position: sticky !important;
+}
 
 /* ------------------------------------------------ */
-/* Artist Page Ends */
+/* Artist Dashboard Page Ends */
 /* ------------------------------------------------ */
 
 /* Debug */

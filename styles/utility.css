@@ -4,6 +4,7 @@
     * Responsiveness - Columns, Rows and their Media Queries
 	* Text justification
 	* Font Sizes
+	* Flex
 */
 
 /* Column width */
@@ -56,7 +57,7 @@
 	width: 8.33333333%;
 }
 
-/* Responsive col and container for sm devices */
+/* Responsive col, flex and container for sm devices */
 @media (min-width: 576px) {
 	.container,
 	.container-fluid {
@@ -121,9 +122,17 @@
 		flex: 0 0 auto;
 		width: 100%;
 	}
+
+	.flex-sm-wrap {
+		flex-wrap: wrap !important;
+	}
+
+	.flex-sm-nowrap {
+		flex-wrap: nowrap !important;
+	}
 }
 
-/* Responsive col and container for md devices */
+/* Responsive col, flex and container for md devices */
 @media (min-width: 768px) {
 	.container,
 	.container-fluid {
@@ -188,9 +197,17 @@
 		flex: 0 0 auto;
 		width: 100%;
 	}
+
+	.flex-md-wrap {
+		flex-wrap: wrap !important;
+	}
+
+	.flex-md-nowrap {
+		flex-wrap: nowrap !important;
+	}
 }
 
-/* Responsive col and container for lg devices */
+/* Responsive col, flex and container for lg devices */
 @media (min-width: 992px) {
 	.container,
 	.container-fluid {
@@ -254,6 +271,14 @@
 	.col-lg-12 {
 		flex: 0 0 auto;
 		width: 100%;
+	}
+
+	.flex-lg-wrap {
+		flex-wrap: wrap !important;
+	}
+
+	.flex-lg-nowrap {
+		flex-wrap: nowrap !important;
 	}
 }
 
@@ -587,6 +612,19 @@
 
 .justify-content-evenly {
 	justify-content: space-evenly !important;
+}
+
+/* Item alignment */
+.align-items-center {
+	align-items: center !important;
+}
+
+.align-items-start {
+	align-items: flex-start !important;
+}
+
+.align-items-end {
+	align-items: flex-end !important;
 }
 
 /* Font sizes */

@@ -46,7 +46,7 @@ $stmt->bind_param(
 );
 
 if ($stmt->execute()) {
-    header("Location: signup-success.html");
+    header("Location: signin.php");
     exit;
 } else {
     if ($mysqli->errno === 1062) {

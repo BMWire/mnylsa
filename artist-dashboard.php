@@ -2,22 +2,24 @@
 
 session_start();
 
-if (isset($_SESSION["user_id"])) {
+if (isset($_SESSION['user_id'])) {
     // create a database connection 
-    $mysqli = require __DIR__ . "/database.php";
+    $mysqli = require __DIR__ . '/database.php';
 
     // get the user's email address
     $sql = "SELECT * FROM users
-            WHERE id = {$_SESSION["user_id"]}";
+            WHERE id = {$_SESSION['user_id']}";
 
     $result = $mysqli->query($sql);
 
     $user = $result->fetch_assoc();
+} else {
+    header('Location: home.php');
 }
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
     <meta charset='UTF-8'>
@@ -33,19 +35,87 @@ if (isset($_SESSION["user_id"])) {
     <!-- Bootstrap Icons imports -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css'>
 
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"> -->
+    <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'> -->
 </head>
 
 <body>
-    <?php include __DIR__ . "/dashboard-navbar.php"; ?>
+    <?php include __DIR__ . '/dashboard-navbar.php'; ?>
 
     <!-- Start of main -->
-    <main>
+    <div class='container-flex' style='padding-left:7%; padding-right:8%;'>
+        <div class='row'>
+            <nav class='col-md-3 col-lg-2 d-md-block'>
+                <div class='position-sticky pt-3'>
+                    <ul class='nav flex-column'>
+                        <li class='nav-item'>
+                            <a class='nav-link active' aria-current='page' href='#'>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='#'>
+                                Orders
+                            </a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='#'>
+                                Pieces
+                            </a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='#'>
+                                Galleries
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-        <h1>Home</h1>
+            <main class='col-md-9 col-lg-10'>
+                <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
+                    <h1 class='fs-2'>Dashboard</h1>
+                </div>
 
-
-    </main>
+                <h2>Section title</h2>
+                <div class='table-responsive'>
+                    <table class='table table-striped table-sm'>
+                        <thead>
+                            <tr>
+                                <th scope='col'>#</th>
+                                <th scope='col'>Header</th>
+                                <th scope='col'>Header</th>
+                                <th scope='col'>Header</th>
+                                <th scope='col'>Header</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1,001</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                            </tr>
+                            <tr>
+                                <td>1,002</td>
+                                <td>placeholder</td>
+                                <td>irrelevant</td>
+                                <td>visual</td>
+                                <td>layout</td>
+                            </tr>
+                            <tr>
+                                <td>1,003</td>
+                                <td>data</td>
+                                <td>rich</td>
+                                <td>dashboard</td>
+                                <td>tabular</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
     <!-- End of main -->
 
 
