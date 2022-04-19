@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION["isArtist"] = true;
                 $_SESSION["user_id"] = $user["id"];
 
-                header("Location: dashboard.php");
+                header("Location: artist-dashboard.php");
                 exit;
             } else {
                 $_SESSION["isArtist"] = false;
