@@ -87,7 +87,7 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                     <div class='col-lg-6 col-md-6 mt-6'>
                         <center>
-                            <a href='artist-create-piece.php'>
+                            <a href='artist-create-art.php'>
                                 <button class='btn btn-lg btn-imperial'>
                                     Add a piece
                                 </button>

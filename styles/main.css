@@ -360,12 +360,13 @@ a {
 }
 .form-control::-moz-placeholder,
 textarea::placeholder {
-	color: #6c757d;
+	/* color: ; */
 	opacity: 1;
 }
 .form-control::placeholder,
 textarea::placeholder {
 	color: var(--manatee);
+	font-family: var(--inter);
 	opacity: 0.8;
 	font-style: none;
 	font-size: small;
