@@ -1,4 +1,6 @@
-<?php
+ <?php
+ session_start();
+ 
 $target_directory = "uploads/";
 $file_name = basename($_FILES["file"]["name"]);
 $target_file_path = $target_directory . $file_name;
@@ -30,7 +32,6 @@ $fetch_sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
 
 $insert_sql = "INSERT INTO art (artist_id, artist_name, title, story, price, img_path)
         VALUES (?, ?, ?, ?, ?, ?)";
-            //    VALUES ({$_SESSION["user_id"]}, "{$artist["name"]}", "{$_POST["title"]}", "{$_POST["story"]}", {$_POST["price"]}, "{$target_file_path}")";
 
 $stmt = $mysqli->stmt_init();
 
