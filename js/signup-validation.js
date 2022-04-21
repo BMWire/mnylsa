@@ -14,14 +14,17 @@ validation
             rule: "email"
         },
         {
-            validator: (value) => () => {
+            validator: (value) => () =>
+            {
                 return fetch("validate-email.php?email=" + encodeURIComponent(value))
-                       .then(function(response) {
-                           return response.json();
-                       })
-                       .then(function(json) {
-                           return json.available;
-                       });
+                    .then(function (response)
+                    {
+                        return response.json();
+                    })
+                    .then(function (json)
+                    {
+                        return json.available;
+                    });
             },
             errorMessage: "It seems like that email is already taken"
         }
@@ -36,25 +39,30 @@ validation
     ])
     .addField("#password_confirmation", [
         {
-            validator: (value, fields) => {
+            rule: "required"
+        },
+        {
+            validator: (value, fields) =>
+            {
                 return value === fields["#password"].elem.value;
             },
             errorMessage: "Passwords should match"
         }
     ])
-    .onSuccess((event) => {
+    .onSuccess((event) =>
+    {
         document.getElementById("signup").submit();
     });
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+

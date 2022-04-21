@@ -18,6 +18,9 @@ if (isset($_SESSION['user_id'])) {
 }
 
 ?>
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -96,6 +99,8 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                 </div>
                 <hr class='mobile-hide hr' />
+
+
 
             </main>
             <!-- End of main -->

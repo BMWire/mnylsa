@@ -35,7 +35,9 @@ if (isset($_SESSION['user_id'])) {
     <!-- Bootstrap Icons imports -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css'>
 
-    <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'> -->
+    <!-- Validation -->
+    <script src='https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js' defer></script>
+    <script src='js/gallery-validation.js' defer></script>
 </head>
 
 <body>
@@ -88,7 +90,7 @@ if (isset($_SESSION['user_id'])) {
                 </div>
 
                 <div class='container-fluid'>
-                    <form action='process-create-gallery.php' method='post' enctype='multipart/form-data' novalidate>
+                    <form action='process-create-gallery.php' method='post' id='create_gallery' enctype='multipart/form-data' novalidate>
                         <div class='col-lg-12 mb-4'>
                             <label for='title'>Title</label>
                             <input class='form-control mb-2' type='text' name='title' id='title' placeholder='Mental Health Week'>
