@@ -19,8 +19,20 @@ if (empty($_POST["price"])) {
 
 $mysqli = require __DIR__ . "/database.php";
 
-$sql = "INSERT INTO galleries (title, location, story, fee)
-        VALUES (?, ?, ?, ?)";
+// Get the artist id of the logged in users
+// get the user's email address
+$select_sql = "SELECT * FROM users
+WHERE id = {$_SESSION['user_id']}";
+
+$result = $mysqli->query($select_sql);
+
+$user = $result->fetch_assoc();
+
+$artist_id = $user["id"];
+$artist_name = $user["name"];
+
+$sql = "INSERT INTO galleries (artist_id, artist_name, title, location, story, fee)
+        VALUES (?, ?, ?, ?, ?, ?)";
 
 $stmt = $mysqli->stmt_init();
 
@@ -29,7 +41,9 @@ if (!$stmt->prepare($sql)) {
 }
 
 $stmt->bind_param(
-    "ssss",
+    "ssssss",
+    $_POST[$user["id"]],
+    $_POST[$user["name"]],
     $_POST["title"],
     $_POST["location"],
     $_POST["story"],
