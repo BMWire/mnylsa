@@ -14,12 +14,6 @@ if (isset($_SESSION["user_id"])) {
 
     $user = $result->fetch_assoc();
 
-    if ([$user["isArtist"] == "yes" || $user["isArtist"] == "Yes"]) {
-        $_SESSION["isArtist"] = true;
-
-        header("Location: artist-dashboard.php");
-        exit;
-    }
 }
 
 ?>
