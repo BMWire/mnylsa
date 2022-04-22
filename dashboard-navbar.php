@@ -56,7 +56,7 @@
             <!-- Check to see if there is a user session -->
             <?php if (isset($user)) : ?>
                 <li class='nav-item'>
-                    <a href='client-dashboard.php' class='nav-link imperial-red'>
+                    <a href='#' class='nav-link imperial-red'>
                         <?= substr($user['name'], 0, strpos($user['name'], ' ')) ?>
                     </a>
                     <a href='logout.php' class='nav-link space-cadet'>Log out</a>

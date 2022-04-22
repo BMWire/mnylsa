@@ -48,9 +48,139 @@ if (isset($_SESSION["user_id"])) {
 
     <!-- Start of main -->
     <main>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-lg-4 col-md-6 col-sm-12 px-3 py-4'>
+                    <div class='card'>
+                        <img src='assets/art/american-gothic-grant.webp' class='card-img-top' alt='American Gothic Grant Wood'>
+                        <div class='card-body'>
+                            <div class='row ml-1'>
+                                <div class='col-5'>
+                                    <a href='/art-page.php'>
+                                        <h4 class='space-cadet cadet-underlined'>
+                                            American Gothic
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div class='col-4'>
+                                    <a href='/artist-page.php' class='plain'>
+                                        <h4 class='card-title manatee'>Grant Wood</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class='row ml-1'>
+                                <div class='col-6'>
+                                    <i class='bi bi-palette-fill manatee ml-1'></i>
+                                    <span class='space-cadet fs-6'>53 palettes</span>
+                                </div>
+                                <div class='col-6'>
+                                    <span class='imperial-red fs-6 bold'>Ksh. 30, 000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <h1>Home</h1>
+                <div class='col-lg-4 col-md-6 col-sm-12 px-3 py-4'>
+                    <div class='card'>
+                        <img src="assets/art/grevy's-zebra-warhol.webp" class='card-img-top' alt="Grevy's Zebra Andy Warhol">
+                        <div class='card-body'>
+                            <div class='row ml-1'>
+                                <div class='col-5'>
+                                    <a href='/art/grevys-zebra.php'>
+                                        <h4 class='space-cadet cadet-underlined'>
+                                            Grevy's Zebra
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div class='col-4'>
+                                    <a href='/artist-page.php' class='plain'>
+                                        <h4 class='card-title manatee'>Andy Warhol</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class='row ml-1'>
+                                <div class='col-6'>
+                                    <i class='bi bi-palette-fill manatee ml-1'></i>
+                                    <span class='space-cadet fs-6'>109 palettes</span>
+                                </div>
+                                <div class='col-6'>
+                                    <span class='imperial-red fs-6 bold'>Ksh. 50, 000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class='col-lg-4 col-md-6 col-sm-12 px-3 py-4'>
+                    <div class='card'>
+                        <img src='assets/art/soup-cans-larger-warhol.jpg' class='card-img-top' alt='Soup Cans Andy Warhol'>
+                        <div class='card-body'>
+                            <div class='row ml-1'>
+                                <div class='col-4'>
+                                    <a href='/art/soup-cans-warhol.php'>
+                                        <h4 class='space-cadet cadet-underlined'>
+                                            Soup Cans
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div class='col-4'>
+                                    <a href='/artist-page.php' class='plain'>
+                                        <h4 class='card-title manatee'>Andy Warhol</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-6'>
+                                    <i class='bi bi-palette-fill manatee ml-1'></i>
+                                    <span class='space-cadet fs-6'>23 palettes</span>
+                                </div>
+                                <div class='col-6'>
+                                    <span class='imperial-red fs-6 bold'>Ksh. 100, 000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class='col-lg-12 col-md-12 col-sm-12 px-3 py-4'>
+                <div class='card'>
+                    <div class='row'>
+                        <div class='col-lg-8 col-md-8 col-sm-12'>
+                            <img src='assets/art/macro-bubble-ashley-smith.jpg' class='card-img-top' alt='Macro Bubble Ashley Smith'>
+                        </div>
+                        <div class='col-lg-4 col-md-4 col-sm-12'>
+                            <div class='card-body'>
+                                <span class='badge badge-imperial'>
+                                    Piece of the day
+                                </span>
+                                <div class='row ml-1'>
+                                    <div class='col-7'>
+                                        <a href='/art/macro-bubble'>
+                                            <h4 class='space-cadet cadet-underlined'>
+                                                Macro Bubble
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div class='col-5'>
+                                        <a href='/artist-page.php' class='plain'>
+                                            <h3 class='card-title manatee'>Ashley Smith</h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <p class='card-text'>
+                                    This is a piece of art that Ashley Smith has created for the MoneyLisa gallery.
+                                    She tries to depict the beauty of the world in a way that is not seen by most.
+                                    The piece is a macro bubble that is made of a transparent plastic.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main>
     <!-- End of main -->
