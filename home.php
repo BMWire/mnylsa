@@ -53,12 +53,6 @@ if (isset($_SESSION["user_id"])) {
             <?php if (isset($user)) : ?>
                 My name is <?= $user['name'] ?>.
                 My user id is <?= $user['id'] ?>.
-            <?php else : ?>
-                <p class='nav-link'>
-                    <a href='signin.php'>Sign In</a>
-                    or
-                    <a href='signup.html'>Sign Up</a>
-                </p>
             <?php endif; ?>
 
             <div class='row'>

@@ -1,61 +1,109 @@
- <?php
- session_start();
- 
-$target_directory = "uploads/";
-$file_name = basename($_FILES["file"]["name"]);
-$target_file_path = $target_directory . $file_name;
-$file_type = pathinfo($target_file_path, PATHINFO_EXTENSION);
+<?php
 
-if (empty($_POST["title"])) {
-    die("The title of the piece is required");
+session_start();
+
+// Get the session variables
+$sqlFetch = require __DIR__ . "/database.php";
+
+// get the user's email address
+$fetch = "SELECT * FROM users
+            WHERE id = {$_SESSION["user_id"]}";
+
+$fetch_result = $sqlFetch->query($fetch);
+
+$sessioned_user = $fetch_result->fetch_assoc();
+
+
+if (empty($_POST['title'])) {
+    die('Title is required');
+}
+if (empty($_POST['story'])) {
+    die('Story is required');
+}
+if (empty($_POST['price'])) {
+    die('Price is required');
 }
 
-$allowed_types = array("jpg", "jpeg", "png", "gif");
-if (!(in_array($file_type, $allowedtypes))) {
-    die("Only JPG, JPEG, PNG, GIF files are allowed");
+/* Cover Image section */
+
+// Upload file errors 
+$upload_file_errors = array(
+    0 => 'There is no error, the file uploaded with success',
+    1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+    2 => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
+    3 => 'The uploaded file was only partially uploaded',
+    4 => 'No file was uploaded',
+    6 => 'Missing a temporary folder',
+    7 => 'Failed to write file to disk.',
+    8 => 'A PHP extension stopped the file upload.'
+);
+
+// The extension error flag that is false by default
+$ext_error = false;
+
+// List of allowed extensions
+$extensions = array('jpg', 'jpeg', 'gif', 'png');
+
+// Get the file extension
+$file_ext = explode('.', $_FILES['img']['name']);
+
+// Get the last element of the array that contains both the filename and the file extension
+$file_ext = strtolower(end($file_ext));
+
+// Check to see if the file extension is in the list of allowed extensions, if not set the extension error flag to true
+if (!in_array($file_ext, $extensions)) {
+    $ext_error = true;
 }
 
-if (empty($_POST["story"])) {
-    die("A story for the piece is required");
+// Check to see if there is an error in the file upload that corresponds to one that is in the associative array. This happens if the error is not equal to zero
+if ($_FILES['img']['error']) {
+    echo $upload_file_errors[$_FILES['img']['error']];
+} elseif ($ext_error) {
+    echo "Invalid file extension. Only .jpeg or .jpg or .png or .gif are allowed";
+} else {
+    echo "Success! Image has been uploaded";
+    // If there is no error, move the file to the uploads folder
+    move_uploaded_file($_FILES['img']['tmp_name'], 'uploads/art/' . $_FILES['img']['name']);
+    echo "File uploaded successfully";
 }
 
-if (empty($_POST["price"])) {
-    die("The price of the piece is required");
+$img_dir = 'uploads/art/' . $_FILES['img']['name'];
+
+
+if (empty($img_dir)) {
+    die('Image is required');
 }
 
-$mysqli = require __DIR__ . "/database.php";
+/* Cover Image section */
 
-$fetch_sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
+/* Get logged in artist's id and name */
+$artist_id = $sessioned_user['id'];
+$artist_name = $sessioned_user['name'];
 
-// $result = $mysqli->query($fetch_sql);
-// $artist = $result->fetch_assoc();
+$mysqli = require __DIR__ . '/database.php';
 
-$insert_sql = "INSERT INTO art (artist_id, artist_name, title, story, price, img_path)
+$sql = "INSERT INTO art (artist_id, artist_name, title, story, price, img_path)
         VALUES (?, ?, ?, ?, ?, ?)";
 
 $stmt = $mysqli->stmt_init();
 
-if (!$stmt->prepare($insert_sql)) {
-    die("SQL error: " . $mysqli->error);
+if (!$stmt->prepare($sql)) {
+    die('SQL error: ' . $mysqli->error);
 }
 
 $stmt->bind_param(
-    "ssssss",
-    $_SESSION["user_id"],
-    $_SESSION["user_name"],
-    $_POST["title"],
-    $_POST["story"],
-    $_POST["price"],
-    $_POST["target_file_path"]
+    'ssssss',
+    $artist_id,
+    $artist_name,
+    $_POST['title'],
+    $_POST['story'],
+    $_POST['price'],
+    $img_dir
 );
 
 if ($stmt->execute()) {
-    header("Location: artist-create-art.php");
+    header('Location: artist-pieces.php');
     exit;
 } else {
-    if ($mysqli->errno === 1062) {
-        die("It seems like that email is already taken");
-    } else {
-        die($mysqli->error . " " . $mysqli->errno);
-    }
+    die($mysqli->error . ' ' . $mysqli->errno);
 }

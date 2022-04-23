@@ -35,7 +35,9 @@ if (isset($_SESSION['user_id'])) {
     <!-- Bootstrap Icons imports -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css'>
 
-    <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'> -->
+    <!-- Validation -->
+    <script src='https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js' defer></script>
+    <script src='js/art-validation.js' defer></script>
 </head>
 
 <body>
@@ -78,6 +80,12 @@ if (isset($_SESSION['user_id'])) {
 
             <!-- Start of main -->
             <main class='col-md-9 col-lg-10'>
+
+                <?php if (isset($user)) : ?>
+                    My name is <?= $user['name'] ?>.
+                    My artist id is <?= $user['id'] ?>.
+                <?php endif; ?>
+
                 <div class='row'>
                     <div class='col-lg-6 col-md-6 pt-3 pb-2 mb-3'>
                         <h1 class='fs-2'>Add Piece</h1>
@@ -88,9 +96,9 @@ if (isset($_SESSION['user_id'])) {
                 </div>
 
                 <div class='container-fluid'>
-                    <form action='' method='post' enctype='multipart/form-data' novalidate>
+                    <form action='process-create-art.php' method='post' id='create_art' enctype='multipart/form-data' novalidate>
                         <div class='col-lg-12 mb-4'>
-                            <label for='title'>Piece</label>
+                            <label for='title'>Piece Title</label>
                             <input class='form-control mb-2' type='text' name='title' id='title' placeholder='Name of the piece'>
                         </div>
 
@@ -108,10 +116,9 @@ if (isset($_SESSION['user_id'])) {
                         <div class='col-lg-12 mb-6'>
                             <label for='price'>Price (in Ksh)</label>
                             <input class='form-control mb-2 mt-2' type='number' min='0' step='500' id='price' name='price'>
-                            <!-- Add validation for positive values only -->
                         </div>
 
-                        <button class='btn btn-lg btn-imperial' type='submit' name='create-art' value='Create Account'>
+                        <button class='btn btn-lg btn-imperial'>
                             Add piece
                         </button>
                     </form>

@@ -13,13 +13,6 @@ $fetch_result = $sqlFetch->query($fetch);
 
 $sessioned_user = $fetch_result->fetch_assoc();
 
-if ($user["isArtist"] == "yes") {
-    $_SESSION["isArtist"] = true;
-    $_SESSION["user_id"] = $user["id"];
-
-
-    header("Location: artist-dashboard.php");
-}
 
 if (empty($_POST['title'])) {
     die('Title is required');
