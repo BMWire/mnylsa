@@ -16,7 +16,7 @@ validation
             rule: "required"
         }
     ])
-    .addField("#price", [
+    .addField("#fee", [
         {
             rule: "required"
         }

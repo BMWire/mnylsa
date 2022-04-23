@@ -49,6 +49,18 @@ if (isset($_SESSION["user_id"])) {
     <!-- Start of main -->
     <main>
         <div class='container'>
+            
+            <?php if (isset($user)) : ?>
+                My name is <?= $user['name'] ?>.
+                My user id is <?= $user['id'] ?>.
+            <?php else : ?>
+                <p class='nav-link'>
+                    <a href='signin.php'>Sign In</a>
+                    or
+                    <a href='signup.html'>Sign Up</a>
+                </p>
+            <?php endif; ?>
+
             <div class='row'>
                 <div class='col-lg-4 col-md-6 col-sm-12 px-3 py-4'>
                     <div class='card'>

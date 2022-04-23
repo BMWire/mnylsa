@@ -13,6 +13,10 @@ if (isset($_SESSION['user_id'])) {
     $result = $mysqli->query($sql);
 
     $user = $result->fetch_assoc();
+
+    if ($user['isArtist'] == 'no') {
+        header('Location: home.php');
+    }
 } else {
     header('Location: home.php');
 }
@@ -25,7 +29,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Pieces | <?= $user['name'] ?>
+    <title>Galleries | <?= $user['name'] ?>
     </title>
 
     <!-- Styling imports -->
@@ -80,6 +84,18 @@ if (isset($_SESSION['user_id'])) {
 
             <!-- Start of main -->
             <main class='col-md-9 col-lg-10'>
+                
+                <?php if (isset($user)) : ?>
+                    My name is <?= $user['name'] ?>.
+                    My artist id is <?= $user['id'] ?>.
+                <?php else : ?>
+                    <p class='nav-link'>
+                        <a href='signin.php'>Sign In</a>
+                        or
+                        <a href='signup.html'>Sign Up</a>
+                    </p>
+                <?php endif; ?>
+
                 <div class='row'>
                     <div class='col-lg-6 col-md-6 pt-3 pb-2 mb-3'>
                         <h1 class='fs-2'>Create Gallery</h1>
@@ -101,24 +117,23 @@ if (isset($_SESSION['user_id'])) {
                             <input class='form-control mb-2' type='text' name='location' id='location' placeholder='Alliance Francais'>
                         </div>
 
-                        <div class='col-lg-12 mb-4'>
+                        <!-- <div class='col-lg-12 mb-4'>
                             <label for='img'>Select image</label>
                             <input class='form-control mb-2 mt-2' type='file' id='img' name='img'>
-                        </div>
+                        </div> -->
 
                         <div class='col-lg-12 mb-4'>
                             <label for='piece-story'>Story</label>
                             <!-- Fix the text in the textarea -->
-                            <textarea class='form-control mb-2 mt-2' type='file' id='story' name='story' placeholder='Story behind the piece'></textarea>
+                            <textarea class='form-control mb-2 mt-2' id='story' name='story' placeholder='Story behind the piece'></textarea>
                         </div>
 
                         <div class='col-lg-12 mb-6'>
                             <label for='price'>Entrance fee (in Ksh)</label>
-                            <input class='form-control mb-2 mt-2' type='number' min='0' step='500' id='price' name='price'>
-                            <!-- Add validation for positive values only -->
+                            <input class='form-control mb-2 mt-2' type='number' min='0' step='500' id='fee' name='fee'>
                         </div>
 
-                        <button class='btn btn-lg btn-imperial' type='submit' name='create-gallery' value='Create Account'>
+                        <button class='btn btn-lg btn-imperial'>
                             Create Gallery
                         </button>
                     </form>
