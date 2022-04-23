@@ -101,10 +101,10 @@ if (isset($_SESSION['user_id'])) {
                             <input class='form-control mb-2' type='text' name='location' id='location' placeholder='Alliance Francais'>
                         </div>
 
-                        <!-- <div class='col-lg-12 mb-4'>
+                        <div class='col-lg-12 mb-4'>
                             <label for='img'>Select image</label>
                             <input class='form-control mb-2 mt-2' type='file' id='img' name='img'>
-                        </div> -->
+                        </div>
 
                         <div class='col-lg-12 mb-4'>
                             <label for='piece-story'>Story</label>
