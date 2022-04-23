@@ -1,5 +1,26 @@
 <?php
 
+session_start();
+
+// Get the session variables
+$sqlFetch = require __DIR__ . "/database.php";
+
+// get the user's email address
+$fetch = "SELECT * FROM users
+            WHERE id = {$_SESSION["user_id"]}";
+
+$fetch_result = $sqlFetch->query($fetch);
+
+$sessioned_user = $fetch_result->fetch_assoc();
+
+if ($user["isArtist"] == "yes") {
+    $_SESSION["isArtist"] = true;
+    $_SESSION["user_id"] = $user["id"];
+
+
+    header("Location: artist-dashboard.php");
+}
+
 if (empty($_POST['title'])) {
     die('Title is required');
 }
@@ -65,11 +86,14 @@ if (empty($img_dir)) {
 
 /* Cover Image section */
 
+/* Get logged in artist's id and name */
+$artist_id = $sessioned_user['id'];
+$artist_name = $sessioned_user['name'];
 
 $mysqli = require __DIR__ . '/database.php';
 
-$sql = "INSERT INTO galleries (coverImg, title, location, story, fee)
-        VALUES (?, ?, ?, ?, ?)";
+$sql = "INSERT INTO galleries (artist_id, artist_name, coverImg, title, location, story, fee)
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $mysqli->stmt_init();
 
@@ -78,7 +102,9 @@ if (!$stmt->prepare($sql)) {
 }
 
 $stmt->bind_param(
-    'sssss',
+    'sssssss',
+    $artist_id,
+    $artist_name,
     $img_dir,
     $_POST['title'],
     $_POST['location'],
