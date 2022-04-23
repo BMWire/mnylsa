@@ -4,7 +4,7 @@
 <nav class='navbar mobile-hide'>
     <div class='container'>
         <a href='home.php' class='nav-header mr-5'>
-            MONEYLISA <span class='fs-6'>Artist</span>
+            MONEYLISA <sup><span class='fs-6'>Artist</span></sup>
         </a>
         <ul class='navbar-nav'>
             <li class='nav-item'>
