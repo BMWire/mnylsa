@@ -63,7 +63,6 @@ if (isset($_SESSION['user_id'])) {
                         $gallery_date = $row['date'];
                         $gallery_imgDir = $row['coverImg'];
                 ?>
-                        <!-- <div class='row mt-5'> -->
                             <div class='col-lg-6 col-md-12 p-3'>
                                 <div class='card mb-3'>
                                     <div class='row'>
@@ -99,7 +98,6 @@ if (isset($_SESSION['user_id'])) {
                                     </div>
                                 </div>
                             </div>
-                        <!-- </div> -->
                 <?php
                     }
                 } else {

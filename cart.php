@@ -34,7 +34,7 @@ $piece = $result->fetch_assoc();
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title> <?= $piece['title'] ?> | <?= $piece['artist_name'] ?> </title>
+    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Cart' ?> </title>
 
     <!-- Styling imports -->
     <link rel='stylesheet' href='styles/main.css'>
@@ -86,7 +86,7 @@ $piece = $result->fetch_assoc();
 
                         <?php if ($user['isArtist'] == 'yes') : ?>
                             <center>
-                                <a href='artist-edit-piece.php?id=<?= $piece['id'] ?>'>
+                                <a href='artist-edit-piece.php?id=<?= $piece['id '] ?>'>
                                     <button class='btn btn-lg btn-imperial'>
                                         Edit Piece
                                     </button>
@@ -95,7 +95,7 @@ $piece = $result->fetch_assoc();
 
                         <?php else : ?>
                             <center>
-                                <a href='cart.php?id=<?= $piece['id'] ?>'>
+                                <a href='cart.php?id=<?= $piece['id '] ?>'>
                                     <button class='btn btn-lg btn-imperial'>
                                         Purchase Piece
                                     </button>
