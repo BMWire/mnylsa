@@ -83,13 +83,26 @@ $piece = $result->fetch_assoc();
 
                             <span class='card-text fs-4'>Ksh <?= $piece['price'] ?></span>
                         </div>
-                        <center>
-                            <a href='cart.php?id=<?= $piece['id '] ?>'>
-                                <button class='btn btn-lg btn-imperial'>
-                                    Purchase Piece
-                                </button>
-                            </a>
-                        </center>
+
+                        <?php if ($user['isArtist'] == 'yes') : ?>
+                            <center>
+                                <a href='artist-edit-piece.php?id=<?= $piece['id '] ?>'>
+                                    <button class='btn btn-lg btn-imperial'>
+                                        Edit Piece
+                                    </button>
+                                </a>
+                            </center>
+
+                        <?php else : ?>
+                            <center>
+                                <a href='cart.php?id=<?= $piece['id '] ?>'>
+                                    <button class='btn btn-lg btn-imperial'>
+                                        Purchase Piece
+                                    </button>
+                                </a>
+                            </center>
+                        <?php endif; ?>
+
                     </div>
                 </div>
             </div>

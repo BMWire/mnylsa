@@ -141,7 +141,7 @@ if (isset($_SESSION['user_id'])) {
                                                     Kshs <?= $piece_price ?>
                                                 </p>
                                                 <center>
-                                                    <a href='artist-piece-details.php?id=<?= $piece_id ?>' class='btn btn-imperial'>
+                                                    <a href='art-piece-details.php?id=<?= $piece_id ?>' class='btn btn-imperial'>
                                                         View piece
                                                     </a>
                                                 </center>
@@ -154,7 +154,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php
                     }
                 } else {
-                    echo "<center class='fs-5 mt-6 imperial-red'>No galleries found. Try uploading one. </center>";
+                    echo "<center class='fs-5 mt-6 imperial-red'>No pieces found. Try uploading one. </center>";
                 }
                 ?>
 
