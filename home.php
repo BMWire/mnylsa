@@ -76,12 +76,12 @@ if (isset($_SESSION["user_id"])) {
                                 <div class='card-body'>
                                     <div class='row ml-1'>
                                         <div class='col-6'>
-                                            <a href='/art-piece-details.php?id=<?= $piece_id ?>'>
+                                            <a href='art-piece-details.php?id=<?= $piece_id ?>'>
                                                 <h4 class='space-cadet cadet-underlined'><?= $piece_title ?></h4>
                                             </a>
                                         </div>
                                         <div class='col-6'>
-                                            <a href='/artist-details.php?id=<?= $artist_id ?>' class='plain'>
+                                            <a href='artist-details.php?id=<?= $artist_id ?>' class='plain'>
                                                 <h4 class='card-title manatee'><?= $artist_name ?></h4>
                                             </a>
                                         </div>
