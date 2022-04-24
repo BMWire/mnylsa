@@ -90,7 +90,7 @@ if (isset($_SESSION['user_id'])) {
                                                     <?= substr($gallery_date, 0, strpos($gallery_date, ' ')) ?>
                                                 </p>
                                                 <center>
-                                                    <a href='artist-gallery-details.php?id=<?= $gallery_id ?>' class='btn btn-imperial'>
+                                                    <a href='gallery-details.php?id=<?= $gallery_id ?>' class='btn btn-imperial'>
                                                         View gallery
                                                     </a>
                                                 </center>

@@ -55,14 +55,14 @@ $piece = $result->fetch_assoc();
             <div class='card mt-6'>
                 <div class='row'>
                     <!-- Render the image for the piece -->
-                    <div class='col-lg-8 col-md-8 col-sm-12'>
+                    <div class='col-lg-7 col-md-8 col-sm-12'>
                         <center>
                             <img src='<?= $piece['img_path'] ?>' style='max-height: 90vh;' alt='<?= $piece['title'] ?>' class='img-fluid'>
                         </center>
                     </div>
 
                     <!-- Render the details for the piece -->
-                    <div class='col-lg-4 col-md-4 col-sm-12 py-3'>
+                    <div class='col-lg-5 col-md-4 col-sm-12 py-3'>
                         <div class='card-body'>
                             <div class='row'>
                                 <div class='col-5 col-md-5 col-sm-12'>
