@@ -18,7 +18,7 @@
         </a>
         <ul class='navbar-nav'>
             <li class='nav-item'>
-                <a href='client-dashboard.php?<?php $_SESSION['user_id'] ?>' class='nav-link'>
+                <a href='client-dashboard.php?id=<?= $_SESSION['user_id'] ?>' class='nav-link'>
                     Account
                 </a>
             </li>
