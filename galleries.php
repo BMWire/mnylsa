@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id'])) {
 
     $user = $result->fetch_assoc();
 } else {
-    header('Location: home.php');
+    header('Location: signin.php');
 }
 
 ?>

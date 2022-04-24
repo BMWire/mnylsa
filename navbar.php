@@ -18,7 +18,9 @@
         </a>
         <ul class='navbar-nav'>
             <li class='nav-item'>
-                <a href='home.php' class='nav-link'>Trending</a>
+                <a href='client-dashboard.php?<?php $_SESSION['user_id'] ?>' class='nav-link'>
+                    Account
+                </a>
             </li>
         </ul>
         <ul class='navbar-nav'>
@@ -60,7 +62,7 @@
 
         <ul class='nav justify-content-center'>
             <li class='nav-item'>
-                <a href='home.php' class='nav-link'>Galleries</a>
+                <a href='galleries.php' class='nav-link'>Galleries</a>
             </li>
             <!-- <li class='nav-item'>
                 <a href='/home.php' class='nav-link'>Artists</a>
@@ -72,7 +74,7 @@
             <?php if (isset($user)) : ?>
                 <li class='nav-item'>
                     <a href='client-dashboard.php' class='nav-link imperial-red'>
-                         <?= substr($user['name'], 0, strpos($user['name'], ' ')) ?>
+                        <?= substr($user['name'], 0, strpos($user['name'], ' ')) ?>
                     </a>
                     <a href='logout.php' class='nav-link space-cadet'>Log out</a>
                 </li>
