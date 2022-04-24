@@ -51,11 +51,6 @@ if (isset($_SESSION["user_id"])) {
         <div class='container'>
             <div class='row'>
 
-                <?php if (isset($user)) : ?>
-                    My name is <?= $user['name'] ?>.
-                    My user id is <?= $user['id'] ?>.
-                <?php endif; ?>
-
                 <!-- Fetch all the art entries by the artist who is logged in -->
                 <!-- Render a card for each piece -->
                 <?php
@@ -110,7 +105,7 @@ if (isset($_SESSION["user_id"])) {
                 }
                 ?>
             </div>
-            
+
             <div class='col-lg-12 col-md-12 col-sm-12 px-3 py-4'>
                 <div class='card'>
                     <div class='row'>

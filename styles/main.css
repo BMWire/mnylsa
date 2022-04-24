@@ -502,11 +502,16 @@ textarea::placeholder {
 	border-radius: 0.25rem;
 }
 
-.card-body {
+.card-body-thin {
 	flex: 1 1 auto;
 	padding: 1rem 1rem;
 	min-height: 190px;
 	max-height: 200px !important;
+}
+
+.card-body {
+	flex: 1 1 auto;
+	padding: 1rem 1rem;
 }
 
 .card-title {

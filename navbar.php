@@ -10,7 +10,7 @@
         </ul>
         <ul class='navbar-nav'>
             <li class='nav-item'>
-                <a href='home.php' class='nav-link'>Galleries</a>
+                <a href='galleries.php' class='nav-link'>Galleries</a>
             </li>
         </ul>
         <a href='home.php' class='nav-header mr-5'>
