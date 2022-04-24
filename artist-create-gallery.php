@@ -122,6 +122,11 @@ if (isset($_SESSION['user_id'])) {
                             <textarea class='form-control mb-2 mt-2' id='story' name='story' placeholder='Story behind the piece'></textarea>
                         </div>
 
+                        <div class='col-lg-12 mb-4'>
+                            <label for='date'>Date</label>
+                            <input class='form-control mb-2' type='date' name='date' id='date'>
+                        </div>
+
                         <div class='col-lg-12 mb-6'>
                             <label for='price'>Entrance fee (in Ksh)</label>
                             <input class='form-control mb-2 mt-2' type='number' min='0' step='500' id='fee' name='fee'>

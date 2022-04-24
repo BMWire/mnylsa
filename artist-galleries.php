@@ -116,7 +116,7 @@ if (isset($_SESSION['user_id'])) {
                         $gallery_location = $row['location'];
                         $gallery_story = $row['story'];
                         $gallery_fee = $row['fee'];
-                        $gallery_createdAt = $row['created_at'];
+                        $gallery_date = $row['date'];
                         $gallery_imgDir = $row['coverImg'];
                 ?>
                         <div class='row mt-5 justify-content-center'>
@@ -143,7 +143,7 @@ if (isset($_SESSION['user_id'])) {
                                                 </p>
                                                 <p class='card-text'>
                                                     <i class='bi bi-calendar-date manatee' style='font-size:22px;'></i>
-                                                    <?= $gallery_createdAt ?>
+                                                    <?= substr($gallery_date, 0, strpos($gallery_date, ' ')) ?>
                                                 </p>
                                                 <center>
                                                     <a href='artist-gallery-details.php?id=<?= $gallery_id ?>' class='btn btn-imperial'>

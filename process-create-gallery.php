@@ -23,6 +23,9 @@ if (empty($_POST['location'])) {
 if (empty($_POST['story'])) {
     die('Story is required');
 }
+if (empty($_POST['date'])) {
+    die('Date is required');
+}
 if (empty($_POST['fee'])) {
     die('Fee is required');
 }
@@ -85,8 +88,8 @@ $artist_name = $sessioned_user['name'];
 
 $mysqli = require __DIR__ . '/database.php';
 
-$sql = "INSERT INTO galleries (artist_id, artist_name, coverImg, title, location, story, fee)
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO galleries (artist_id, artist_name, coverImg, title, location, story, date, fee)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $mysqli->stmt_init();
 
@@ -95,13 +98,14 @@ if (!$stmt->prepare($sql)) {
 }
 
 $stmt->bind_param(
-    'sssssss',
+    'ssssssss',
     $artist_id,
     $artist_name,
     $img_dir,
     $_POST['title'],
     $_POST['location'],
     $_POST['story'],
+    $_POST['date'],
     $_POST['fee']
 );
 
