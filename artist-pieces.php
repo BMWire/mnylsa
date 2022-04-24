@@ -98,8 +98,8 @@ if (isset($_SESSION['user_id'])) {
                 <hr class='mobile-hide hr' />
 
 
-                <!-- Fetch all the gallery record entries by the artist who is logged in -->
-                <!-- Render a card for each gallery -->
+                <!-- Fetch all the art entries by the artist who is logged in -->
+                <!-- Render a card for each piece -->
                 <?php
                 $mysqli = require __DIR__ . '/database.php';
 
