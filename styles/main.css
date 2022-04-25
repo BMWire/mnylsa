@@ -494,12 +494,15 @@ textarea::placeholder {
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
-	/* max-height: 390px; */
 	word-wrap: break-word;
 	background-color: #fff;
 	background-clip: border-box;
 	border: 1px solid rgba(0, 0, 0, 0.125);
 	border-radius: 0.25rem;
+}
+
+.card-tall {
+	height: 80vh !important;
 }
 
 .card-body-thin {
@@ -550,8 +553,9 @@ textarea::placeholder {
 }
 
 .card-img-lg {
-	width: 100%;
-	height: auto;
+	width: 90%;
+	min-height: 65vh;
+	max-height: 75vh !important;
 	border-radius: 0.3rem;
 }
 

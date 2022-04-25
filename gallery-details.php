@@ -52,12 +52,12 @@ $gallery = $result->fetch_assoc();
     <!-- Start of main -->
     <main>
         <div class='container-flex'>
-            <div class='card mt-6'>
+            <div class='card card-tall mt-6'>
                 <div class='row'>
                     <!-- Render the image for the gallery -->
                     <div class='col-lg-7 col-md-8 col-sm-12'>
                         <center>
-                            <img src='<?= $gallery['coverImg'] ?>' style='max-height: 90vh;' alt='<?= $gallery['title'] ?>' class='img-fluid'>
+                            <img src='<?= $gallery['coverImg'] ?>' style='max-height: 90vh;' alt='<?= $gallery['title'] ?>' class='card-img-lg pt-5'>
                         </center>
                     </div>
 
