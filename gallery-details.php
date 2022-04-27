@@ -73,11 +73,7 @@ $gallery = $result->fetch_assoc();
                                 </div>
                             </div>
 
-                            <p class='card-text'>
-                                <?= $gallery['story'] ?>.
-                                <?= $gallery['story'] ?>.
-                                <?= $gallery['story'] ?>.
-                                <?= $gallery['story'] ?>.
+                            <p class='card-text text-spacing'>
                                 <?= $gallery['story'] ?>.
                             </p>
 

@@ -52,12 +52,12 @@ $piece = $result->fetch_assoc();
     <!-- Start of main -->
     <main>
         <div class='container-flex'>
-            <div class='card mt-6'>
+            <div class='card card-tall mt-6'>
                 <div class='row'>
                     <!-- Render the image for the piece -->
                     <div class='col-lg-7 col-md-8 col-sm-12'>
                         <center>
-                            <img src='<?= $piece['img_path'] ?>' style='max-height: 90vh;' alt='<?= $piece['title'] ?>' class='img-fluid'>
+                            <img src='<?= $piece['img_path'] ?>' style='max-height: 90vh;' alt='<?= $piece['title'] ?>' class='card-img-lg pt-5'>
                         </center>
                     </div>
 
@@ -73,11 +73,7 @@ $piece = $result->fetch_assoc();
                                 </div>
                             </div>
 
-                            <p class='card-text'>
-                                <?= $piece['story'] ?>.
-                                <?= $piece['story'] ?>.
-                                <?= $piece['story'] ?>.
-                                <?= $piece['story'] ?>.
+                            <p class='card-text text-spacing'>
                                 <?= $piece['story'] ?>.
                             </p>
 

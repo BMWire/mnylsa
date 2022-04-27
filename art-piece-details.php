@@ -73,11 +73,7 @@ $piece = $result->fetch_assoc();
                                 </div>
                             </div>
 
-                            <p class='card-text'>
-                                <?= $piece['story'] ?>.
-                                <?= $piece['story'] ?>.
-                                <?= $piece['story'] ?>.
-                                <?= $piece['story'] ?>.
+                            <p class='card-text text-spacing'>
                                 <?= $piece['story'] ?>.
                             </p>
 
