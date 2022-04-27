@@ -44,7 +44,7 @@ if (isset($_SESSION['user_id'])) {
     <!-- Start of main -->
     <div class='container-flex' style='padding-left:7%; padding-right:8%;'>
         <div class='row'>
-
+            
             <!-- Start of aside navbar -->
             <nav class='col-md-3 col-lg-2 d-md-block'>
                 <div class='position-sticky pt-3 background-cultured'>

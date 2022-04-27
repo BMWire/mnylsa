@@ -248,6 +248,13 @@ a {
 	margin: auto;
 }
 
+.container-cart {
+	width: 85%;
+	padding-left: 0;
+	padding-right: 0;
+	margin: auto;
+}
+
 .row {
 	--gutter-x: 1.5rem;
 	--gutter-x: 0;
@@ -503,6 +510,10 @@ textarea::placeholder {
 
 .card-tall {
 	height: 80vh !important;
+}
+
+.card-short {
+	max-height: 30vh !important;
 }
 
 .card-body-thin {

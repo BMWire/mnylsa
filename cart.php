@@ -26,6 +26,10 @@ $fetch_stmt = "SELECT * FROM art WHERE id = {$_GET['id']}";
 $result = $mysqli->query($fetch_stmt);
 
 $piece = $result->fetch_assoc();
+
+/* Get the id of the piece from the session */
+$_SESSION['piece_id'] = $piece['id'];
+$piece_id = $_SESSION['piece_id'];
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -34,7 +38,7 @@ $piece = $result->fetch_assoc();
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Cart' ?> </title>
+    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Art bag' ?> </title>
 
     <!-- Styling imports -->
     <link rel='stylesheet' href='styles/main.css'>
@@ -51,57 +55,58 @@ $piece = $result->fetch_assoc();
 
     <!-- Start of main -->
     <main>
-        <div class='container-flex'>
-            <div class='card card-tall mt-6'>
+        <div class='container'>
+
+            <div class='card card-short mt-6'>
                 <div class='row'>
                     <!-- Render the image for the piece -->
-                    <div class='col-lg-7 col-md-8 col-sm-12'>
-                        <center>
-                            <img src='<?= $piece['img_path'] ?>' style='max-height: 90vh;' alt='<?= $piece['title'] ?>' class='card-img-lg pt-5'>
-                        </center>
+                    <div class='col-lg-4 col-md-8 col-sm-12'>
+                        <img src='<?= $piece['img_path'] ?>' style='max-height: 20vh !important;' alt='<?= $piece['title'] ?>' class='p-4'>
                     </div>
 
                     <!-- Render the details for the piece -->
-                    <div class='col-lg-5 col-md-4 col-sm-12 py-3'>
+                    <div class='col-lg-8 col-md-4 col-sm-12 ps-3 py-4'>
                         <div class='card-body'>
                             <div class='row'>
                                 <div class='col-5 col-md-5 col-sm-12'>
-                                    <h1 class=''><?= $piece['title'] ?></h1>
+                                    <h2 class='manatee'><?= $piece['title'] ?></h2>
                                 </div>
                                 <div class='col-lg-6 col-md-6 col-sm-12'>
-                                    <h3 class='pt-3'><?= $piece['artist_name'] ?></h3>
+                                    <h2 class=''><?= $piece['artist_name'] ?></h2>
                                 </div>
                             </div>
-
-                            <p class='card-text text-spacing'>
-                                <?= $piece['story'] ?>.
-                            </p>
-
-                            <span class='card-text fs-4'>Ksh <?= $piece['price'] ?></span>
+                            <span class='card-text fs-5'>
+                                Ksh <?= number_format($piece['price'], 2) ?></span>
                         </div>
-
-                        <?php if ($user['isArtist'] == 'yes') : ?>
-                            <center>
-                                <a href='artist-edit-piece.php?id=<?= $piece['id '] ?>'>
-                                    <button class='btn btn-lg btn-imperial'>
-                                        Edit Piece
-                                    </button>
-                                </a>
-                            </center>
-
-                        <?php else : ?>
-                            <center>
-                                <a href='cart.php?id=<?= $piece['id '] ?>'>
-                                    <button class='btn btn-lg btn-imperial'>
-                                        Purchase Piece
-                                    </button>
-                                </a>
-                            </center>
-                        <?php endif; ?>
 
                     </div>
                 </div>
             </div>
+
+
+            <?php if ($user['isArtist'] == 'yes') : ?>
+                <center class='mt-4>
+                    <a href=' piece-orders.php?id=<?= $piece['id '] ?>'>
+                    <button class='btn btn-lg btn-imperial mt-6'>
+                        View Orders
+                    </button>
+                    </a>
+                </center>
+
+            <?php else : ?>
+                <center class='mt-4'>
+                    <!-- <a href='order.php?id=<?= $piece['id'] ?>'> -->
+                    <form action='process-create-order.php' name='create_order' method='POST'>
+                        <button class='btn btn-lg btn-imperial mt-6'>
+                            Create Order
+                        </button>
+                    </form>
+                    <!-- </a> -->
+                </center>
+            <?php endif; ?>
+
+        </div>
+
 
     </main>
     <!-- End of main -->

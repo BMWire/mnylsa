@@ -5,7 +5,7 @@ session_start();
 // Get the session variables
 $sqlFetch = require __DIR__ . "/database.php";
 
-// get the user's email address
+// get the user's id
 $fetch = "SELECT * FROM users
             WHERE id = {$_SESSION["user_id"]}";
 
