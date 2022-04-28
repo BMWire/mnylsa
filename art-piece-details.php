@@ -77,7 +77,7 @@ $piece = $result->fetch_assoc();
                                 <?= $piece['story'] ?>.
                             </p>
 
-                            <span class='card-text fs-4'>Ksh <?= $piece['price'] ?></span>
+                            <span class='card-text fs-4'>Ksh <?= number_format($piece['price'], 2) ?></span>
                         </div>
 
                         <?php if ($user['isArtist'] == 'yes') : ?>

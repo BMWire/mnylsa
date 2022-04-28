@@ -86,13 +86,13 @@ if (isset($_SESSION["user_id"])) {
                                             </a>
                                         </div>
                                     </div>
-                                    <div class='row ml-1'>
-                                        <div class='col-6'>
+                                    <div class='row ml-1 pt-2'>
+                                        <!-- <div class='col-6'>
                                             <i class='bi bi-palette-fill manatee ml-1'></i>
                                             <span class='space-cadet fs-6'>53 palettes</span>
-                                        </div>
-                                        <div class='col-6'>
-                                            <span class='imperial-red fs-6 bold'>Kshs <?= $piece_price ?></span>
+                                        </div> -->
+                                        <div class='col-12'>
+                                            <span class='imperial-red fs-6 bold'>Kshs <?= number_format($piece_price, 2)?></span>
                                         </div>
                                     </div>
                                 </div>
