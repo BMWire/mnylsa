@@ -7,10 +7,10 @@ if (isset($_SESSION['user_id'])) {
     $mysqli = require __DIR__ . '/database.php';
 
     // get the user's email address
-    $sql = "SELECT * FROM users
+    $fetch_user_session = "SELECT * FROM users
             WHERE id = {$_SESSION['user_id']}";
 
-    $result = $mysqli->query($sql);
+    $result = $mysqli->query($fetch_user_session);
 
     $user = $result->fetch_assoc();
 } else {
@@ -19,18 +19,16 @@ if (isset($_SESSION['user_id'])) {
 ?>
 <!-- Fetch the details for the piece whose id is in the URL -->
 <?php
-$mysqli = require __DIR__ . '/database.php';
+$fetch_art_session = "SELECT * FROM art WHERE id = {$_GET['id']}";
 
-$fetch_stmt = "SELECT * FROM art WHERE id = {$_GET['id']}";
-
-$result = $mysqli->query($fetch_stmt);
+$result = $mysqli->query($fetch_art_session);
 
 $piece = $result->fetch_assoc();
 
-/* Get the id of the piece from the session */
-$_SESSION['piece_id'] = $piece['id'];
-$piece_id = $_SESSION['piece_id'];
 ?>
+
+<!-- Fetch the order id from the art_orders table-->
+
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -56,6 +54,19 @@ $piece_id = $_SESSION['piece_id'];
     <!-- Start of main -->
     <main>
         <div class='container'>
+            <span>User Id: <?= $user['id'] ?></span>
+            <br />
+            <span>User Name: <?= $user['name'] ?></span>
+            <br />
+            <span>Piece Id: <?= $piece['id'] ?></span>
+            <br />
+            <span>Piece Title: <?= $piece['title'] ?></span>
+            <br />
+            <span>Piece Artist: <?= $piece['artist_name'] ?></span>
+            <br />
+            <span>Piece Artist Id: <?= $piece['artist_id'] ?></span>
+            <br />
+            <span>Piece Price: <?= $piece['price'] ?></span>
 
             <div class='card card-short mt-6'>
                 <div class='row'>
@@ -83,27 +94,42 @@ $piece_id = $_SESSION['piece_id'];
                 </div>
             </div>
 
-
-            <?php if ($user['isArtist'] == 'yes') : ?>
-                <center class='mt-4>
-                    <a href=' piece-orders.php?id=<?= $piece['id '] ?>'>
-                    <button class='btn btn-lg btn-imperial mt-6'>
-                        View Orders
-                    </button>
-                    </a>
-                </center>
-
-            <?php else : ?>
-                <center class='mt-4'>
-                    <!-- <a href='order.php?id=<?= $piece['id'] ?>'> -->
-                    <form action='process-create-order.php' name='create_order' method='POST'>
+            <center class='mt-4'>
+                <form action='<?= $_SERVER['PHP_SELF'] ?>' method='post'>
+                    <a href='order.php?id=<?= $user['id'] ?>'>
                         <button class='btn btn-lg btn-imperial mt-6'>
                             Create Order
                         </button>
-                    </form>
-                    <!-- </a> -->
-                </center>
-            <?php endif; ?>
+                    </a>
+
+                    <?php
+
+                    $mysqli = require __DIR__ . '/database.php';
+
+                    $fetch_user_session = "INSERT INTO art_orders (piece_id, piece_title, piece_price, user_id, user_name)
+        VALUES (?, ?, ?, ?, ?)";
+
+                    $last_insert_id = mysqli_insert_id($mysqli);
+
+                    $stmt = $mysqli->stmt_init();
+
+                    if (!$stmt->prepare($fetch_user_session)) {
+                        die('SQL error: ' . $mysqli->error);
+                    }
+
+                    $stmt->bind_param(
+                        'sssss',
+                        $piece['id'],
+                        $piece['title'],
+                        $piece['price'],
+                        $user['id'],
+                        $user['name']
+                    );
+
+                    ?>
+
+                </form>
+            </center>
 
         </div>
 
