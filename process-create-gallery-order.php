@@ -18,7 +18,7 @@ $sql = "INSERT INTO gallery_orders (user_id, user_name, gallery_id, gallery_titl
 // execute insert query
 if ($mysqli->query($sql) === TRUE) {
     // redirect to order.php?id={$_SESSION['user_id']}
-    header("Location: orders.php?id=$_SESSION[user_id]");
+    header("Location: gallery-orders.php?id=$_SESSION[user_id]");
     exit;
 } else {
     echo "Error: " . $sql . "<br>" . $mysqli->error;
