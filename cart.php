@@ -6,7 +6,7 @@ if (isset($_SESSION['user_id'])) {
     // create a database connection 
     $mysqli = require __DIR__ . '/database.php';
 
-    // get the user's email address
+    // get the logged in user's id
     $fetch_user_session = "SELECT * FROM users
             WHERE id = {$_SESSION['user_id']}";
 
@@ -95,40 +95,35 @@ $piece = $result->fetch_assoc();
             </div>
 
             <center class='mt-4'>
-                <form action='<?= $_SERVER['PHP_SELF'] ?>' method='post'>
-                    <a href='order.php?id=<?= $user['id'] ?>'>
-                        <button class='btn btn-lg btn-imperial mt-6'>
-                            Create Order
-                        </button>
-                    </a>
 
+                <form action='process-create-art-order.php' method='POST'>
+                    <input type='hidden' name='user_id' value='<?= $user['id'] ?>'>
+                    <input type='hidden' name='user_name' value='<?= $user['name'] ?>'>
+                    <input type='hidden' name='piece_id' value='<?= $piece['id'] ?>'>
+                    <input type='hidden' name='piece_title' value='<?= $piece['title'] ?>'>
+                    <input type='hidden' name='piece_artist' value='<?= $piece['artist_name'] ?>'>
+                    <input type='hidden' name='piece_artist_id' value='<?= $piece['artist_id'] ?>'>
+                    <input type='hidden' name='piece_price' value='<?= $piece['price'] ?>'>
+
+                    <!-- Check to see if the user has already submitted the order -->
                     <?php
+                    $fetch_order_session = "SELECT * FROM art_orders
+                            WHERE piece_id = {$piece['id']}";
 
-                    $mysqli = require __DIR__ . '/database.php';
+                    $result = $mysqli->query($fetch_order_session);
 
-                    $fetch_user_session = "INSERT INTO art_orders (piece_id, piece_title, piece_price, user_id, user_name)
-        VALUES (?, ?, ?, ?, ?)";
+                    if ($result->num_rows > 0) {
+                        echo "<p class='text-danger'>An order has already been placed for this piece</p>";
 
-                    $last_insert_id = mysqli_insert_id($mysqli);
-
-                    $stmt = $mysqli->stmt_init();
-
-                    if (!$stmt->prepare($fetch_user_session)) {
-                        die('SQL error: ' . $mysqli->error);
+                        // Take the user back to the art page or to their orders page
+                        echo "<a href='home.php' class='btn btn-lg btn-imperial' target='_blank'>Back to Art</a>";
+                    } else {
+                        echo "<button type='submit' class='btn btn-lg btn-imperial'>Create Order</button>";
                     }
-
-                    $stmt->bind_param(
-                        'sssss',
-                        $piece['id'],
-                        $piece['title'],
-                        $piece['price'],
-                        $user['id'],
-                        $user['name']
-                    );
-
                     ?>
 
                 </form>
+
             </center>
 
         </div>
