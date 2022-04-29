@@ -116,6 +116,17 @@ $art = $piece_result->fetch_assoc();
                     </div>
                 </div>
 
+                <!-- Push the items in the order into the current user session -->
+                <?php
+                $fetch_order_items = "SELECT * FROM art_orders WHERE id = {$art_order['id']}";
+
+                $result = $mysqli->query($fetch_order_items);
+
+                $order_items = $result->fetch_assoc();
+
+                $_SESSION['order_items'] = $order_items;
+                ?>
+
 
                 <div class='col-lg-4 col-md-4 col-sm-12 px-2'>
                     <div class='card card-checkout p-2'>
@@ -124,12 +135,17 @@ $art = $piece_result->fetch_assoc();
                         </center>
 
                         <!-- Paypal Implementation -->
+                        <div id='paypal-button-container' class='p-4'></div>
                     </div>
                 </div>
             </div>
 
 
     </main>
+    <!-- Paypal Scripts addtion -->
+    <script src='https://www.paypal.com/sdk/js?client-id=AQ1dYNCw-E-XfDrHWhe1BZ5-90Y1e4c0Ut7C7lTH_LPT33dXt0ma70l75mWT1QEdbAOZHacxMlbNzSyk'></script>
+    <script src='js/payments.js'></script>
+    
     <!-- End of main -->
 
 
