@@ -25,6 +25,11 @@ $result = $mysqli->query($fetch_art_session);
 
 $art_order = $result->fetch_assoc();
 
+// Check if there is no order matching the user id or if the order is empty
+if (!$art_order || empty($art_order)) {
+    header("Location: home.php");
+}
+
 
 // fetch the additional details for the art piece that is in the order
 $fetch_art_piece = "SELECT * FROM art WHERE id = {$art_order['piece_id']}";
@@ -78,8 +83,8 @@ $art = $piece_result->fetch_assoc();
                     <span>Piece Price: <?= $art_order['piece_price'] ?></span> -->
 
                     <div class='col-lg-12 col-md-8 px-2'>
-                        <!-- Shipping address -->
                         <div class='row'>
+                            <!-- Shipping address -->
                             <div class='card card-short col-lg-12 col-md-12 p-3'>
                                 <h3>Collection Address</h3>
                                 <p>Street: <?= $art_order['street'] ?></p>
@@ -87,46 +92,54 @@ $art = $piece_result->fetch_assoc();
                                 <p>County: <?= $art_order['county'] ?></p>
                                 <p>Country: <?= $art_order['country'] ?></p>
                             </div>
-                        </div>
 
-                        <div class='card card-short mt-6'>
-                            <div class='row'>
-                                <!-- Render the image for the order -->
-                                <div class='col-lg-3 col-md-8 col-sm-12'>
-                                    <img src='<?= $art['img_path'] ?>' style='max-height: 20vh !important;' alt='<?= $art['title'] ?>' class='p-4'>
-                                </div>
 
-                                <!-- Render the details for the piece -->
-                                <div class='col-lg-9 col-md-4 col-sm-12 ps-3 py-3'>
-                                    <div class='card-body'>
-                                        <div class='row'>
-                                            <div class='col-5 col-md-5 col-sm-12'>
-                                                <h2 class='space-cadet'><?= $art_order['piece_title'] ?></h2>
+                            <!-- Fetch all the orders whose isPaid = 0 made by the user whose id is in the URL -->
+                            <?php
+                            $fetch_orders = "SELECT * FROM art_orders WHERE user_id = {$_GET['id']} AND isPaid = 0";
+
+                            $result = $mysqli->query($fetch_orders);
+
+                            while ($order = $result->fetch_assoc()) {
+                                $fetch_art = "SELECT * FROM art WHERE id = {$order['piece_id']}";
+
+                                $piece_result = $mysqli->query($fetch_art);
+
+                                $art = $piece_result->fetch_assoc();
+
+                                $art_price = number_format($art['price'], 2);
+
+                                echo "<div class='row'>
+                                <div class='col-lg-12 col-md-8 col-sm-12 px-2'>
+                                    <div class='card card-short mt-6'>
+                                            <div class='row'>
+                                                <div class='col-lg-3 col-md-8 col-sm-12'>
+                                                    <img src='{$art['img_path']}' style='max-height: 20vh !important;' alt='{$art['title']}' class='p-4'>
+                                                </div>
+                                                <div class='col-lg-9 col-md-4 col-sm-12 ps-3 py-3'>
+                                                    <div class='card-body'>
+                                                    <div class='row'>
+                                                    <div class='col-5 col-md-5 col-sm-12'>
+                                                        <h2 class='card-title'>{$art['title']}</h2>
+                                                    </div>
+                                                    <div class='col-lg-6 col-md-6 col-sm-12'>
+                                                        <h3 class='card-text'>{$art['artist_name']}</>
+                                                    </div>
+                                                    <span class='card-text fs-5 pt-3'>Kshs.&nbsp;{$art_price}</span>
+                                                </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class='col-lg-6 col-md-6 col-sm-12'>
-                                                <h3 class=''><?= $art['artist_name'] ?></h3>
-                                            </div>
-                                        </div>
-                                        <span class='card-text fs-5'>
-                                            Ksh <?= number_format($art_order['piece_price'], 2) ?></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div>";
+                            }
+                            ?>
+
+
                         </div>
                     </div>
                 </div>
-
-                <!-- Push the items in the order into the current user session -->
-                <?php
-                $fetch_order_items = "SELECT * FROM art_orders WHERE id = {$art_order['id']}";
-
-                $result = $mysqli->query($fetch_order_items);
-
-                $order_items = $result->fetch_assoc();
-
-                $_SESSION['order_items'] = $order_items;
-                ?>
-
 
                 <div class='col-lg-4 col-md-4 col-sm-12 px-2'>
                     <div class='card card-checkout p-2'>
@@ -145,7 +158,7 @@ $art = $piece_result->fetch_assoc();
     <!-- Paypal Scripts addtion -->
     <script src='https://www.paypal.com/sdk/js?client-id=AQ1dYNCw-E-XfDrHWhe1BZ5-90Y1e4c0Ut7C7lTH_LPT33dXt0ma70l75mWT1QEdbAOZHacxMlbNzSyk'></script>
     <script src='js/payments.js'></script>
-    
+
     <!-- End of main -->
 
 

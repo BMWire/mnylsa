@@ -105,7 +105,7 @@ $piece = $result->fetch_assoc();
                     <input type='hidden' name='piece_artist_id' value='<?= $piece['artist_id'] ?>'>
                     <input type='hidden' name='piece_price' value='<?= $piece['price'] ?>'>
 
-                    <!-- Check to see if the user has already submitted the order -->
+                    <!-- Check to see if the user has already submitted the order
                     <?php
                     $fetch_order_session = "SELECT * FROM art_orders
                             WHERE piece_id = {$piece['id']}";
@@ -120,7 +120,9 @@ $piece = $result->fetch_assoc();
                     } else {
                         echo "<button type='submit' class='btn btn-lg btn-imperial'>Create Order</button>";
                     }
-                    ?>
+                    ?> -->
+                    <button type='submit' class='btn btn-lg btn-imperial'>Create Order</button>
+
 
                 </form>
 
