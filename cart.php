@@ -116,7 +116,7 @@ $piece = $result->fetch_assoc();
                         echo "<p class='text-danger'>An order has already been placed for this piece</p>";
 
                         // Take the user back to the art page or to their orders page
-                        echo "<a href='home.php' class='btn btn-lg btn-imperial' target='_blank'>Back to Art</a>";
+                        echo "<a href='home.php' class='btn btn-lg btn-imperial'>Back to Art</a>";
                     } else {
                         echo "<button type='submit' class='btn btn-lg btn-imperial'>Create Order</button>";
                     }

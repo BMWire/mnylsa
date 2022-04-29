@@ -17,14 +17,21 @@ if (isset($_SESSION['user_id'])) {
     header('Location: home.php');
 }
 ?>
-<!-- Fetch the details for the piece whose id is in the URL -->
+<!-- Fetch the details for the art_order for the user whose id is in the URL
 <?php
-$fetch_art_session = "SELECT * FROM art WHERE id = {$_GET['id']}";
+$fetch_art_session = "SELECT * FROM art_orders WHERE user_id = {$_GET['id']}";
 
 $result = $mysqli->query($fetch_art_session);
 
-$piece = $result->fetch_assoc();
+$art_order = $result->fetch_assoc();
 
+
+// fetch the additional details for the art piece that is in the order
+$fetch_art_piece = "SELECT * FROM art WHERE id = {$art_order['piece_id']}";
+
+$piece_result = $mysqli->query($fetch_art_piece);
+
+$art = $piece_result->fetch_assoc();
 ?>
 
 <!-- Fetch the order id from the art_orders table-->
@@ -53,80 +60,73 @@ $piece = $result->fetch_assoc();
 
     <!-- Start of main -->
     <main>
-        <div class='container'>
-            <span>User Id: <?= $user['id'] ?></span>
-            <br />
-            <span>User Name: <?= $user['name'] ?></span>
-            <br />
-            <span>Piece Id: <?= $piece['id'] ?></span>
-            <br />
-            <span>Piece Title: <?= $piece['title'] ?></span>
-            <br />
-            <span>Piece Artist: <?= $piece['artist_name'] ?></span>
-            <br />
-            <span>Piece Artist Id: <?= $piece['artist_id'] ?></span>
-            <br />
-            <span>Piece Price: <?= $piece['price'] ?></span>
+        <div class='container-cart'>
+            <div class='row mt-6'>
+                <div class='col-lg-8 col-md-8 col-sm-12'>
+                    <!-- <span>User Id: <?= $user['id'] ?></span>
+                    <br />
+                    <span>User Name: <?= $user['name'] ?></span>
+                    <br />
+                    <span>Piece Id: <?= $art_order['piece_id'] ?></span>
+                    <br />
+                    <span>Piece Title: <?= $art_order['piece_title'] ?></span>
+                    <br />
+                    <span>Piece Artist: <?= $art['artist_name'] ?></span>
+                    <br />
+                    <span>Piece Artist Id: <?= $art['artist_id'] ?></span>
+                    <br />
+                    <span>Piece Price: <?= $art_order['piece_price'] ?></span> -->
 
-            <div class='card card-short mt-6'>
-                <div class='row'>
-                    <!-- Render the image for the piece -->
-                    <div class='col-lg-4 col-md-8 col-sm-12'>
-                        <img src='<?= $piece['img_path'] ?>' style='max-height: 20vh !important;' alt='<?= $piece['title'] ?>' class='p-4'>
-                    </div>
-
-                    <!-- Render the details for the piece -->
-                    <div class='col-lg-8 col-md-4 col-sm-12 ps-3 py-4'>
-                        <div class='card-body'>
-                            <div class='row'>
-                                <div class='col-5 col-md-5 col-sm-12'>
-                                    <h2 class='manatee'><?= $piece['title'] ?></h2>
-                                </div>
-                                <div class='col-lg-6 col-md-6 col-sm-12'>
-                                    <h2 class=''><?= $piece['artist_name'] ?></h2>
-                                </div>
+                    <div class='col-lg-12 col-md-8 px-2'>
+                        <!-- Shipping address -->
+                        <div class='row'>
+                            <div class='card card-short col-lg-12 col-md-12 p-3'>
+                                <h3>Collection Address</h3>
+                                <p>Street: <?= $art_order['street'] ?></p>
+                                <p>City: <?= $art_order['city'] ?></p>
+                                <p>County: <?= $art_order['county'] ?></p>
+                                <p>Country: <?= $art_order['country'] ?></p>
                             </div>
-                            <span class='card-text fs-5'>
-                                Ksh <?= number_format($piece['price'], 2) ?></span>
                         </div>
 
+                        <div class='card card-short mt-6'>
+                            <div class='row'>
+                                <!-- Render the image for the order -->
+                                <div class='col-lg-3 col-md-8 col-sm-12'>
+                                    <img src='<?= $art['img_path'] ?>' style='max-height: 20vh !important;' alt='<?= $art['title'] ?>' class='p-4'>
+                                </div>
+
+                                <!-- Render the details for the piece -->
+                                <div class='col-lg-9 col-md-4 col-sm-12 ps-3 py-3'>
+                                    <div class='card-body'>
+                                        <div class='row'>
+                                            <div class='col-5 col-md-5 col-sm-12'>
+                                                <h2 class='space-cadet'><?= $art_order['piece_title'] ?></h2>
+                                            </div>
+                                            <div class='col-lg-6 col-md-6 col-sm-12'>
+                                                <h3 class=''><?= $art['artist_name'] ?></h3>
+                                            </div>
+                                        </div>
+                                        <span class='card-text fs-5'>
+                                            Ksh <?= number_format($art_order['piece_price'], 2) ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class='col-lg-4 col-md-4 col-sm-12 px-2'>
+                    <div class='card card-checkout p-2'>
+                        <center>
+                            <h2>Checkout</h2>
+                        </center>
+
+                        <!-- Paypal Implementation -->
                     </div>
                 </div>
             </div>
-
-            <center class='mt-4'>
-
-                <form action='process-create-art-order.php' method='POST'>
-                    <input type='hidden' name='user_id' value='<?= $user['id'] ?>'>
-                    <input type='hidden' name='user_name' value='<?= $user['name'] ?>'>
-                    <input type='hidden' name='piece_id' value='<?= $piece['id'] ?>'>
-                    <input type='hidden' name='piece_title' value='<?= $piece['title'] ?>'>
-                    <input type='hidden' name='piece_artist' value='<?= $piece['artist_name'] ?>'>
-                    <input type='hidden' name='piece_artist_id' value='<?= $piece['artist_id'] ?>'>
-                    <input type='hidden' name='piece_price' value='<?= $piece['price'] ?>'>
-
-                    <!-- Check to see if the user has already submitted the order -->
-                    <?php
-                    $fetch_order_session = "SELECT * FROM art_orders
-                            WHERE piece_id = {$piece['id']}";
-
-                    $result = $mysqli->query($fetch_order_session);
-
-                    if ($result->num_rows > 0) {
-                        echo "<p class='text-danger'>An order has already been placed for this piece</p>";
-
-                        // Take the user back to the art page or to their orders page
-                        echo "<a href='home.php' class='btn btn-lg btn-imperial' target='_blank'>Back to Art</a>";
-                    } else {
-                        echo "<button type='submit' class='btn btn-lg btn-imperial'>Create Order</button>";
-                    }
-                    ?>
-
-                </form>
-
-            </center>
-
-        </div>
 
 
     </main>
