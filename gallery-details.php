@@ -73,10 +73,6 @@ $gallery = $result->fetch_assoc();
                                 </div>
                             </div>
 
-                            <p class='card-text text-spacing'>
-                                <?= $gallery['story'] ?>.
-                            </p>
-
                             <div class='row'>
                                 <div class='col-lg-6 col-md-5 col-sm-12'>
                                     <p class='bold fs-5'>
@@ -87,15 +83,24 @@ $gallery = $result->fetch_assoc();
                                 <div class='col-lg-6 col-md-6 col-sm-12'>
                                     <p class='bold fs-5'>
                                         <i class='bi bi-calendar-date imperial-red' style='font-size:22px;'></i> &nbsp;
-                                        <?= substr($gallery['date'], 0, strpos($gallery['date'], ' ')) ?>
+                                        <!-- Show the date in words -->
+                                        <?php
+                                        $date = date_create($gallery['date']);
+                                        echo date_format($date, 'F j, Y');
+                                        ?>
                                     </p>
                                 </div>
                             </div>
 
-                            <span class='card-text fs-4'>Ksh <?= $gallery['fee'] ?></span>
+                            <p class='card-text text-spacing'>
+                                <?= $gallery['story'] ?>.
+                            </p>
+
+                            <span class='card-text fs-4'>Ksh <?= number_format($gallery['fee'], 2) ?></span>
                         </div>
 
                         <?php if ($user['isArtist'] == 'yes') : ?>
+
                             <center>
                                 <a href='artist-edit-gallery.php?id=<?= $gallery['id'] ?>'>
                                     <button class='btn btn-lg btn-imperial'>
@@ -106,11 +111,13 @@ $gallery = $result->fetch_assoc();
 
                         <?php else : ?>
 
-                            <a href='cart.php?id=<?= $gallery['id'] ?>'>
-                                <button class='btn btn-lg btn-imperial'>
-                                    Buy ticket
-                                </button>
-                            </a>
+                            <center>
+                                <a href='tickets.php?id=<?= $gallery['id'] ?>'>
+                                    <button class='btn btn-lg btn-imperial'>
+                                        Buy ticket
+                                    </button>
+                                </a>
+                            </center>
 
                         <?php endif; ?>
 
