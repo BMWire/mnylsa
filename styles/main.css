@@ -489,6 +489,10 @@ textarea::placeholder {
 	width: 100%;
 }
 
+.rotate {
+	transform: rotate(90deg) !important;
+}
+
 /* Form Screens End */
 /* ------------------------------------------------ */
 

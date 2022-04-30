@@ -2,27 +2,10 @@
 
 <!-- Start of md navigation -->
 <nav class='navbar mobile-hide'>
-    <div class='container-fluid'>
-        <ul class='navbar-nav'>
-            <li class='nav-item'>
-                <a href='home.php' class='nav-link'>Artists</a>
-            </li>
-        </ul>
-        <ul class='navbar-nav'>
-            <li class='nav-item'>
-                <a href='galleries.php' class='nav-link'>Galleries</a>
-            </li>
-        </ul>
+    <div class='container'>
         <a href='home.php' class='nav-header mr-5'>
-            MONEYLISA
+            MONEYLISA <sup><span class='fs-6'>Enthusiast</span></sup>
         </a>
-        <ul class='navbar-nav'>
-            <li class='nav-item'>
-                <a href='enthusiast-dashboard.php?id=<?= $_SESSION['user_id'] ?>' class='nav-link'>
-                    Account
-                </a>
-            </li>
-        </ul>
         <ul class='navbar-nav'>
             <li class='nav-item'>
                 <!-- Check to see if there is a user session -->
@@ -62,7 +45,7 @@
 
         <ul class='nav justify-content-center'>
             <li class='nav-item'>
-                <a href='galleries.php' class='nav-link'>Galleries</a>
+                <a href='home.php' class='nav-link'>Galleries</a>
             </li>
             <!-- <li class='nav-item'>
                 <a href='/home.php' class='nav-link'>Artists</a>
@@ -73,7 +56,7 @@
             <!-- Check to see if there is a user session -->
             <?php if (isset($user)) : ?>
                 <li class='nav-item'>
-                    <a href='client-dashboard.php' class='nav-link imperial-red'>
+                    <a href='#' class='nav-link imperial-red'>
                         <?= substr($user['name'], 0, strpos($user['name'], ' ')) ?>
                     </a>
                     <a href='logout.php' class='nav-link space-cadet'>Log out</a>
