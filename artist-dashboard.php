@@ -101,6 +101,23 @@ if (isset($_SESSION['user_id'])) {
                 </div>
 
                 <hr class='mobile-hide hr' />
+
+                <!-- Render a graph showing the rise in art orders compared to gallery orders  -->
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class=''>
+                            <div class='card-body'>
+                                <h5 class='card-title'>Art Order vs. Gallery Order</h5>
+                                <p class='card-text'>
+                                    <canvas id='myChart'></canvas>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <center>
                     <div class='col-lg-10 col-md-6 p-3'>
                         <div class='row'>
@@ -152,7 +169,7 @@ if (isset($_SESSION['user_id'])) {
                                 </p>
                                     </div>
 
-                                    
+
                                 </div>
 
                                 <div class='card border-dark mb-3'>
@@ -201,12 +218,12 @@ if (isset($_SESSION['user_id'])) {
                                 </p>
                                     </div>
 
-                                    
-                                </div>  
+
+                                </div>
                             </div>
 
-                            
-                            
+
+
                             <!-- Recent posted pieces -->
                             <div class='col-lg-6 col-md-6 p-3'>
                                 <div class='card border-dark mb-3'>
@@ -222,7 +239,7 @@ if (isset($_SESSION['user_id'])) {
                                             $sql = "SELECT * FROM art
                                             WHERE artist_id = {$user['id']}
                                             ORDER BY id DESC
-                                            LIMIT 5
+                                            LIMIT 10
                                             ";
 
                                             $result = $mysqli->query($sql);
