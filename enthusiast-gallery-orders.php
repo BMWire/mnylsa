@@ -60,12 +60,12 @@ if (isset($_SESSION['user_id'])) {
                                 Gallery Tickets
                             </a>
                         </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='artist-galleries.php'>
+                        <!-- <li class='nav-item'>
+                            <a class='nav-link' href='enthusiast-acc.php'>
                                 <i class='bi bi-brush-fill' style='font-size: 22px;'></i>&nbsp;
                                 Account settings
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
