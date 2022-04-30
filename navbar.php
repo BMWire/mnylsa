@@ -18,7 +18,7 @@
         </a>
         <ul class='navbar-nav'>
             <li class='nav-item'>
-                <a href='enthusiast-dashboard.php?id=<?= $_SESSION['user_id'] ?>' class='nav-link'>
+                <a href='enthusiast-art-orders.php?id=<?= $_SESSION['user_id'] ?>' class='nav-link'>
                     Account
                 </a>
             </li>

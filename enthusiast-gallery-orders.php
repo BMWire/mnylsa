@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Art Orders | <?= $user['name'] ?>
+    <title>Gallery Orders | <?= $user['name'] ?>
     </title>
 
     <!-- Styling imports -->
@@ -35,7 +35,6 @@ if (isset($_SESSION['user_id'])) {
     <!-- Bootstrap Icons imports -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css'>
 
-    <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'> -->
 </head>
 
 <body>
@@ -50,13 +49,13 @@ if (isset($_SESSION['user_id'])) {
                 <div class='position-sticky pt-3 background-cultured'>
                     <ul class='nav flex-column'>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='#'>
+                            <a class='nav-link' href='enthusiast-art-orders.php'>
                                 <i class='bi bi-postage-heart-fill' style='font-size: 22px;'></i>&nbsp;
                                 Art Orders
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='enthusiast-gallery-orders.php'>
+                            <a class='nav-link active' aria-current='page' href='#'>
                                 <i class='bi bi-ticket-perforated-fill rotate' style='font-size: 22px;'></i>&nbsp;
                                 Gallery Tickets
                             </a>
@@ -88,9 +87,9 @@ if (isset($_SESSION['user_id'])) {
 
 
                 <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
-                    <h1 class='fs-2'>Art Orders</h1>
+                    <h1 class='fs-2'>Gallery Ticket Orders</h1>
                     <p class='fs-6 ps-4 space-cadet'>
-                        Get to see all the orders you've placed.
+                        Have a look at all the gallery tickets that you have bought.
                     </p>
                 </div>
 
@@ -102,9 +101,10 @@ if (isset($_SESSION['user_id'])) {
                             <thead>
                                 <tr>
                                     <th scope='col'>Order Number</th>
-                                    <th scope='col'>Piece Title</th>
-                                    <th scope='col'>Piece Artist</th>
-                                    <th scope='col'>Piece Price</th>
+                                    <th scope='col'>Gallery Title</th>
+                                    <!-- <th scope='col'>Gallery Location</th> -->
+                                    <th scope='col'>Gallery Fee</th>
+                                    <th scope='col'>Artist Name</th>
                                     <th scope='col'>Paid yet</th>
                                     <th scope='col'>Collected yet</th>
                                     <th scope='col'>Created at</th>
@@ -113,26 +113,27 @@ if (isset($_SESSION['user_id'])) {
                             <tbody>
                                 <!-- Get the data to fill the table from art_orders table -->
                                 <?php
-                                $sql = "SELECT * FROM art_orders
+                                $sql = "SELECT * FROM gallery_orders
                                         WHERE user_id = {$user['id']}";
 
                                 $result = $mysqli->query($sql);
 
-                                // if there are no art orders, display a message
+                                // if there are no gallery orders, display a message
                                 if ($result->num_rows == 0) {
-                                    echo "<tr><td colspan='7' class='text-center'>You have no art orders.</td></tr>";
+                                    echo "<tr><td colspan='7' class='text-center'>You have no gallery orders yet.</td></tr>";
                                 } else {
+
                                     // fetch the data on the artist name from art table
                                     while ($row = $result->fetch_assoc()) {
-                                        $sql = "SELECT * FROM art
-                                            WHERE id = {$row['piece_id']}";
+                                        $sql = "SELECT * FROM galleries
+                                            WHERE id = {$row['gallery_id']}";
 
-                                        $art_result = $mysqli->query($sql);
+                                        $gallery_result = $mysqli->query($sql);
 
-                                        $art = $art_result->fetch_assoc();
+                                        $gallery = $gallery_result->fetch_assoc();
 
                                         $sql = "SELECT * FROM users
-                                            WHERE id = {$art['artist_id']}";
+                                            WHERE id = {$gallery['artist_id']}";
 
                                         $artist_result = $mysqli->query($sql);
                                         $artist = $artist_result->fetch_assoc();
@@ -141,10 +142,11 @@ if (isset($_SESSION['user_id'])) {
                                         $collected = $row['collected'] ? 'Yes' : 'No';
                                 ?>
                                         <tr>
-                                            <td><?= 'A' . 10000 + $row['id'] ?></td>
-                                            <td><?= $art['title'] ?></td>
+                                            <td><?= 'G' . 20000 + $row['id'] ?></td>
+                                            <td><?= $gallery['title'] ?></td>
+                                            <!-- <td><?= $gallery['location'] ?></td> -->
+                                            <td>Kshs. <?= number_format($gallery['fee'], 0) ?></td>
                                             <td><?= $artist['name'] ?></td>
-                                            <td>Kshs. <?= number_format($art['price'], 0) ?></td>
                                             <td><?= $paid ?></td>
                                             <td><?= $collected ?></td>
                                             <td><?= date('d M Y, g:i A', strtotime($row['created_at'])); ?></td>
