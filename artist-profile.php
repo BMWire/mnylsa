@@ -35,7 +35,10 @@ if (isset($_SESSION['user_id'])) {
     <!-- Bootstrap Icons imports -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css'>
 
-    <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'> -->
+    <!-- Validation -->
+    <script src='https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js' defer></script>
+    <script src='js/profile-validation.js' defer></script>
+
 </head>
 
 <body>
