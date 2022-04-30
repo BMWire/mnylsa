@@ -91,6 +91,28 @@ $piece = $result->fetch_assoc();
 
                         <?php else : ?>
                             <center>
+                                <!-- Check if the user already had the piece in art_orders and redirect them elsewhere -->
+                                <?php
+                                $check_stmt = "SELECT * FROM art_orders
+                                                WHERE user_id = {$_SESSION['user_id']}
+                                                AND piece_id = {$piece['id']}";
+
+                                $result = $mysqli->query($check_stmt);
+
+                                if ($result->num_rows > 0) {
+                                    echo "<a href='order-details.php?id={$piece['id']}'>
+                                            <button class='btn btn-lg btn-imperial'>
+                                                View Order
+                                            </button>
+                                        </a>";
+                                } else {
+                                    echo "<a href='art-order.php?id={$piece['id']}'>
+                                            <button class='btn btn-lg btn-imperial'>
+                                                Order
+                                            </button>
+                                        </a>";
+                                }
+                                ?>
                                 <a href='cart.php?id=<?= $piece['id'] ?>'>
                                     <button class='btn btn-lg btn-imperial'>
                                         Purchase Piece

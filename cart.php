@@ -105,7 +105,7 @@ $piece = $result->fetch_assoc();
                     <input type='hidden' name='piece_artist_id' value='<?= $piece['artist_id'] ?>'>
                     <input type='hidden' name='piece_price' value='<?= $piece['price'] ?>'>
 
-                    <!-- Check to see if the user has already submitted the order
+                    <!-- Check to see if the user has already submitted the order -->
                     <?php
                     $fetch_order_session = "SELECT * FROM art_orders
                             WHERE piece_id = {$piece['id']}";
@@ -113,15 +113,14 @@ $piece = $result->fetch_assoc();
                     $result = $mysqli->query($fetch_order_session);
 
                     if ($result->num_rows > 0) {
-                        echo "<p class='text-danger'>An order has already been placed for this piece</p>";
+                        echo "<p class='text-danger'>An order has already been placed for this piece. There still are lots of awesome art.</p>";
 
                         // Take the user back to the art page or to their orders page
                         echo "<a href='home.php' class='btn btn-lg btn-imperial'>Back to Art</a>";
                     } else {
                         echo "<button type='submit' class='btn btn-lg btn-imperial'>Create Order</button>";
                     }
-                    ?> -->
-                    <button type='submit' class='btn btn-lg btn-imperial'>Create Order</button>
+                    ?>
 
 
                 </form>

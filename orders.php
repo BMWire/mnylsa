@@ -84,7 +84,7 @@ $art = $piece_result->fetch_assoc();
 
                     <div class='col-lg-12 col-md-8 px-2'>
                         <div class='row'>
-                            <!-- Shipping address -->
+                            Shipping address
                             <div class='card card-short col-lg-12 col-md-12 p-3'>
                                 <h3>Collection Address</h3>
                                 <p>Street: <?= $art_order['street'] ?></p>
