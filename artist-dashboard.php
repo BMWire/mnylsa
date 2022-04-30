@@ -103,7 +103,7 @@ if (isset($_SESSION['user_id'])) {
                 <hr class='mobile-hide hr' />
 
                 <!-- Render a graph showing the rise in art orders compared to gallery orders  -->
-                <div class='row'>
+                <!-- <div class='row'>
                     <div class='col-md-12'>
                         <div class=''>
                             <div class='card-body'>
@@ -114,7 +114,7 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 

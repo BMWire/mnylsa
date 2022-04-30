@@ -5,7 +5,7 @@
     <div class='container-fluid'>
         <ul class='navbar-nav'>
             <li class='nav-item'>
-                <a href='home.php' class='nav-link'>Artists</a>
+                <a href='artists.php' class='nav-link'>Artists</a>
             </li>
         </ul>
         <ul class='navbar-nav'>
