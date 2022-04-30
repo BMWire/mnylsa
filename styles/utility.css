@@ -57,6 +57,11 @@
 	width: 8.33333333%;
 }
 
+.col-auto {
+	flex: 0 0 auto;
+	width: auto;
+}
+
 /* Responsive col, flex and container for sm devices */
 @media (min-width: 576px) {
 	.container,

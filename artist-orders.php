@@ -71,6 +71,12 @@ if (isset($_SESSION['user_id'])) {
                                 Galleries
                             </a>
                         </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='artist-profile.php'>
+                                <i class='bi bi-emoji-smile' style='font-size: 22px;'></i>
+                                Profile
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
