@@ -120,7 +120,12 @@ if (isset($_SESSION['user_id'])) {
 
                                 // if there are no art orders, display a message
                                 if ($result->num_rows == 0) {
-                                    echo "<tr><td colspan='7' class='text-center'>You have no art orders.</td></tr>";
+                                    echo "
+                                    <tr>
+                                    <td colspan='7' class='text-center'>
+                                    You have no art orders. <a href='home.php'>Order some art</a>
+                                    </td>
+                                    </tr>";
                                 } else {
                                     // fetch the data on the artist name from art table
                                     while ($row = $result->fetch_assoc()) {
@@ -137,16 +142,31 @@ if (isset($_SESSION['user_id'])) {
                                         $artist_result = $mysqli->query($sql);
                                         $artist = $artist_result->fetch_assoc();
 
-                                        $paid = $row['paid'] ? 'Yes' : 'No';
-                                        $collected = $row['collected'] ? 'Yes' : 'No';
+
                                 ?>
                                         <tr>
                                             <td><?= 'A' . 10000 + $row['id'] ?></td>
                                             <td><?= $art['title'] ?></td>
                                             <td><?= $artist['name'] ?></td>
                                             <td>Kshs. <?= number_format($art['price'], 0) ?></td>
-                                            <td><?= $paid ?></td>
-                                            <td><?= $collected ?></td>
+                                            <td>
+                                                <?php
+                                                if ($row['isPaid'] == 1) {
+                                                    echo 'Yes';
+                                                } else {
+                                                    echo 'No';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($row['isCollected'] == 1) {
+                                                    echo 'Yes';
+                                                } else {
+                                                    echo 'No';
+                                                }
+                                                ?>
+                                            </td>
                                             <td><?= date('d M Y, g:i A', strtotime($row['created_at'])); ?></td>
                                         </tr>
                                     <?php } ?>

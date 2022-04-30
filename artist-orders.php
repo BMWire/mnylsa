@@ -7,12 +7,12 @@ if (isset($_SESSION['user_id'])) {
     $mysqli = require __DIR__ . '/database.php';
 
     // get the user's email address
-    $sql = "SELECT * FROM users
+    $enth = "SELECT * FROM users
             WHERE id = {$_SESSION['user_id']}";
 
-    $result = $mysqli->query($sql);
+    $art_result = $mysqli->query($enth);
 
-    $user = $result->fetch_assoc();
+    $user = $art_result->fetch_assoc();
 } else {
     header('Location: home.php');
 }
@@ -81,49 +81,151 @@ if (isset($_SESSION['user_id'])) {
                 <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
                     <h1 class='fs-2'>Orders.</h1>
                     <p class='fs-6 ps-4 space-cadet'>
-                        Get to view the orders that were made by people who bought your art.
+                        Get to view the orders that were made by people who bought your art or bought tickets to your galleries.
                     </p>
                 </div>
                 <hr class='mobile-hide hr' />
 
+                <div class='row'>
+                    <div class='col-lg-6 col-md-12'>
+                        <!-- Get and display the Art Orders from art_orders table -->
+                        <h2>Art Orders</h2>
+                        <div class='table-responsive'>
+                            <table class='table table-striped table-sm'>
+                                <thead>
+                                    <tr>
+                                        <th scope='col'>Order Number</th>
+                                        <th scope='col'>Piece Title</th>
+                                        <th scope='col'>Piece Price</th>
+                                        <th scope='col'>Enthusiast Name</th>
+                                        <th scope='col'>Paid Yet</th>
+                                        <th scope='col'>Collected Yet</th>
+                                        <th scope='col'>Created At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Get the orders from art_orders where artist_id for the piece_id is the same as the id for the logged in user -->
+                                    <?php
+                                    // get the details from art table of the pieces made by the logged in user
+                                    $art_sql = "SELECT * FROM art
+                                        WHERE artist_id = {$_SESSION['user_id']}";
 
-                <h2>Section title</h2>
-                <div class='table-responsive'>
-                    <table class='table table-striped table-sm'>
-                        <thead>
-                            <tr>
-                                <th scope='col'>#</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1,001</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>1,002</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>data</td>
-                                <td>rich</td>
-                                <td>dashboard</td>
-                                <td>tabular</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    $art_result = $mysqli->query($art_sql);
+
+                                    while ($art = $art_result->fetch_assoc()) {
+                                        // get the details from art_orders table of the logged in user
+                                        $order_sql = "SELECT * FROM art_orders
+                                            WHERE piece_id = {$art['id']}";
+
+                                        $order_result = $mysqli->query($order_sql);
+
+                                        while ($order = $order_result->fetch_assoc()) {
+                                            // get the details from users table of the logged in user
+                                            $enth = "SELECT * FROM users
+                                                WHERE id = {$order['user_id']}";
+
+                                            $enth_result = $mysqli->query($enth);
+
+                                            while ($enth = $enth_result->fetch_assoc()) {
+                                    ?>
+                                                <tr>
+                                                    <td><?= 'A' . 10000 + $order['id'] ?></td>
+                                                    <td><?= $art['title'] ?></td>
+                                                    <td>Kshs. <?= number_format($art['price'], 0) ?></td>
+                                                    <td><?= $enth['name'] ?></td>
+                                                    <td>
+                                                        <?php
+                                                        if ($order['isPaid'] == 1) {
+                                                            echo 'Yes';
+                                                        } else {
+                                                            echo 'No';
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        if ($order['isCollected'] == 1) {
+                                                            echo 'Yes';
+                                                        } else {
+                                                            echo 'No';
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td><?= date('d M Y, g:i A', strtotime($order['created_at'])) ?></td>
+                                                </tr>
+                                            <?php  } ?>
+                                        <?php  } ?>
+                                    <?php  } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class='col-lg-6 col-md-12'>
+                        <!-- Get and display the Gallery Ticket Orders from gallery_orders table -->
+                        <h2>Gallery Ticket Orders</h2>
+                        <div class='table-responsive'>
+                            <table class='table table-striped table-sm'>
+                                <thead>
+                                    <tr>
+                                        <th scope='col'>Order Number</th>
+                                        <th scope='col'>Gallery Title</th>
+                                        <th scope='col'>Gallery Fee</th>
+                                        <th scope='col'>Artist Name</th>
+                                        <th scope='col'>Paid Yet</th>
+                                        <th scope='col'>Created At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Get the orders from art_orders where artist_id for the piece_id is the same as the id for the logged in user -->
+                                    <?php
+                                    // get the details from art table of the pieces made by the logged in user
+                                    $gallery_sql = "SELECT * FROM galleries
+                                        WHERE artist_id = {$_SESSION['user_id']}";
+
+                                    $gallery_result = $mysqli->query($gallery_sql);
+
+                                    while ($gallery = $gallery_result->fetch_assoc()) {
+                                        // get the details from art_orders table of the logged in user
+                                        $order_sql = "SELECT * FROM gallery_orders
+                                            WHERE gallery_id = {$gallery['id']}";
+
+                                        $order_result = $mysqli->query($order_sql);
+
+                                        while ($order = $order_result->fetch_assoc()) {
+                                            // get the details from users table of the logged in user
+                                            $enth = "SELECT * FROM users
+                                                WHERE id = {$order['user_id']}";
+
+                                            $enth_result = $mysqli->query($enth);
+
+                                            while ($enth = $enth_result->fetch_assoc()) {
+                                    ?>
+                                                <tr>
+                                                    <td><?= 'A' . 10000 + $order['id'] ?></td>
+                                                    <td><?= $gallery['title'] ?></td>
+                                                    <td>Kshs. <?= number_format($gallery['fee'], 0) ?></td>
+                                                    <td><?= $enth['name'] ?></td>
+                                                    <td>
+                                                        <?php
+                                                        if ($order['isPaid'] == 1) {
+                                                            echo 'Yes';
+                                                        } else {
+                                                            echo 'No';
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td><?= date('d M Y, g:i A', strtotime($order['created_at'])) ?></td>
+                                                </tr>
+                                            <?php  } ?>
+                                        <?php  } ?>
+                                    <?php  } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+
             </main>
             <!-- End of main -->
 
