@@ -9,11 +9,12 @@ $mysqli = require __DIR__ . "/database.php";
 $_SESSION['user_id'] = $_POST['user_id'];
 $_SESSION['user_name'] = $_POST['user_name'];
 $_SESSION['piece_id'] = $_POST['piece_id'];
+$_SESSION['artist_id'] = $_POST['piece_artist_id'];
 $_SESSION['piece_title'] = $_POST['piece_title'];
 $_SESSION['piece_price'] = $_POST['piece_price'];
 
 // insert the data into the art_orders table
-$sql = "INSERT INTO art_orders (user_id, user_name, piece_id, piece_title, piece_price) VALUES ('$_SESSION[user_id]', '$_SESSION[user_name]', '$_SESSION[piece_id]', '$_SESSION[piece_title]', '$_SESSION[piece_price]')";
+$sql = "INSERT INTO art_orders (user_id, user_name, piece_id, artist_id, piece_title, piece_price) VALUES ('$_SESSION[user_id]', '$_SESSION[user_name]', '$_SESSION[piece_id]', '$_SESSION[artist_id]', '$_SESSION[piece_title]', '$_SESSION[piece_price]')";
 
 // execute insert query
 if ($mysqli->query($sql) === TRUE) {

@@ -44,7 +44,7 @@ if (isset($_SESSION['user_id'])) {
     <!-- Start of main -->
     <div class='container-flex' style='padding-left:7%; padding-right:8%;'>
         <div class='row'>
-            
+
             <!-- Start of aside navbar -->
             <nav class='col-md-3 col-lg-2 d-md-block'>
                 <div class='position-sticky pt-3 background-cultured'>
@@ -81,16 +81,16 @@ if (isset($_SESSION['user_id'])) {
             <!-- Start of main -->
             <main class='col-md-9 col-lg-10'>
 
-            <?php if (isset($user)) : ?>
-                My name is <?= $user['name'] ?>.               
-                My artist id is <?= $user['id'] ?>.               
-            <?php else : ?>
-                <p class='nav-link'>
-                    <a href='signin.php'>Sign In</a>
-                    or
-                    <a href='signup.html'>Sign Up</a>
-                </p>
-            <?php endif; ?>
+                <?php if (isset($user)) : ?>
+                    My name is <?= $user['name'] ?>.
+                    My artist id is <?= $user['id'] ?>.
+                <?php else : ?>
+                    <p class='nav-link'>
+                        <a href='signin.php'>Sign In</a>
+                        or
+                        <a href='signup.html'>Sign Up</a>
+                    </p>
+                <?php endif; ?>
 
 
                 <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
@@ -101,45 +101,163 @@ if (isset($_SESSION['user_id'])) {
                 </div>
 
                 <hr class='mobile-hide hr' />
+                <center>
+                    <div class='col-lg-10 col-md-6 p-3'>
+                        <div class='row'>
+                            <!-- Recent art and gallery orders -->
+                            <div class='col-lg-6 col-md-6 p-3'>
+                                <div class='card border-dark mb-3'>
+                                    <div class='card-header'>
+                                        <h2 class='card-title'>
+                                            <i class='bi bi-postage-heart-fill imperial-red' style='font-size: 32px;'></i>&nbsp;
+                                            Recent Orders
+                                        </h2>
+                                    </div>
+                                    <div class='card-body'>
+                                        <p class='card-text'>
+                                            <?php
+                                            $sql = "SELECT * FROM art_orders
+                                            WHERE artist_id = {$user['id']}
+                                            ORDER BY id DESC
+                                            LIMIT 5";
+
+                                            $result = $mysqli->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                            ?>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <p class='card-text'>
+                                                    <?= 'A' . 10000 + $row['id'] ?>
+                                                </p>
+                                            </div>
+                                            <div class='col-md-6'>
+                                                <p class='card-text'>
+                                                    <?= $row['piece_title'] ?>
+                                                </p>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <p class='card-text'>
+                                                    Kshs. <?= number_format($row['piece_price']) ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                <?php
+                                                }
+                                            } else {
+                                                echo "<p>No recent orders.</p>";
+                                            }
+                                ?>
+                                </p>
+                                    </div>
+
+                                    
+                                </div>
+
+                                <div class='card border-dark mb-3'>
+                                    <div class='card-header'>
+                                        <h2 class='card-title'>
+                                            <i class='bi bi-ticket-perforated-fill imperial-red' style='font-size: 32px;'></i>&nbsp;
+                                            Recent Orders
+                                        </h2>
+                                    </div>
+                                    <div class='card-body'>
+                                        <p class='card-text'>
+                                            <?php
+                                            $sql = "SELECT * FROM gallery_orders
+                                            WHERE artist_id = {$user['id']}
+                                            ORDER BY id DESC
+                                            LIMIT 5";
+
+                                            $result = $mysqli->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                            ?>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <p class='card-text'>
+                                                    <?= 'B' . 10000 + $row['id'] ?>
+                                                </p>
+                                            </div>
+                                            <div class='col-md-6'>
+                                                <p class='card-text'>
+                                                    <?= $row['gallery_title'] ?>
+                                                </p>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <p class='card-text'>
+                                                    Kshs. <?= number_format($row['gallery_fee']) ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                <?php
+                                                }
+                                            } else {
+                                                echo "<p>No recent orders.</p>";
+                                            }
+                                ?>
+                                </p>
+                                    </div>
+
+                                    
+                                </div>  
+                            </div>
+
+                            
+                            
+                            <!-- Recent posted pieces -->
+                            <div class='col-lg-6 col-md-6 p-3'>
+                                <div class='card border-dark mb-3'>
+                                    <div class='card-header'>
+                                        <h2 class='card-title'>
+                                            <i class='bi bi-box-seam imperial-red' style='font-size: 32px;'></i>&nbsp;
+                                            Recent Pieces
+                                        </h2>
+                                    </div>
+                                    <div class='card-body'>
+                                        <p class='card-text'>
+                                            <?php
+                                            $sql = "SELECT * FROM art
+                                            WHERE artist_id = {$user['id']}
+                                            ORDER BY id DESC
+                                            LIMIT 5
+                                            ";
+
+                                            $result = $mysqli->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                            ?>
+                                        <div class='row'>
+                                            <div class='col-md-6'>
+                                                <h4 class='card-text'>
+                                                    <?= $row['title'] ?>
+                                                </h4>
+                                            </div>
+                                            <div class='col-md-6'>
+                                                <p class='card-text'>
+                                                    Kshs <?= number_format($row['price']) ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                <?php
+                                                }
+                                            } else {
+                                                echo "<p>No recent pieces.</p>";
+                                            }
+                                ?>
+                                </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
 
 
-                <h2>Section title</h2>
-                <div class='table-responsive'>
-                    <table class='table table-striped table-sm'>
-                        <thead>
-                            <tr>
-                                <th scope='col'>#</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                                <th scope='col'>Header</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1,001</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>1,002</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>data</td>
-                                <td>rich</td>
-                                <td>dashboard</td>
-                                <td>tabular</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+
             </main>
             <!-- End of main -->
 

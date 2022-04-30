@@ -210,6 +210,11 @@ a {
 	border-bottom: solid 1px var(--space-cadet);
 }
 
+.hr-manatee {
+	width: 65%;
+	border-bottom: solid 1px var(--manatee);
+}
+
 .hr-max {
 	width: 95%;
 	border-bottom: solid 1px var(--space-cadet);

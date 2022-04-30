@@ -105,6 +105,7 @@ $gallery = $result->fetch_assoc();
                     <input type='hidden' name='user_id' value='<?= $user['id'] ?>'>
                     <input type='hidden' name='user_name' value='<?= $user['name'] ?>'>
                     <input type='hidden' name='gallery_id' value='<?= $gallery['id'] ?>'>
+                    <input type='hidden' name='gallery_artist_id' value='<?= $gallery['artist_id'] ?>'>
                     <input type='hidden' name='gallery_title' value='<?= $gallery['title'] ?>'>
                     <input type='hidden' name='gallery_fee' value='<?= $gallery['fee'] ?>'>
 
