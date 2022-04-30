@@ -29,7 +29,7 @@
                 <?php if (isset($user)) : ?>
                     <p>
                         Hey
-                        <a href='enthusiast-dashboard.php?id=<?= $_SESSION['user_id'] ?>'>
+                        <a href='enthusiast-art-orders.php?id=<?= $_SESSION['user_id'] ?>'>
                             <?= substr($user['name'], 0, strpos($user['name'], ' ')) ?>
                         </a>
                         |
