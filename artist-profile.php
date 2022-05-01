@@ -151,10 +151,11 @@ if (isset($_SESSION['user_id'])) {
                             </div>
 
                         </div>
+                        <!-- submit button -->
+                        <div class='col-lg-12 mb-4'>
+                            <button class='btn btn-lg btn-imperial'>Create Profile</button>
+                        </div>
 
-                        <button class='btn btn-lg btn-imperial'>
-                            Create Profile
-                        </button>
                     </form>
                 </div>
 

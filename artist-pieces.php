@@ -93,11 +93,25 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                     <div class='col-lg-6 col-md-6 mt-6'>
                         <center>
-                            <a href='artist-create-art.php'>
-                                <button class='btn btn-lg btn-imperial'>
-                                    Add a piece
-                                </button>
-                            </a>
+                            <!-- check to see if the logged in user has an entry in artist_details table -->
+                            <?php
+                            $sql = "SELECT * FROM artist_details
+                                    WHERE artist_id = {$_SESSION['user_id']}";
+
+                            $result = $mysqli->query($sql);
+
+                            // if the logged user has an entry, show the add a piece button, else, direct them to the profile page
+                            if ($result->num_rows > 0) {
+                            ?>
+                                <a href='artist-add-piece.php' class='btn btn-lg btn-imperial'>Add a piece</a>
+
+                            <?php } else { ?>
+
+                                <a href='artist-create-art.php' class='btn btn-lg btn-disabled disabled'>Add a piece</a>
+                                <a href='artist-profile.php' class='btn btn-lg btn-imperial'>Create your profile first</a>
+                                
+                            <?php } ?>
+
                         </center>
                     </div>
                 </div>
@@ -160,7 +174,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php
                     }
                 } else {
-                    echo "<center class='fs-5 mt-6 imperial-red'>No pieces found. Try uploading one. </center>";
+                    echo "<center class='fs-5 mt-6'>No pieces found. Try <a href='artist-create-art.php'>uploading one.</a> </center>";
                 }
                 ?>
 

@@ -92,144 +92,138 @@ if (isset($_SESSION['user_id'])) {
                 </div>
                 <hr class='mobile-hide hr' />
 
-                <div class='row'>
-                    <div class='col-lg-6 col-md-12'>
-                        <!-- Get and display the Art Orders from art_orders table -->
-                        <h2>Art Orders</h2>
-                        <div class='table-responsive'>
-                            <table class='table table-striped table-sm'>
-                                <thead>
-                                    <tr>
-                                        <th scope='col'>Order Number</th>
-                                        <th scope='col'>Piece Title</th>
-                                        <th scope='col'>Piece Price</th>
-                                        <th scope='col'>Enthusiast Name</th>
-                                        <th scope='col'>Paid Yet</th>
-                                        <th scope='col'>Collected Yet</th>
-                                        <th scope='col'>Created At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Get the orders from art_orders where artist_id for the piece_id is the same as the id for the logged in user -->
-                                    <?php
-                                    // get the details from art table of the pieces made by the logged in user
-                                    $art_sql = "SELECT * FROM art
+                <!-- Get and display the Art Orders from art_orders table -->
+                <h2>Art Orders</h2>
+                <div class='table-responsive'>
+                    <table class='table table-striped table-sm'>
+                        <thead>
+                            <tr>
+                                <th scope='col'>Order Number</th>
+                                <th scope='col'>Piece Title</th>
+                                <th scope='col'>Piece Price</th>
+                                <th scope='col'>Enthusiast Name</th>
+                                <th scope='col'>Paid Yet</th>
+                                <th scope='col'>Collected Yet</th>
+                                <th scope='col'>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Get the orders from art_orders where artist_id for the piece_id is the same as the id for the logged in user -->
+                            <?php
+                            // get the details from art table of the pieces made by the logged in user
+                            $art_sql = "SELECT * FROM art
                                         WHERE artist_id = {$_SESSION['user_id']}";
 
-                                    $art_result = $mysqli->query($art_sql);
+                            $art_result = $mysqli->query($art_sql);
 
-                                    while ($art = $art_result->fetch_assoc()) {
-                                        // get the details from art_orders table of the logged in user
-                                        $order_sql = "SELECT * FROM art_orders
+                            while ($art = $art_result->fetch_assoc()) {
+                                // get the details from art_orders table of the logged in user
+                                $order_sql = "SELECT * FROM art_orders
                                             WHERE piece_id = {$art['id']}";
 
-                                        $order_result = $mysqli->query($order_sql);
+                                $order_result = $mysqli->query($order_sql);
 
-                                        while ($order = $order_result->fetch_assoc()) {
-                                            // get the details from users table of the logged in user
-                                            $enth = "SELECT * FROM users
+                                while ($order = $order_result->fetch_assoc()) {
+                                    // get the details from users table of the logged in user
+                                    $enth = "SELECT * FROM users
                                                 WHERE id = {$order['user_id']}";
 
-                                            $enth_result = $mysqli->query($enth);
+                                    $enth_result = $mysqli->query($enth);
 
-                                            while ($enth = $enth_result->fetch_assoc()) {
-                                    ?>
-                                                <tr>
-                                                    <td><?= 'A' . 10000 + $order['id'] ?></td>
-                                                    <td><?= $art['title'] ?></td>
-                                                    <td>Kshs. <?= number_format($art['price'], 0) ?></td>
-                                                    <td><?= $enth['name'] ?></td>
-                                                    <td>
-                                                        <?php
-                                                        if ($order['isPaid'] == 1) {
-                                                            echo 'Yes';
-                                                        } else {
-                                                            echo 'No';
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php
-                                                        if ($order['isCollected'] == 1) {
-                                                            echo 'Yes';
-                                                        } else {
-                                                            echo 'No';
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td><?= date('d M Y, g:i A', strtotime($order['created_at'])) ?></td>
-                                                </tr>
-                                            <?php  } ?>
-                                        <?php  } ?>
+                                    while ($enth = $enth_result->fetch_assoc()) {
+                            ?>
+                                        <tr>
+                                            <td><?= 'A' . 10000 + $order['id'] ?></td>
+                                            <td><?= $art['title'] ?></td>
+                                            <td>Kshs. <?= number_format($art['price'], 0) ?></td>
+                                            <td><?= $enth['name'] ?></td>
+                                            <td>
+                                                <?php
+                                                if ($order['isPaid'] == 1) {
+                                                    echo 'Yes';
+                                                } else {
+                                                    echo 'No';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($order['isCollected'] == 1) {
+                                                    echo 'Yes';
+                                                } else {
+                                                    echo 'No';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td><?= date('d M Y, g:i A', strtotime($order['created_at'])) ?></td>
+                                        </tr>
                                     <?php  } ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                <?php  } ?>
+                            <?php  } ?>
+                        </tbody>
+                    </table>
+                </div>
 
-                    <div class='col-lg-6 col-md-12'>
-                        <!-- Get and display the Gallery Ticket Orders from gallery_orders table -->
-                        <h2>Gallery Ticket Orders</h2>
-                        <div class='table-responsive'>
-                            <table class='table table-striped table-sm'>
-                                <thead>
-                                    <tr>
-                                        <th scope='col'>Order Number</th>
-                                        <th scope='col'>Gallery Title</th>
-                                        <th scope='col'>Gallery Fee</th>
-                                        <th scope='col'>Artist Name</th>
-                                        <th scope='col'>Paid Yet</th>
-                                        <th scope='col'>Created At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Get the orders from art_orders where artist_id for the piece_id is the same as the id for the logged in user -->
-                                    <?php
-                                    // get the details from art table of the pieces made by the logged in user
-                                    $gallery_sql = "SELECT * FROM galleries
+                <!-- Get and display the Gallery Ticket Orders from gallery_orders table -->
+                <h2>Gallery Ticket Orders</h2>
+                <div class='table-responsive'>
+                    <table class='table table-striped table-sm'>
+                        <thead>
+                            <tr>
+                                <th scope='col'>Order Number</th>
+                                <th scope='col'>Gallery Title</th>
+                                <th scope='col'>Gallery Fee</th>
+                                <th scope='col'>Artist Name</th>
+                                <th scope='col'>Paid Yet</th>
+                                <th scope='col'>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Get the orders from art_orders where artist_id for the piece_id is the same as the id for the logged in user -->
+                            <?php
+                            // get the details from art table of the pieces made by the logged in user
+                            $gallery_sql = "SELECT * FROM galleries
                                         WHERE artist_id = {$_SESSION['user_id']}";
 
-                                    $gallery_result = $mysqli->query($gallery_sql);
+                            $gallery_result = $mysqli->query($gallery_sql);
 
-                                    while ($gallery = $gallery_result->fetch_assoc()) {
-                                        // get the details from art_orders table of the logged in user
-                                        $order_sql = "SELECT * FROM gallery_orders
+                            while ($gallery = $gallery_result->fetch_assoc()) {
+                                // get the details from art_orders table of the logged in user
+                                $order_sql = "SELECT * FROM gallery_orders
                                             WHERE gallery_id = {$gallery['id']}";
 
-                                        $order_result = $mysqli->query($order_sql);
+                                $order_result = $mysqli->query($order_sql);
 
-                                        while ($order = $order_result->fetch_assoc()) {
-                                            // get the details from users table of the logged in user
-                                            $enth = "SELECT * FROM users
+                                while ($order = $order_result->fetch_assoc()) {
+                                    // get the details from users table of the logged in user
+                                    $enth = "SELECT * FROM users
                                                 WHERE id = {$order['user_id']}";
 
-                                            $enth_result = $mysqli->query($enth);
+                                    $enth_result = $mysqli->query($enth);
 
-                                            while ($enth = $enth_result->fetch_assoc()) {
-                                    ?>
-                                                <tr>
-                                                    <td><?= 'A' . 10000 + $order['id'] ?></td>
-                                                    <td><?= $gallery['title'] ?></td>
-                                                    <td>Kshs. <?= number_format($gallery['fee'], 0) ?></td>
-                                                    <td><?= $enth['name'] ?></td>
-                                                    <td>
-                                                        <?php
-                                                        if ($order['isPaid'] == 1) {
-                                                            echo 'Yes';
-                                                        } else {
-                                                            echo 'No';
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td><?= date('d M Y, g:i A', strtotime($order['created_at'])) ?></td>
-                                                </tr>
-                                            <?php  } ?>
-                                        <?php  } ?>
+                                    while ($enth = $enth_result->fetch_assoc()) {
+                            ?>
+                                        <tr>
+                                            <td><?= 'A' . 10000 + $order['id'] ?></td>
+                                            <td><?= $gallery['title'] ?></td>
+                                            <td>Kshs. <?= number_format($gallery['fee'], 0) ?></td>
+                                            <td><?= $enth['name'] ?></td>
+                                            <td>
+                                                <?php
+                                                if ($order['isPaid'] == 1) {
+                                                    echo 'Yes';
+                                                } else {
+                                                    echo 'No';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td><?= date('d M Y, g:i A', strtotime($order['created_at'])) ?></td>
+                                        </tr>
                                     <?php  } ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                <?php  } ?>
+                            <?php  } ?>
+                        </tbody>
+                    </table>
                 </div>
 
             </main>
