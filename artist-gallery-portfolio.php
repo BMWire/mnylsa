@@ -142,13 +142,13 @@ $gallery_count = $gallery_count_result->fetch_assoc();
                     <div class='position-sticky pt-3 background-cultured'>
                         <ul class='nav flex-column'>
                             <li class='nav-item'>
-                                <a class='nav-link active' aria-current='page' href='#'>
-                                    <i class='bi bi-postage-heart-fill imperial-red' style='font-size: 22px;'></i>
+                                <a class='nav-link' href='artist-portfolio.php?id=<?= $artist['id'] ?>'>
+                                    <i class='bi bi-postage-heart-fill' style='font-size: 22px;'></i>
                                     Art
                                 </a>
                             </li>
                             <li class='nav-item'>
-                                <a class='nav-link' href='artist-gallery-portfolio.php?id=<?= $artist['id'] ?>'>
+                                <a class='nav-link active' aria-current='page' href='#'>
                                     <i class='bi bi-ticket-perforated-fill' style='font-size: 22px;'></i>
                                     Galleries
                                 </a>
@@ -159,50 +159,57 @@ $gallery_count = $gallery_count_result->fetch_assoc();
                 <!-- End of aside navbar -->
 
                 <div class='col-md-9 col-lg-10'>
-                    <div class='row'>
+                    <div class='row p-2'>
 
-                        <!-- Fetch all the art entries by the artist who is logged in -->
-                        <!-- Render a card for each piece -->
+                        <!-- Fetch all the gallery record entries by the artist who is logged in -->
+                        <!-- Render a card for each gallery -->
                         <?php
                         $mysqli = require __DIR__ . '/database.php';
 
-                        $fetch_stmt = "SELECT * FROM art WHERE artist_id = {$artist['id']}";
+                        $fetch_stmt = "SELECT * FROM galleries WHERE artist_id = {$artist['id']}";
 
                         $result = $mysqli->query($fetch_stmt);
 
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                $artist_id = $row['artist_id'];
-                                $piece_id = $row['id'];
-                                $piece_title = $row['title'];
-                                $artist_name = $row['artist_name'];
-                                $piece_story = $row['story'];
-                                $piece_price = $row['price'];
-                                $piece_dir = $row['img_path'];
+                                $gallery_id = $row['id'];
+                                $gallery_name = $row['title'];
+                                $gallery_location = $row['location'];
+                                $gallery_story = $row['story'];
+                                $gallery_fee = $row['fee'];
+                                $gallery_date = $row['date'];
+                                $gallery_imgDir = $row['coverImg'];
                         ?>
-                                <div class='col-lg-3 col-md-6 col-sm-12 px-3 py-4'>
-                                    <div class='card'>
-                                        <img src='<?= $piece_dir ?>' class='card-img-top' alt='<? $piece_title ?>'>
-                                        <div class='card-body'>
-                                            <div class='row ml-1'>
-                                                <div class='col-6'>
-                                                    <a href='art-piece-details.php?id=<?= $piece_id ?>'>
-                                                        <h4 class='space-cadet cadet-underlined'><?= $piece_title ?></h4>
-                                                    </a>
-                                                </div>
-                                                <div class='col-6'>
-                                                    <a href='artist-details.php?id=<?= $artist_id ?>' class='plain'>
-                                                        <h4 class='card-title manatee'><?= $artist_name ?></h4>
-                                                    </a>
-                                                </div>
+                                <div class='col-lg-6 col-md-12 p-3'>
+                                    <div class='card mb-3'>
+                                        <div class='row'>
+                                            <div class='col-md-4'>
+                                                <img src='<?= $gallery_imgDir ?>' class='card-img-top' alt='<? $gallery_name ?>'>
                                             </div>
-                                            <div class='row ml-1 pt-2'>
-                                                <!-- <div class='col-6'>
-                                            <i class='bi bi-palette-fill manatee ml-1'></i>
-                                            <span class='space-cadet fs-6'>53 palettes</span>
-                                        </div> -->
-                                                <div class='col-12'>
-                                                    <span class='imperial-red fs-6 bold'>Kshs <?= number_format($piece_price, 2) ?></span>
+                                            <div class='col-md-8 px-5'>
+                                                <div class='card-body'>
+                                                    <h3 class='space-cadet cadet-underlined'><?= $gallery_name ?></h3>
+                                                    <p class='card-text'>
+                                                        <i class='bi bi-geo-fill manatee' style='font-size:22px;'></i>
+                                                        <?= $gallery_location ?>
+                                                    </p>
+                                                    <p class='card-text'>
+                                                        <i class='bi bi-lightbulb-fill manatee' style='font-size:22px;'></i>
+                                                        <?= $gallery_story ?>
+                                                    </p>
+                                                    <p class='card-text'>
+                                                        <i class='bi bi-cash-coin manatee' style='font-size:22px;'></i>
+                                                        Kshs <?= $gallery_fee ?>
+                                                    </p>
+                                                    <p class='card-text'>
+                                                        <i class='bi bi-calendar-date manatee' style='font-size:22px;'></i>
+                                                        <?= substr($gallery_date, 0, strpos($gallery_date, ' ')) ?>
+                                                    </p>
+                                                    <center>
+                                                        <a href='gallery-details.php?id=<?= $gallery_id ?>' class='btn btn-imperial'>
+                                                            View gallery
+                                                        </a>
+                                                    </center>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,9 +218,10 @@ $gallery_count = $gallery_count_result->fetch_assoc();
                         <?php
                             }
                         } else {
-                            echo "<center class='fs-5 mt-6 space-cadet'> This artist hasn't uploaded art yet. Come back later. </center>";
+                            echo "<center class='fs-5 mt-6 imperial-red'>No galleries yet. Come back later. </center>";
                         }
                         ?>
+
                     </div>
                 </div>
             </div>
