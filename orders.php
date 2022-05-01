@@ -76,6 +76,10 @@ $art = $piece_result->fetch_assoc();
 
                             $result = $mysqli->query($fetch_orders);
 
+                            // if there are no orders, redirect to home
+                            if ($result->num_rows == 0) {
+                                header("Location: home.php");
+                            }
                             while ($order = $result->fetch_assoc()) {
                                 $fetch_art = "SELECT * FROM art WHERE id = {$order['piece_id']}";
 
@@ -100,7 +104,9 @@ $art = $piece_result->fetch_assoc();
                                                     <div class='card-body'>
                                                         <div class='row'>
                                                             <div class='col-5 col-md-5 col-sm-12'>
-                                                                <h2 class='card-title'><?= $art['title'] ?></h2>
+                                                                <a href='art-piece-details.php?id=<?= $art['id'] ?>' target='_blank' class='text-dark'>
+                                                                    <h2 class='card-title'><?= $art['title'] ?></h2>
+                                                                </a>
                                                             </div>
                                                             <div class='col-lg-6 col-md-6 col-sm-12'>
                                                                 <h3 class='card-text'><?= $art['artist_name'] ?></>

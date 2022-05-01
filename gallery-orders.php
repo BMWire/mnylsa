@@ -75,6 +75,10 @@ $gallery = $gallery_result->fetch_assoc();
 
                             $result = $mysqli->query($fetch_orders);
 
+                            // if there are no orders, redirect to home
+                            if ($result->num_rows == 0) {
+                                header("Location: home.php");
+                            }
                             while ($order = $result->fetch_assoc()) {
                                 $fetch_gallery = "SELECT * FROM galleries WHERE id = {$order['gallery_id']}";
 
