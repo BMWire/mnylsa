@@ -142,7 +142,15 @@ if (isset($_SESSION['user_id'])) {
                                                 if ($order['isPaid'] == 1) {
                                                     echo 'Yes';
                                                 } else {
-                                                    echo 'No';
+                                                    // implement button to update isPaid to 1
+                                                ?>
+                                                    <center>
+                                                        <form action='process-mark-art-paid.php' method='POST'>
+                                                            <input type='hidden' name='order_id' value='<?= $order['id'] ?>'>
+                                                            <button type='submit' class='btn btn-sm btn-imperial mb-2'>Mark as Paid</button>
+                                                        </form>
+                                                    </center>
+                                                <?php
                                                 }
                                                 ?>
                                             </td>
@@ -151,7 +159,15 @@ if (isset($_SESSION['user_id'])) {
                                                 if ($order['isCollected'] == 1) {
                                                     echo 'Yes';
                                                 } else {
-                                                    echo 'No';
+                                                    // implement button to update isCollected to 1
+                                                ?>
+                                                    <center>
+                                                        <form action='process-mark-art-collected.php' method='POST'>
+                                                            <input type='hidden' name='order_id' value='<?= $order['id'] ?>'>
+                                                            <button type='submit' class='btn btn-sm btn-imperial mb-2'>Mark as Collected</button>
+                                                        </form>
+                                                    </center>
+                                                <?php
                                                 }
                                                 ?>
                                             </td>

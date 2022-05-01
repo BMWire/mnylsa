@@ -12,7 +12,7 @@
                 <?php if (isset($user)) : ?>
                     <p>
                         Hey
-                        <a href='client-dashboard.php'>
+                        <a href='artist-dashboard.php?id=<?= $user['id'] ?>'>
                             <?= substr($user['name'], 0, strpos($user['name'], ' ')) ?>
                         </a>
                         |
