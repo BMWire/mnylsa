@@ -55,7 +55,7 @@ if (isset($_SESSION['user_id'])) {
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        $artist_id = $row['id'];
+                        $artist_id = $row['artist_id'];
                         $artist_name = $row['artist_name'];
                         $artist_county = $row['county'];
                         $profile_image = $row['profile_image'];
@@ -74,7 +74,7 @@ if (isset($_SESSION['user_id'])) {
                                                     <?= $artist_county ?>
                                                 </p>
                                                 <center>
-                                                    <a href='artist-portfolio.php?id=<?= $user['id'] ?>' class='btn btn-imperial'>
+                                                    <a href='artist-portfolio.php?id=<?= $artist_id ?>' class='btn btn-imperial'>
                                                         View portfolio
                                                     </a>
                                                 </center>
