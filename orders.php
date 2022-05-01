@@ -48,7 +48,7 @@ $art = $piece_result->fetch_assoc();
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Orders' ?> </title>
+    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Art Orders' ?> </title>
 
     <!-- Styling imports -->
     <link rel='stylesheet' href='styles/main.css'>
@@ -57,7 +57,6 @@ $art = $piece_result->fetch_assoc();
     <!-- Bootstrap Icons imports -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css'>
 
-    <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'> -->
 </head>
 
 <body>
@@ -68,32 +67,9 @@ $art = $piece_result->fetch_assoc();
         <div class='container-cart'>
             <div class='row mt-6'>
                 <div class='col-lg-8 col-md-8 col-sm-12'>
-                    <!-- <span>User Id: <?= $user['id'] ?></span>
-                    <br />
-                    <span>User Name: <?= $user['name'] ?></span>
-                    <br />
-                    <span>Piece Id: <?= $art_order['piece_id'] ?></span>
-                    <br />
-                    <span>Piece Title: <?= $art_order['piece_title'] ?></span>
-                    <br />
-                    <span>Piece Artist: <?= $art['artist_name'] ?></span>
-                    <br />
-                    <span>Piece Artist Id: <?= $art['artist_id'] ?></span>
-                    <br />
-                    <span>Piece Price: <?= $art_order['piece_price'] ?></span> -->
 
                     <div class='col-lg-12 col-md-8 px-2'>
                         <div class='row'>
-                            Shipping address
-                            <div class='card card-short col-lg-12 col-md-12 p-3'>
-                                <h3>Collection Address</h3>
-                                <p>Street: <?= $art_order['street'] ?></p>
-                                <p>City: <?= $art_order['city'] ?></p>
-                                <p>County: <?= $art_order['county'] ?></p>
-                                <p>Country: <?= $art_order['country'] ?></p>
-                            </div>
-
-
                             <!-- Fetch all the orders whose isPaid = 0 made by the user whose id is in the URL -->
                             <?php
                             $fetch_orders = "SELECT * FROM art_orders WHERE user_id = {$_GET['id']} AND isPaid = 0";
@@ -109,33 +85,65 @@ $art = $piece_result->fetch_assoc();
 
                                 $art_price = number_format($art['price'], 2);
 
-                                echo "<div class='row'>
-                                <div class='col-lg-12 col-md-8 col-sm-12 px-2'>
-                                    <div class='card card-short mt-6'>
+                                // get the total cart price by adding all the individual art prices
+                                $cart_price = $cart_price + $art['price'];
+                            ?>
+                                <!-- Start of order -->
+                                <div class='row'>
+                                    <div class='col-lg-12 col-md-8 col-sm-12 px-2'>
+                                        <div class='card card-short mb-5'>
                                             <div class='row'>
                                                 <div class='col-lg-3 col-md-8 col-sm-12'>
-                                                    <img src='{$art['img_path']}' style='max-height: 20vh !important;' alt='{$art['title']}' class='p-4'>
+                                                    <img src='<?= $art['img_path'] ?>' style='max-height: 20vh !important;' alt='<?= $art['title'] ?>' class='p-4'>
                                                 </div>
                                                 <div class='col-lg-9 col-md-4 col-sm-12 ps-3 py-3'>
                                                     <div class='card-body'>
-                                                    <div class='row'>
-                                                    <div class='col-5 col-md-5 col-sm-12'>
-                                                        <h2 class='card-title'>{$art['title']}</h2>
-                                                    </div>
-                                                    <div class='col-lg-6 col-md-6 col-sm-12'>
-                                                        <h3 class='card-text'>{$art['artist_name']}</>
-                                                    </div>
-                                                    <span class='card-text fs-5 pt-3'>Kshs.&nbsp;{$art_price}</span>
-                                                </div>
+                                                        <div class='row'>
+                                                            <div class='col-5 col-md-5 col-sm-12'>
+                                                                <h2 class='card-title'><?= $art['title'] ?></h2>
+                                                            </div>
+                                                            <div class='col-lg-6 col-md-6 col-sm-12'>
+                                                                <h3 class='card-text'><?= $art['artist_name'] ?></>
+                                                            </div>
+                                                            <div class='row pt-4'>
+                                                                <div class='col-4'>
+                                                                    <span class='card-text fs-5 pt-3'>Kshs.&nbsp;<?= $art_price ?></span>
+                                                                </div>
+                                                                <div class='col-4'>
+                                                                    <span class='card-text fs-5 pt-3'><?= date('d M Y, g:i A', strtotime($order['created_at'])); ?></span>
+                                                                </div>
+                                                                <div class='col-4'>
+                                                                    <!-- implement delete art order button -->
+                                                                    <form action='process-delete-art-order.php' method='POST'>
+                                                                        <input type='hidden' name='art_id' value='<?= $art['id'] ?>'>
+                                                                        <input type='hidden' name='user_id' value='<?= $user['id'] ?>'>
+                                                                        <button type='submit' class='btn btn-sm btn-imperial mb-2'>Delete</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>";
-                            }
-                            ?>
-
+                            <?php } ?>
+                            <!-- show the total cart price -->
+                            <div class='card card-short mb-6'>
+                                <center>
+                                    <div class='row'>
+                                        <div class='col-lg-3 col-md-3 col-sm-12 ps-3 py-2'>
+                                            <h1>Total Price</h1>
+                                        </div>
+                                        <div class='col-lg-9 col-md-4 col-sm-12 ps-3 py-2'>
+                                            <div class='card-body'>
+                                                <span class='card-text fs-2 pt-3'>Kshs.&nbsp;<?= number_format($cart_price, 2) ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </center>
+                            </div>
 
                         </div>
                     </div>
@@ -146,6 +154,9 @@ $art = $piece_result->fetch_assoc();
                         <center>
                             <h2>Checkout</h2>
                         </center>
+                        <p class='px-4'>
+                            There is an option - more preferred where you can pay on piece collection
+                        </p>
 
                         <!-- Paypal Implementation -->
                         <div id='paypal-button-container' class='p-4'></div>

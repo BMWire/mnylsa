@@ -36,7 +36,7 @@ $piece = $result->fetch_assoc();
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Art bag' ?> </title>
+    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Art Cart' ?> </title>
 
     <!-- Styling imports -->
     <link rel='stylesheet' href='styles/main.css'>
@@ -54,20 +54,6 @@ $piece = $result->fetch_assoc();
     <!-- Start of main -->
     <main>
         <div class='container'>
-            <span>User Id: <?= $user['id'] ?></span>
-            <br />
-            <span>User Name: <?= $user['name'] ?></span>
-            <br />
-            <span>Piece Id: <?= $piece['id'] ?></span>
-            <br />
-            <span>Piece Title: <?= $piece['title'] ?></span>
-            <br />
-            <span>Piece Artist: <?= $piece['artist_name'] ?></span>
-            <br />
-            <span>Piece Artist Id: <?= $piece['artist_id'] ?></span>
-            <br />
-            <span>Piece Price: <?= $piece['price'] ?></span>
-
             <div class='card card-short mt-6'>
                 <div class='row'>
                     <!-- Render the image for the piece -->

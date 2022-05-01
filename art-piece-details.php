@@ -106,18 +106,13 @@ $piece = $result->fetch_assoc();
                                             </button>
                                         </a>";
                                 } else {
-                                    echo "<a href='art-order.php?id={$piece['id']}'>
+                                    echo "<a href='cart.php?id={$piece['id']}'>
                                             <button class='btn btn-lg btn-imperial'>
-                                                Order
+                                                Purchase Piece
                                             </button>
                                         </a>";
                                 }
                                 ?>
-                                <a href='cart.php?id=<?= $piece['id'] ?>'>
-                                    <button class='btn btn-lg btn-imperial'>
-                                        Purchase Piece
-                                    </button>
-                                </a>
                             </center>
 
                         <?php endif; ?>
