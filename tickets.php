@@ -54,20 +54,6 @@ $gallery = $result->fetch_assoc();
     <!-- Start of main -->
     <main>
         <div class='container'>
-            <span>User Id: <?= $user['id'] ?></span>
-            <br />
-            <span>User Name: <?= $user['name'] ?></span>
-            <br />
-            <span>Gallery Id: <?= $gallery['id'] ?></span>
-            <br />
-            <span>Gallery Title: <?= $gallery['title'] ?></span>
-            <br />
-            <span>Gallery Artist: <?= $gallery['artist_name'] ?></span>
-            <br />
-            <span>Gallery Artist Id: <?= $gallery['artist_id'] ?></span>
-            <br />
-            <span>Gallery Fee: <?= $gallery['fee'] ?></span>
-
             <div class='card card-short mt-6'>
                 <div class='row'>
                     <!-- Render the image for the gallery -->

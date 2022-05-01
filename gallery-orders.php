@@ -46,7 +46,7 @@ $gallery = $gallery_result->fetch_assoc();
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Orders' ?> </title>
+    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Gallery Orders' ?> </title>
 
     <!-- Styling imports -->
     <link rel='stylesheet' href='styles/main.css'>
@@ -55,7 +55,6 @@ $gallery = $gallery_result->fetch_assoc();
     <!-- Bootstrap Icons imports -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css'>
 
-    <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'> -->
 </head>
 
 <body>
@@ -66,19 +65,6 @@ $gallery = $gallery_result->fetch_assoc();
         <div class='container-cart'>
             <div class='row mt-6'>
                 <div class='col-lg-8 col-md-8 col-sm-12'>
-                    <span>User Id: <?= $user['id'] ?></span>
-                    <br />
-                    <span>User Name: <?= $user['name'] ?></span>
-                    <br />
-                    <span>Piece Id: <?= $gallery_order['piece_id'] ?></span>
-                    <br />
-                    <span>Piece Title: <?= $gallery_order['piece_title'] ?></span>
-                    <br />
-                    <span>Piece Artist: <?= $gallery['artist_name'] ?></span>
-                    <br />
-                    <span>Piece Artist Id: <?= $gallery['artist_id'] ?></span>
-                    <br />
-                    <span>Piece Price: <?= $gallery_order['piece_price'] ?></span>
 
                     <div class='col-lg-12 col-md-8 px-2'>
                         <div class='row'>
@@ -98,34 +84,67 @@ $gallery = $gallery_result->fetch_assoc();
 
                                 $gallery_fee = number_format($gallery['fee'], 2);
 
-                                echo "<div class='row'>
-                                <div class='col-lg-12 col-md-8 col-sm-12 px-2'>
-                                    <div class='card card-short mt-6'>
+                                // get the total fee by adding all the individual fees
+                                $total_fee += $gallery['fee'];
+
+                            ?>
+                                <div class='row'>
+                                    <div class='col-lg-12 col-md-8 col-sm-12 px-2'>
+                                        <div class='card card-short mb-6'>
                                             <div class='row'>
                                                 <div class='col-lg-3 col-md-8 col-sm-12'>
-                                                    <img src='{$gallery['coverImg']}' style='max-height: 20vh !important;' alt='{$gallery['title']}' class='p-4'>
+                                                    <img src='<?= $gallery['coverImg'] ?>' style='max-height: 20vh !important;' alt='<?= $gallery['title'] ?>' class='p-4'>
                                                 </div>
-                                                <div class='col-lg-9 col-md-4 col-sm-12 ps-3 py-3'>
+                                                <div class='col-lg-9 col-md-4 col-sm-12 ps-3 py-2'>
                                                     <div class='card-body'>
-                                                    <div class='row'>
-                                                    <div class='col-5 col-md-5 col-sm-12'>
-                                                        <h2 class='card-title'>{$gallery['title']}</h2>
-                                                    </div>
-                                                    <div class='col-lg-6 col-md-6 col-sm-12'>
-                                                        <h3 class='card-text'>{$gallery['artist_name']}</>
-                                                    </div>
-                                                    <span class='card-text fs-5 pt-3'>Kshs.&nbsp;{$gallery_fee}</span>
-                                                </div>
+                                                        <div class='row'>
+                                                            <div class='col-5 col-md-5 col-sm-12'>
+                                                                <a href='gallery-details.php?id=<?= $gallery['id'] ?>' target='_blank' class='text-dark'>
+                                                                    <h2 class='card-title'><?= $gallery['title'] ?></h2>
+                                                                </a>
+                                                            </div>
+                                                            <div class='col-lg-6 col-md-6 col-sm-12'>
+                                                                <h3 class='card-text'><?= $gallery['artist_name'] ?></>
+                                                            </div>
+                                                            <div class='row pt-4'>
+                                                                <div class='col-4'>
+                                                                    <span class='card-text fs-5 pt-3'>Kshs.&nbsp;<?= $gallery_fee ?></span>
+                                                                </div>
+                                                                <div class='col-4'>
+                                                                    <span class='card-text fs-5 pt-3'><?= date('d M Y, g:i A', strtotime($order['created_at'])); ?></span>
+                                                                </div>
+                                                                <!-- implement delete button -->
+                                                                <div class='col-4'>
+                                                                    <form action='process-delete-gallery-order.php' method='POST'>
+                                                                        <input type='hidden' name='gallery_id' value='<?= $gallery['id'] ?>'>
+                                                                        <input type='hidden' name='user_id' value='<?= $user['id'] ?>'>
+                                                                        <button type='submit' class='btn btn-sm btn-imperial mb-2'>Delete</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>";
-                            }
-                            ?>
-
-
+                            <?php } ?>
+                        </div>
+                        <!-- show the total price -->
+                        <div class='card card-short mb-6'>
+                            <center>
+                                <div class='row'>
+                                    <div class='col-lg-3 col-md-3 col-sm-12 ps-3 py-2'>
+                                        <h1>Total Fees</h1>
+                                    </div>
+                                    <div class='col-lg-9 col-md-4 col-sm-12 ps-3 py-2'>
+                                        <div class='card-body'>
+                                            <span class='card-text fs-2 pt-3'>Kshs.&nbsp;<?= number_format($total_fee, 2) ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -135,6 +154,11 @@ $gallery = $gallery_result->fetch_assoc();
                         <center>
                             <h2>Checkout</h2>
                         </center>
+                        <p class='px-4'>
+                            Having created the ticket order, your spot is saved and you can access the gallery.
+                            <br />
+                            The ticket will be paid for at the entrance.
+                        </p>
 
                         <!-- Paypal Implementation -->
                         <div id='paypal-button-container' class='p-4'></div>

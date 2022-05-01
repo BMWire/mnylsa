@@ -13,8 +13,10 @@ $_SESSION['artist_id'] = $_POST['gallery_artist_id'];
 $_SESSION['gallery_title'] = $_POST['gallery_title'];
 $_SESSION['gallery_fee'] = $_POST['gallery_fee'];
 
+$ticket_total = 1 * $_SESSION['gallery_fee'];
+
 // insert the data into the gallery_orders table
-$sql = "INSERT INTO gallery_orders (user_id, user_name, gallery_id, artist_id, gallery_title, gallery_fee) VALUES ('$_SESSION[user_id]', '$_SESSION[user_name]', '$_SESSION[gallery_id]', '$_SESSION[artist_id]', '$_SESSION[gallery_title]', '$_SESSION[gallery_fee]')";
+$sql = "INSERT INTO gallery_orders (user_id, user_name, gallery_id, artist_id, gallery_title, gallery_fee, ticket_total) VALUES ('$_SESSION[user_id]', '$_SESSION[user_name]', '$_SESSION[gallery_id]', '$_SESSION[artist_id]', '$_SESSION[gallery_title]', '$_SESSION[gallery_fee]', $ticket_total)";
 
 // execute insert query
 if ($mysqli->query($sql) === TRUE) {

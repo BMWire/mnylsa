@@ -469,21 +469,26 @@ textarea::placeholder {
 		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.btn-sm {
+	padding: 0.25rem 0.5rem;
+	font-size: 0.875rem;
+	border-radius: 0.2rem;
+}
+
 .btn-lg {
+	line-height: 1.5;
+	min-width: 250px;
 	padding: 0.5rem 1rem;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	border-radius: 0.3rem;
 }
 
 .btn-imperial {
 	display: inline-block;
-	line-height: 1.5;
-	min-width: 250px;
 	background-color: var(--imperial-red);
 	border: 1px solid var(--imperial-red);
 	text-align: center;
 	color: var(--cultured);
-	font-size: 1rem;
 	vertical-align: middle;
 	margin: auto;
 }
