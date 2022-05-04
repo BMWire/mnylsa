@@ -57,27 +57,21 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='artist-orders.php'>
-                                <i class='bi bi-card-checklist' style='font-size: 22px;'></i>
-                                Orders
+                            <a class='nav-link' href='admin-users.php'>
+                                <i class='bi bi-people-fill' style='font-size: 22px;'></i>
+                                Users
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='artist-pieces.php'>
+                            <a class='nav-link' href='admin-pieces.php'>
                                 <i class='bi bi-box-seam' style='font-size: 22px;'></i>
                                 Pieces
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='artist-galleries.php'>
+                            <a class='nav-link' href='admin-galleries.php'>
                                 <i class='bi bi-building' style='font-size: 22px;'></i>
                                 Galleries
-                            </a>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='artist-profile.php'>
-                                <i class='bi bi-emoji-smile' style='font-size: 22px;'></i>
-                                Profile
                             </a>
                         </li>
                     </ul>
