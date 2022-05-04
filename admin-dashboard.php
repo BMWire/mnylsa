@@ -40,7 +40,7 @@ if (isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-    <?php include __DIR__ . '/dashboard-navbar.php'; ?>
+    <?php include __DIR__ . '/admin-navbar.php'; ?>
 
     <!-- Start of main -->
     <div class='container-flex' style='padding-left:7%; padding-right:8%;'>
@@ -109,21 +109,6 @@ if (isset($_SESSION['user_id'])) {
 
                 <hr class='mobile-hide hr' />
 
-                <!-- Render a graph showing the rise in art orders compared to gallery orders  -->
-                <!-- <div class='row'>
-                    <div class='col-md-12'>
-                        <div class=''>
-                            <div class='card-body'>
-                                <h5 class='card-title'>Art Order vs. Gallery Order</h5>
-                                <p class='card-text'>
-                                    <canvas id='myChart'></canvas>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-
 
                 <center>
                     <div class='col-lg-10 col-md-6 p-3'>
@@ -133,15 +118,14 @@ if (isset($_SESSION['user_id'])) {
                                 <div class='card border-dark mb-3'>
                                     <div class='card-header'>
                                         <h2 class='card-title'>
-                                            <i class='bi bi-postage-heart-fill imperial-red' style='font-size: 32px;'></i>&nbsp;
-                                            Recent Orders
+                                            <i class='bi bi-people-fill imperial-red' style='font-size: 32px;'></i>&nbsp;
+                                            Recent User Accounts
                                         </h2>
                                     </div>
                                     <div class='card-body'>
                                         <p class='card-text'>
                                             <?php
-                                            $sql = "SELECT * FROM art_orders
-                                            WHERE artist_id = {$user['id']}
+                                            $sql = "SELECT * FROM users
                                             ORDER BY id DESC
                                             LIMIT 5";
 
@@ -151,26 +135,33 @@ if (isset($_SESSION['user_id'])) {
                                                 while ($row = $result->fetch_assoc()) {
                                             ?>
                                         <div class='row'>
-                                            <div class='col-md-2'>
+                                            <div class='col-md-6'>
                                                 <p class='card-text'>
-                                                    <?= 'A' . 10000 + $row['id'] ?>
+                                                    <?= $row['name'] ?>
                                                 </p>
                                             </div>
                                             <div class='col-md-6'>
                                                 <p class='card-text'>
-                                                    <?= $row['piece_title'] ?>
-                                                </p>
-                                            </div>
-                                            <div class='col-md-4'>
-                                                <p class='card-text'>
-                                                    Kshs. <?= number_format($row['piece_price']) ?>
-                                                </p>
+                                                    <!-- if isA -->
+                                                    <?php
+                                                    if ($row['isArtist'] == 'yes') {
+                                                    ?>
+                                                <p class='card-text'>Artist</p>
+                                            <?php
+                                                    } else {
+                                            ?>
+                                                <p class='card-text'>Enthusiast</p>
+                                            <?php
+
+                                                    }
+                                            ?>
+                                            </p>
                                             </div>
                                         </div>
                                 <?php
                                                 }
                                             } else {
-                                                echo "<p>No recent orders.</p>";
+                                                echo "<p>No users yet.</p>";
                                             }
                                 ?>
                                 </p>
@@ -190,7 +181,6 @@ if (isset($_SESSION['user_id'])) {
                                         <p class='card-text'>
                                             <?php
                                             $sql = "SELECT * FROM gallery_orders
-                                            WHERE artist_id = {$user['id']}
                                             ORDER BY id DESC
                                             LIMIT 5";
 
@@ -244,7 +234,6 @@ if (isset($_SESSION['user_id'])) {
                                         <p class='card-text'>
                                             <?php
                                             $sql = "SELECT * FROM art
-                                            WHERE artist_id = {$user['id']}
                                             ORDER BY id DESC
                                             LIMIT 10
                                             ";
