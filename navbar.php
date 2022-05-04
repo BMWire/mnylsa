@@ -1,7 +1,7 @@
 <!-- Start of navigation -->
 
 <!-- Start of md navigation -->
-<nav class='navbar mobile-hide'>
+<nav class='navbar sticky-top mobile-hide'>
     <div class='container-fluid'>
         <ul class='navbar-nav'>
             <li class='nav-item'>
@@ -48,8 +48,8 @@
             </li>
         </ul>
     </div>
+    <hr class='mobile-hide hr' />
 </nav>
-<hr class='mobile-hide hr' />
 <!-- End of md navigation -->
 
 <!-- Start of mobile navigation -->

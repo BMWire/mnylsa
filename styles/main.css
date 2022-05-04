@@ -33,7 +33,24 @@
 	justify-content: space-between;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
+	background-color: var(--cultured);
 }
+
+.fixed-top {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1030;
+}
+
+.sticky-top {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 1020;
+}
+
 .navbar > .container,
 .navbar > .container-fluid,
 .navbar > .container-flex {
