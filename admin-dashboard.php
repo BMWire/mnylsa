@@ -74,6 +74,12 @@ if (isset($_SESSION['user_id'])) {
                                 Galleries
                             </a>
                         </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='admin-orders.php'>
+                                <i class='bi bi-card-checklist' style='font-size: 22px;'></i>
+                                Orders
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
