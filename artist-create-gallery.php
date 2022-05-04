@@ -119,7 +119,7 @@ if (isset($_SESSION['user_id'])) {
                         <div class='col-lg-12 mb-4'>
                             <label for='piece-story'>Story</label>
                             <!-- Fix the text in the textarea -->
-                            <textarea class='form-control mb-2 mt-2' id='story' name='story' placeholder='Story behind the piece'></textarea>
+                            <textarea class='form-control mb-2 mt-2' id='story' name='story' placeholder='Story behind the gallery'></textarea>
                         </div>
 
                         <div class='col-lg-12 mb-4'>
