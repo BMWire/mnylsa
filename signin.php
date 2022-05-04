@@ -57,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!-- Styling imports -->
     <link rel='stylesheet' href='styles/main.css'>
     <link rel='stylesheet' href='styles/utility.css'>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"> -->
 </head>
 
 <body>
@@ -101,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     <p>
                         Don't have an account yet?
-                        <a class='inline-link' href='signup.html'>
+                        <a class='inline-link' href='signup.php'>
                             Create an account
                         </a>
                     </p>

@@ -78,11 +78,11 @@
             </div>
 
             <div class='col-lg-5 mobile-hide' style='margin-left: 10%;'>
-                <img class='img-lg' style='height: 90vh;' src='assets/images/welcome.jpg' alt='Welcome'>
-                <p class='manatee'> Katie Moum &nbsp; - &nbsp;
-                    <a class='inline-link' href='https://unsplash.com/photos/7XGtYefMXiQ'>
-                        All are Welcome
-                    </a>
+                <img class='img-lg' style='height: 90vh;' src='assets/images/katerina-pavlyuchkova-open.jpg' alt='Welcome'>
+                <p class='manatee'> Katerina Pavlyuchkova &nbsp; - &nbsp;
+                    <span class='imperial-red'>
+                        Open
+                    </span>
                 </p>
             </div>
         </div>

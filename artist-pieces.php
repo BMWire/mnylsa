@@ -109,7 +109,7 @@ if (isset($_SESSION['user_id'])) {
 
                                 <a href='artist-create-art.php' class='btn btn-lg btn-disabled disabled'>Add a piece</a>
                                 <a href='artist-profile.php' class='btn btn-lg btn-imperial'>Create your profile first</a>
-                                
+
                             <?php } ?>
 
                         </center>
@@ -160,23 +160,31 @@ if (isset($_SESSION['user_id'])) {
                                                     <i class='bi bi-cash-coin manatee' style='font-size:22px;'></i>
                                                     Kshs <?= $piece_price ?>
                                                 </p>
-                                                <center>
-                                                    <a href='art-piece-details.php?id=<?= $piece_id ?>' class='btn btn-imperial'>
-                                                        View piece
-                                                    </a>
-                                                </center>
+                                                <div class='row'>
+                                                    <div class='col-6'>
+                                                        <a href='art-piece-details.php?id=<?= $piece_id ?>' class='btn btn-imperial'>
+                                                            View piece
+                                                        </a>
+                                                    </div>
+                                                    <!-- <span><?= $piece_id ?></span> -->
+                                                    <!-- add delete piece button -->
+                                                    <div class='col-6'>
+                                                        <form action='process-delete-art.php' method='POST'>
+                                                            <input type='hidden' name='piece_id' value='<?= $piece_id ?>'>
+                                                            <button type='submit' class='btn btn-imperial mb-2'>Delete piece</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                <?php
+                        <?php
                     }
                 } else {
                     echo "<center class='fs-5 mt-6'>No pieces found. Try <a href='artist-create-art.php'>uploading one.</a> </center>";
                 }
-                ?>
+                        ?>
 
             </main>
             <!-- End of main -->
