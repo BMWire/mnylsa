@@ -103,7 +103,7 @@ if (isset($_SESSION['user_id'])) {
                             // if the logged user has an entry, show the add a piece button, else, direct them to the profile page
                             if ($result->num_rows > 0) {
                             ?>
-                                <a href='artist-add-piece.php' class='btn btn-lg btn-imperial'>Add a piece</a>
+                                <a href='artist-create-art.php' class='btn btn-lg btn-imperial'>Add a piece</a>
 
                             <?php } else { ?>
 

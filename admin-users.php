@@ -63,7 +63,6 @@ $enth_count = $user_count['user_count'] - ($artist_count['artist_count'] + $admi
     <!-- Bootstrap Icons imports -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css'>
 
-    <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'> -->
 </head>
 
 <body>
@@ -183,21 +182,12 @@ $enth_count = $user_count['user_count'] - ($artist_count['artist_count'] + $admi
                                     </td>
                                     <td><?= date('d M Y, g:i A', strtotime($user['created_at'])) ?></td>
                                     <td>
-                                        <?php
-                                        if ($user['isCollected'] == 1) {
-                                            echo 'Yes';
-                                        } else {
-                                            // implement button to update isCollected to 1
-                                        ?>
-                                            <center>
-                                                <form action='process-delete-user.php' method='POST'>
-                                                    <input type='hidden' name='user_id' value='<?= $user['id'] ?>'>
-                                                    <button type='submit' class='btn btn-sm mb-2'>Suspend</button>
-                                                </form>
-                                            </center>
-                                        <?php
-                                        }
-                                        ?>
+                                        <center>
+                                            <form action='process-delete-user.php' method='POST'>
+                                                <input type='hidden' name='user_id' value='<?= $user['id'] ?>'>
+                                                <button type='submit' class='btn btn-sm mb-2'>Suspend</button>
+                                            </form>
+                                        </center>
                                     </td>
                                 </tr>
                             <?php  } ?>
