@@ -24,20 +24,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             session_regenerate_id();
 
-            // Check if the isAdmin field in the table users is set to 1 for the logged in user
-            if ($user["isArtist"] == "yes") {
-                $_SESSION["isArtist"] = true;
+            // Check if the isAdmin field in the table users is set to yes for the logged in user
+
+            if ($user["isAdmin"] == "yes") {
+                $_SESSION["isAdmin"] = true;
+                $_SESSION["isArtist"] = false;
+
                 $_SESSION["user_id"] = $user["id"];
 
+                header("Location: admin-dashboard.php");
+            } else if ($user["isArtist"] == "yes") {
+                $_SESSION["isAdmin"] = false;
+                $_SESSION["isArtist"] = true;
+
+                $_SESSION["user_id"] = $user["id"];
 
                 header("Location: artist-dashboard.php");
-            }
-            else {
+            } else if ($user["isArtist"] == "no" || $user["isArtist"] == NULL) {
+                $_SESSION["isAdmin"] = false;
                 $_SESSION["isArtist"] = false;
+
                 $_SESSION["user_id"] = $user["id"];
 
                 header("Location: home.php");
             }
+
         }
     }
 

@@ -101,7 +101,7 @@ if (isset($_SESSION["user_id"])) {
                 <?php
                     }
                 } else {
-                    echo "<center class='fs-5 mt-6 imperial-red'>No galleries found. Try uploading one. </center>";
+                    echo "<center class='fs-5 mt-6'>Nothing uploaded yet. Come back soon. </center>";
                 }
                 ?>
             </div>
