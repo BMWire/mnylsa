@@ -165,11 +165,19 @@ if (isset($_SESSION['user_id'])) {
                                                     <i class='bi bi-calendar-date manatee' style='font-size:22px;'></i>
                                                     <?= substr($gallery_date, 0, strpos($gallery_date, ' ')) ?>
                                                 </p>
-                                                <center>
-                                                    <a href='artist-edit-gallery.php?id=<?= $gallery_id ?>' class='btn btn-imperial'>
-                                                        View gallery
-                                                    </a>
-                                                </center>
+                                                <div class='row'>
+                                                    <div class='col-6'>
+                                                        <a href='artist-edit-gallery.php?id=<?= $gallery_id ?>' class='btn btn-imperial'>
+                                                            View gallery
+                                                        </a>
+                                                    </div>
+                                                    <div class='col-6'>
+                                                        <form action='process-delete-gallery.php' method='POST'>
+                                                            <input type='hidden' name='gallery_id' value='<?= $gallery_id ?>'>
+                                                            <button type='submit' class='btn btn-imperial mb-2'>Cancel gallery</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
