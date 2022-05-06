@@ -116,9 +116,15 @@ $gallery_count = $gallery_count_result->fetch_assoc();
                                         </div>
                                     </div>
                                     <div class='col-md-7 col-lg-7 px-3'>
-                                        <p class='fs-6'>
+                                        <p class='fs-5'>
                                             <?= $artist_details['story'] ?>
-                                            <?= $artist_details['story'] ?>
+                                        </p>
+                                        <p class='fs-5'>
+                                            <?= $artist_details['artist_name'] ?> works on the art that he does from <?= $artist_details['building'] ?> on <?= $artist_details['street'] ?>, <?= $artist_details['town'] ?>, <?= $artist_details['county'] ?> in Kenya.
+
+                                            <br />
+                                            <br />
+                                            This artist has been with us since <?= date('d M Y', strtotime($artist_details['created_at'])) ?>.
                                         </p>
                                     </div>
 
