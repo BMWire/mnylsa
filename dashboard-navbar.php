@@ -1,7 +1,7 @@
 <!-- Start of navigation -->
 
 <!-- Start of md navigation -->
-<nav class='navbar mobile-hide'>
+<nav class='navbar sticky-top mobile-hide'>
     <div class='container'>
         <a href='home.php' class='nav-header mr-5'>
             MONEYLISA <sup><span class='fs-6'>Artist</span></sup>
@@ -31,8 +31,8 @@
             </li>
         </ul>
     </div>
+    <hr class='mobile-hide hr' />
 </nav>
-<hr class='mobile-hide hr' />
 <!-- End of md navigation -->
 
 <!-- Start of mobile navigation -->
