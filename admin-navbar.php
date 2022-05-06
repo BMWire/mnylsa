@@ -3,7 +3,7 @@
 <!-- Start of md navigation -->
 <nav class='navbar mobile-hide'>
     <div class='container'>
-        <a href='home.php' class='nav-header mr-5'>
+        <a href='admin-dashboard.php' class='nav-header mr-5'>
             MONEYLISA <sup><span class='fs-6'>Admin</span></sup>
         </a>
         <ul class='navbar-nav'>
