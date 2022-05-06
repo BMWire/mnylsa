@@ -134,6 +134,7 @@ if (isset($_SESSION['user_id'])) {
                                 <th scope='col'>Order Number</th>
                                 <th scope='col'>Piece Title</th>
                                 <th scope='col'>Piece Price</th>
+                                <th scope='col'>Sales Commission</th>
                                 <th scope='col'>Enthusiast Name</th>
                                 <th scope='col'>Paid Yet</th>
                                 <th scope='col'>Collected Yet</th>
@@ -152,7 +153,7 @@ if (isset($_SESSION['user_id'])) {
 
                             while ($art = $art_result->fetch_assoc()) {
                                 // get all the details from art_orders table
-                                $order_sql = "SELECT * FROM art_orders";
+                                $order_sql = "SELECT * FROM art_orders WHERE piece_id = '" . $art['id'] . "'";
 
                                 $order_result = $mysqli->query($order_sql);
 
@@ -169,6 +170,7 @@ if (isset($_SESSION['user_id'])) {
                                             <td><?= 'A' . 10000 + $order['id'] ?></td>
                                             <td><?= $art['title'] ?></td>
                                             <td>Kshs. <?= number_format($art['price'], 0) ?></td>
+                                            <td>Kshs. <?= number_format($art['price'] * 0.1, 0) ?></td>
                                             <td><?= $enth['name'] ?></td>
                                             <td>
                                                 <?php
@@ -206,22 +208,33 @@ if (isset($_SESSION['user_id'])) {
                                             </td>
                                             <td><?= date('d M Y, g:i A', strtotime($order['created_at'])) ?></td>
                                         </tr>
-                                        <tr>
-                                            <td colspan='4'>
-                                                <h2 class='fs-3'>
-                                                    Total Sales:
-                                                    </h>
-                                            </td>
-                                            <td colspan='3'>
-                                                <h2 class='fs-4 imperial-red cultured-underlined'>
-                                                    Kshs. <?= number_format($art_sales, 0) ?>
-                                                </h2>
-                                            </td>
-                                        </tr>
-
                                     <?php  } ?>
                                 <?php  } ?>
                             <?php  } ?>
+                            <tr>
+                                <td colspan='5'>
+                                    <h2 class='fs-3'>
+                                        Total Sales:
+                                        </h>
+                                </td>
+                                <td colspan='3'>
+                                    <h2 class='fs-4 imperial-red cultured-underlined'>
+                                        Kshs. <?= number_format($art_sales, 0) ?>
+                                    </h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan='5'>
+                                    <h2 class='fs-3'>
+                                        Total Commission:
+                                        </h>
+                                </td>
+                                <td colspan='3'>
+                                    <h2 class='fs-4 imperial-red cultured-underlined'>
+                                        Kshs. <?= number_format($art_sales * 0.1, 0) ?>
+                                    </h2>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -250,7 +263,7 @@ if (isset($_SESSION['user_id'])) {
 
                             while ($gallery = $gallery_result->fetch_assoc()) {
                                 // get the details from gallery_orders table
-                                $order_sql = "SELECT * FROM gallery_orders";
+                                $order_sql = "SELECT * FROM gallery_orders WHERE gallery_id = '" . $gallery['id'] . "'";
 
                                 $order_result = $mysqli->query($order_sql);
 

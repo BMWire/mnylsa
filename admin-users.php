@@ -100,6 +100,12 @@ $enth_count = $user_count['user_count'] - ($artist_count['artist_count'] + $admi
                                 Galleries
                             </a>
                         </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='admin-orders.php'>
+                                <i class='bi bi-card-checklist' style='font-size: 22px;'></i>
+                                Orders
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>

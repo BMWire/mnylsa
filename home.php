@@ -105,7 +105,7 @@ if (isset($_SESSION["user_id"])) {
                 }
                 ?>
             </div>
-
+<!-- 
             <div class='col-lg-12 col-md-12 col-sm-12 px-3 py-4'>
                 <div class='card'>
                     <div class='row'>
@@ -140,7 +140,7 @@ if (isset($_SESSION["user_id"])) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
     </main>
