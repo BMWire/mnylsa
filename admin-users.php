@@ -149,7 +149,8 @@ $enth_count = $user_count['user_count'] - ($artist_count['artist_count'] + $admi
 
                 <hr class='mobile-hide hr' />
 
-                <!-- Get and display the Users from users table -->
+                <h1 class='fs-2'>Artists.</h1>
+                <!-- Get and display the Artists from users table -->
                 <div class='table-responsive'>
                     <table class='table table-striped table-sm'>
                         <thead>
@@ -165,7 +166,7 @@ $enth_count = $user_count['user_count'] - ($artist_count['artist_count'] + $admi
                         <tbody>
                             <?php
                             // get the details from user table of the pieces made by the logged in user
-                            $user_sql = "SELECT * FROM users";
+                            $user_sql = "SELECT * FROM users WHERE isArtist = 'yes'";
 
                             $user_result = $mysqli->query($user_sql);
 
@@ -175,7 +176,6 @@ $enth_count = $user_count['user_count'] - ($artist_count['artist_count'] + $admi
                                     <td><?= 'U00' . $user['id'] ?></td>
                                     <td><?= $user['name'] ?></td>
                                     <td><?= $user['email'] ?></td>
-                                    <td><?= $user['id'] ?></td>
                                     <td>
                                         <?php
                                         if ($user['isArtist'] == 'yes') {
@@ -202,6 +202,58 @@ $enth_count = $user_count['user_count'] - ($artist_count['artist_count'] + $admi
                     </table>
                 </div>
 
+                <h1 class='fs-2'>Enthusiasts.</h1>
+                <!-- Get and display the Enthusiasts from users table -->
+                <div class='table-responsive'>
+                    <table class='table table-striped table-sm'>
+                        <thead>
+                            <tr>
+                                <th scope='col'>User Id</th>
+                                <th scope='col'>Name</th>
+                                <th scope='col'>Email</th>
+                                <th scope='col'>Role</th>
+                                <th scope='col'>Created At</th>
+                                <th scope='col'>Suspend</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // get the details from user table of the pieces made by the logged in user
+                            $user_sql = "SELECT * FROM users WHERE isArtist = 'no'";
+
+                            $user_result = $mysqli->query($user_sql);
+
+                            while ($user = $user_result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?= 'U00' . $user['id'] ?></td>
+                                    <td><?= $user['name'] ?></td>
+                                    <td><?= $user['email'] ?></td>
+                                    <td>
+                                        <?php
+                                        if ($user['isArtist'] == 'yes') {
+                                            echo 'Artist';
+                                        } else if ($user['isAdmin'] == 'yes') {
+                                            echo 'Admin';
+                                        } else {
+                                            echo 'Enthusiast';
+                                        }
+                                        ?>
+                                    </td>
+                                    <td><?= date('d M Y, g:i A', strtotime($user['created_at'])) ?></td>
+                                    <td>
+                                        <center>
+                                            <form action='process-delete-user.php' method='POST'>
+                                                <input type='hidden' name='user_id' value='<?= $user['id'] ?>'>
+                                                <button type='submit' class='btn btn-sm mb-2'>Suspend</button>
+                                            </form>
+                                        </center>
+                                    </td>
+                                </tr>
+                            <?php  } ?>
+                        </tbody>
+                    </table>
+                </div>
 
 
 
