@@ -40,7 +40,6 @@ if (isset($_SESSION["user_id"])) {
     <!-- Bootstrap Icons imports -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css'>
 
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"> -->
 </head>
 
 <body>
@@ -72,30 +71,58 @@ if (isset($_SESSION["user_id"])) {
                 ?>
                         <div class='col-lg-4 col-md-6 col-sm-12 px-3 py-4'>
                             <div class='card'>
-                                <img src='<?= $piece_dir ?>' class='card-img-top' alt='<? $piece_title ?>'>
-                                <div class='card-body'>
-                                    <div class='row ml-1'>
-                                        <div class='col-6'>
-                                            <a href='art-piece-details.php?id=<?= $piece_id ?>'>
-                                                <h4 class='space-cadet cadet-underlined'><?= $piece_title ?></h4>
-                                            </a>
+                                <!-- check if the piece_id is in the art_orders table -->
+                                <?php
+                                $check_stmt = "SELECT * FROM art_orders WHERE piece_id = {$piece_id}";
+
+                                $check_result = $mysqli->query($check_stmt);
+
+                                if ($check_result->num_rows > 0) {
+                                ?>
+                                    <img src='<?= $piece_dir ?>' class='card-img-top' alt='<? $piece_title ?>'>
+                                    <div class='card-body'>
+                                        <div class='row ml-1'>
+                                            <div class='col-6'>
+                                                <a href='art-piece-details.php?id=<?= $piece_id ?>'>
+                                                    <h4 class='space-cadet cadet-underlined'><?= $piece_title ?></h4>
+                                                </a>
+                                            </div>
+                                            <div class='col-6'>
+                                                <a href='artist-details.php?id=<?= $artist_id ?>' class='plain'>
+                                                    <h4 class='card-title manatee'><?= $artist_name ?></h4>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class='col-6'>
-                                            <a href='artist-details.php?id=<?= $artist_id ?>' class='plain'>
-                                                <h4 class='card-title manatee'><?= $artist_name ?></h4>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class='row ml-1 pt-2'>
-                                        <!-- <div class='col-6'>
-                                            <i class='bi bi-palette-fill manatee ml-1'></i>
-                                            <span class='space-cadet fs-6'>53 palettes</span>
+                                        <!-- <div class='row ml-1 pt-2'>
+                                            <div class='col-12'>
+                                                <span class='imperial-red fs-6 bold'>Kshs <?= number_format($piece_price, 2) ?></span>
+                                            </div>
                                         </div> -->
-                                        <div class='col-12'>
-                                            <span class='imperial-red fs-6 bold'>Kshs <?= number_format($piece_price, 2)?></span>
+                                    </div>
+
+                                    <button class='btn btn-outline-danger btn-sm' disabled>Sold</button>
+                                <?php } else { ?>
+                                    <img src='<?= $piece_dir ?>' class='card-img-top' alt='<? $piece_title ?>'>
+                                    <div class='card-body'>
+                                        <div class='row ml-1'>
+                                            <div class='col-6'>
+                                                <a href='art-piece-details.php?id=<?= $piece_id ?>'>
+                                                    <h4 class='space-cadet cadet-underlined'><?= $piece_title ?></h4>
+                                                </a>
+                                            </div>
+                                            <div class='col-6'>
+                                                <a href='artist-details.php?id=<?= $artist_id ?>' class='plain'>
+                                                    <h4 class='card-title manatee'><?= $artist_name ?></h4>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class='row ml-1 pt-2'>
+                                            <div class='col-12'>
+                                                <span class='imperial-red fs-6 bold'>Kshs <?= number_format($piece_price, 2) ?></span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                <?php } ?>
                             </div>
                         </div>
                 <?php
@@ -105,42 +132,6 @@ if (isset($_SESSION["user_id"])) {
                 }
                 ?>
             </div>
-<!-- 
-            <div class='col-lg-12 col-md-12 col-sm-12 px-3 py-4'>
-                <div class='card'>
-                    <div class='row'>
-                        <div class='col-lg-8 col-md-8 col-sm-12'>
-                            <img src='assets/art/macro-bubble-ashley-smith.jpg' class='card-img-top' alt='Macro Bubble Ashley Smith'>
-                        </div>
-                        <div class='col-lg-4 col-md-4 col-sm-12'>
-                            <div class='card-body'>
-                                <span class='badge badge-imperial'>
-                                    Piece of the day
-                                </span>
-                                <div class='row ml-1'>
-                                    <div class='col-7'>
-                                        <a href='/art/macro-bubble'>
-                                            <h4 class='space-cadet cadet-underlined'>
-                                                Macro Bubble
-                                            </h4>
-                                        </a>
-                                    </div>
-                                    <div class='col-5'>
-                                        <a href='/artist-page.php' class='plain'>
-                                            <h3 class='card-title manatee'>Ashley Smith</h3>
-                                        </a>
-                                    </div>
-                                </div>
-                                <p class='card-text'>
-                                    This is a piece of art that Ashley Smith has created for the MoneyLisa gallery.
-                                    She tries to depict the beauty of the world in a way that is not seen by most.
-                                    The piece is a macro bubble that is made of a transparent plastic.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
 
     </main>
