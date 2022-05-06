@@ -3,9 +3,6 @@
 // Create a database connection
 $mysqli = require __DIR__ . '/database.php';
 
-// Get the user id from the session
-$_SESSION['user_id'] = $_POST['user_id'];
-
 // Delete the user whose id has been pushed by the delete form
 $sql = "DELETE FROM users WHERE id = {$_POST['user_id']}";
 
