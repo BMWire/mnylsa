@@ -47,8 +47,14 @@ $gallery = $result->fetch_assoc();
 </head>
 
 <body>
-    <?php include __DIR__ . '/navbar.php'; ?>
-
+    <!-- if the logged in user is an artist, show the artist navbar -->
+    <?php if ($user['isAdmin'] == 'yes') { ?>
+        <?php include __DIR__ . '/admin-navbar.php'; ?>
+    <?php } else if ($user['isArtist'] == 'yes') { ?>
+        <?php include __DIR__ . '/dashboard-navbar.php'; ?>
+    <?php } else { ?>
+        <?php include __DIR__ . '/navbar.php'; ?>
+    <?php } ?>
     <!-- Start of main -->
     <main>
         <div class='container-flex'>
@@ -102,11 +108,10 @@ $gallery = $result->fetch_assoc();
                         <?php if ($user['isArtist'] == 'yes') : ?>
 
                             <center>
-                                <a href='artist-edit-gallery.php?id=<?= $gallery['id'] ?>'>
-                                    <button class='btn btn-lg btn-imperial'>
-                                        Edit gallery
-                                    </button>
+                                <a class='btn btn-lg btn-imperial btn-disabled disabled' href='artist-edit-gallery.php?id=<?= $gallery['id'] ?>'>
+                                    Edit gallery
                                 </a>
+                                Coming Soon!
                             </center>
 
                         <?php else : ?>
