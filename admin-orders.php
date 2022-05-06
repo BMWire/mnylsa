@@ -300,21 +300,33 @@ if (isset($_SESSION['user_id'])) {
                                             </td>
                                             <td><?= date('d M Y, g:i A', strtotime($order['created_at'])) ?></td>
                                         </tr>
-                                        <tr>
-                                            <td colspan='4'>
-                                                <h2 class='fs-3'>
-                                                    Total Ticket Sales:
-                                                    </h>
-                                            </td>
-                                            <td colspan='2'>
-                                                <h2 class='fs-4 imperial-red cultured-underlined'>
-                                                    Kshs. <?= number_format($gallery_sales, 0) ?>
-                                                </h2>
-                                            </td>
-                                        </tr>
                                     <?php  } ?>
                                 <?php  } ?>
                             <?php  } ?>
+                            <tr>
+                                <td colspan='4'>
+                                    <h2 class='fs-3'>
+                                        Total Ticket Sales:
+                                        </h>
+                                </td>
+                                <td colspan='2'>
+                                    <h2 class='fs-4 imperial-red cultured-underlined'>
+                                        Kshs. <?= number_format($gallery_sales, 0) ?>
+                                    </h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan='4'>
+                                    <h2 class='fs-3'>
+                                        Total Commission:
+                                        </h>
+                                </td>
+                                <td colspan='2'>
+                                    <h2 class='fs-4 imperial-red cultured-underlined'>
+                                        Kshs. <?= number_format($gallery_sales * 0.1, 0) ?>
+                                    </h2>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

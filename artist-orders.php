@@ -39,7 +39,14 @@ if (isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-    <?php include __DIR__ . '/dashboard-navbar.php'; ?>
+    <!-- if the logged in user is an artist, show the artist navbar -->
+    <?php if ($user['isAdmin'] == 'yes') { ?>
+        <?php include __DIR__ . '/admin-navbar.php'; ?>
+    <?php } else if ($user['isArtist'] == 'yes') { ?>
+        <?php include __DIR__ . '/dashboard-navbar.php'; ?>
+    <?php } else { ?>
+        <?php include __DIR__ . '/navbar.php'; ?>
+    <?php } ?>
 
     <div class='container-flex' style='padding-left:7%; padding-right:8%;'>
         <div class='row'>
@@ -103,8 +110,7 @@ if (isset($_SESSION['user_id'])) {
             <main class='col-md-9 col-lg-10'>
                 <div class='row'>
                     <div class='col-lg-8 col-md-6 pt-3 pb-2 mb-3'>
-                        <h1 class='fs-2'>Orders.</h1>
-                        <!-- <?= $_SESSION['user_id'] ?> -->
+                        <h1 class='fs-2'><?= $user['name'] ?>'s Orders.</h1>
                         <p class='fs-6 ps-4 space-cadet'>
                             Get to view the orders that were made by people who bought your art or bought tickets to your galleries.
                         </p>
@@ -140,15 +146,62 @@ if (isset($_SESSION['user_id'])) {
                         </span>
                     </div>
                 </div>
-                <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
-                    <h1 class='fs-2'>Orders.</h1>
-                    <p class='fs-6 ps-4 space-cadet'>
-                    </p>
-                </div>
                 <hr class='mobile-hide hr' />
 
                 <!-- Get and display the Art Orders from art_orders table -->
-                <h2>Art Orders</h2>
+                <div class='row'>
+                    <div class='col-lg-3 col-md-6 pt-3 pb-2 mb-3'>
+                        <h2>Art Orders</h2>
+                    </div>
+                    <div class='col-lg-9 col-md-6 pt-3 pb-2 mb-3'>
+                        <!-- sum all the piece_price fields from art_orders -->
+                        <?php
+                        $art_orders = "SELECT SUM(piece_price) AS total_art_price FROM art_orders WHERE artist_id = {$_SESSION['user_id']}";
+
+                        $art_result = $mysqli->query($art_orders);
+
+                        $art_price = $art_result->fetch_assoc();
+
+                        $art_sales = $art_price['total_art_price'];
+                        $lisa_art_sales = $art_sales * 0.9;
+                        ?>
+                        <span class='col-3'>
+                            <span class='col-1 mr-6'>
+                                Gross Income:
+                            </span>
+                            <span class='col-2 badge badge-imperial mr-2 mb-1'>
+                                Kshs <?= number_format($art_sales) ?>
+                            </span>
+                        </span>
+                        <!-- count the number of sold pieces -->
+                        <?php
+                        $art_orders = "SELECT * FROM art_orders WHERE artist_id = {$_SESSION['user_id']}";
+
+                        $art_result = $mysqli->query($art_orders);
+
+                        $art_count = $art_result->num_rows;
+                        ?>
+                        <span class='col-3'>
+                            <span class='col-3 mr-6'>
+                                Net Income:
+                            </span>
+                            <span class='col-2 badge badge-imperial mr-2 mb-1'>
+                                Kshs <?= number_format($lisa_art_sales) ?>
+                            </span>
+                        </span>
+                        <span class='col-3'>
+                            <span class='col-1'>
+                                Net Commission:
+                            </span>
+                            <span class='col-2 badge badge-imperial mr-2 mb-1'>
+                                Kshs <?= number_format($art_sales) ?>
+                            </span>
+                        </span>
+                        <span class='col-2 badge badge-imperial ml-6 mr-2 mb-1'>
+                            <?= $art_count ?> <?= $art_count == 1 ? " Piece" : " Pieces" ?>
+                        </span>
+                    </div>
+                </div>
                 <div class='table-responsive'>
                     <table class='table table-striped table-sm'>
                         <thead>
@@ -156,6 +209,7 @@ if (isset($_SESSION['user_id'])) {
                                 <th scope='col'>Order Number</th>
                                 <th scope='col'>Piece Title</th>
                                 <th scope='col'>Piece Price</th>
+                                <th scope='col'>Sales Commission</th>
                                 <th scope='col'>Enthusiast Name</th>
                                 <th scope='col'>Paid Yet</th>
                                 <th scope='col'>Collected Yet</th>
@@ -191,6 +245,7 @@ if (isset($_SESSION['user_id'])) {
                                             <td><?= 'A' . 10000 + $order['id'] ?></td>
                                             <td><?= $art['title'] ?></td>
                                             <td>Kshs. <?= number_format($art['price'], 0) ?></td>
+                                            <td>Kshs. <?= number_format($art['price'] * 0.1, 0) ?></td>
                                             <td><?= $enth['name'] ?></td>
                                             <td>
                                                 <?php
@@ -231,12 +286,90 @@ if (isset($_SESSION['user_id'])) {
                                     <?php  } ?>
                                 <?php  } ?>
                             <?php  } ?>
+                            <tr>
+                                <td colspan='5'>
+                                    <h2 class='fs-5'>
+                                        Total Sales:
+                                        </h>
+                                </td>
+                                <td colspan='3'>
+                                    <h2 class='fs-6 imperial-red cultured-underlined'>
+                                        Kshs. <?= number_format($lisa_art_sales, 2) ?>
+                                    </h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan='5'>
+                                    <h2 class='fs-5'>
+                                        Total Commission:
+                                        </h>
+                                </td>
+                                <td colspan='3'>
+                                    <h2 class='fs-6 imperial-red cultured-underlined'>
+                                        Kshs. <?= number_format($art_sales * 0.1, 2) ?>
+                                    </h2>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <!-- Get and display the Gallery Ticket Orders from gallery_orders table -->
-                <h2>Gallery Ticket Orders</h2>
+                <!-- Get and display the Art Orders from art_orders table -->
+                <div class='row mt-6'>
+                    <div class='col-lg-3 col-md-6 pt-3 pb-2 mb-3'>
+                        <h2>Gallery Ticket Orders</h2>
+                    </div>
+                    <div class='col-lg-9 col-md-6 pt-3 pb-2 mb-3'>
+                        <!-- sum all the gallery_fee fields from gallery_orders -->
+                        <?php
+                        $gallery_orders = "SELECT SUM(gallery_fee) AS total_gallery_fee FROM gallery_orders WHERE artist_id = {$_SESSION['user_id']}";
+
+                        $gallery_result = $mysqli->query($gallery_orders);
+
+                        $gallery_price = $gallery_result->fetch_assoc();
+
+                        $gallery_sales = $gallery_price['total_gallery_fee'];
+                        $lisa_gallery_sales = $gallery_sales * 0.9;
+                        ?>
+                        <span>
+                            <span class='col-5'>
+                                Gross Income:
+                            </span>
+                            <span class='col-2 badge badge-imperial ml-2 mr-2 mb-1'>
+                                Kshs <?= number_format($gallery_sales) ?>
+                            </span>
+                        </span>
+
+                        <!-- count the number of sold gallery tickets -->
+                        <?php
+                        $gallery_orders = "SELECT * FROM gallery_orders WHERE artist_id = {$_SESSION['user_id']}";
+
+                        $gallery_result = $mysqli->query($gallery_orders);
+
+                        $gallery_count = $gallery_result->num_rows;
+                        ?>
+                        <span>
+                            <span class='col-3 mr-3'>
+                                Net Income:
+                            </span>
+                            <span class='col-2 badge badge-imperial ml-2 mr-2 mb-1'>
+                                Kshs <?= number_format($lisa_gallery_sales) ?>
+                            </span>
+                        </span>
+                        <span>
+                            <span class='col-3 mr-3'>
+                                Net Commission:
+                            </span>
+                            <span class='col-2 badge badge-imperial ml-2 mr-2 mb-1'>
+                                Kshs <?= number_format($gallery_sales * 0.1) ?>
+                            </span>
+                        </span>
+                        <span class='col-2 badge badge-imperial ml-6 mb-1'>
+                            <?= $gallery_count ?> <?= $gallery_count == 1 ? " Ticket" : " Tickets" ?>
+                        </span>
+                    </div>
+                </div>
                 <div class='table-responsive'>
                     <table class='table table-striped table-sm'>
                         <thead>
@@ -244,6 +377,7 @@ if (isset($_SESSION['user_id'])) {
                                 <th scope='col'>Order Number</th>
                                 <th scope='col'>Gallery Title</th>
                                 <th scope='col'>Gallery Fee</th>
+                                <th scope='col'>Sales Commission</th>
                                 <th scope='col'>Enthusiast Name</th>
                                 <th scope='col'>Paid Yet</th>
                                 <th scope='col'>Created At</th>
@@ -278,13 +412,13 @@ if (isset($_SESSION['user_id'])) {
                                             <td><?= 'A' . 10000 + $order['id'] ?></td>
                                             <td><?= $gallery['title'] ?></td>
                                             <td>Kshs. <?= number_format($gallery['fee'], 0) ?></td>
+                                            <td>Kshs. <?= number_format($gallery['fee'] * 0.1, 0) ?></td>
                                             <td><?= $enth['name'] ?></td>
                                             <td>
                                                 <?php
                                                 if ($order['isPaid'] == 1) {
                                                     echo 'Yes';
                                                 } else {
-                                                    // implement button to update isPaid to 1
                                                 ?>
                                                     <center>
                                                         <form action='process-mark-gallery-paid.php' method='POST'>
@@ -301,6 +435,30 @@ if (isset($_SESSION['user_id'])) {
                                     <?php  } ?>
                                 <?php  } ?>
                             <?php  } ?>
+                            <tr>
+                                <td colspan='5'>
+                                    <h2 class='fs-5'>
+                                        Total Ticket Sales:
+                                        </h>
+                                </td>
+                                <td colspan='3'>
+                                    <h2 class='fs-6 imperial-red cultured-underlined'>
+                                        Kshs. <?= number_format($lisa_gallery_sales, 2) ?>
+                                    </h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan='5'>
+                                    <h2 class='fs-5'>
+                                        Total Commission:
+                                        </h>
+                                </td>
+                                <td colspan='3'>
+                                    <h2 class='fs-6 imperial-red cultured-underlined'>
+                                        Kshs. <?= number_format($gallery_sales * 0.1, 2) ?>
+                                    </h2>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
