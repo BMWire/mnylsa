@@ -31,8 +31,8 @@
             </li>
         </ul>
     </div>
+    <hr class='mobile-hide hr' />
 </nav>
-<hr class='mobile-hide hr' />
 <!-- End of md navigation -->
 
 <!-- Start of mobile navigation -->

@@ -175,6 +175,7 @@ $enth_count = $user_count['user_count'] - ($artist_count['artist_count'] + $admi
                                     <td><?= 'U00' . $user['id'] ?></td>
                                     <td><?= $user['name'] ?></td>
                                     <td><?= $user['email'] ?></td>
+                                    <td><?= $user['id'] ?></td>
                                     <td>
                                         <?php
                                         if ($user['isArtist'] == 'yes') {
