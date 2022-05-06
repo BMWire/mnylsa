@@ -72,10 +72,27 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='artist-profile.php'>
-                                <i class='bi bi-emoji-smile' style='font-size: 22px;'></i>
-                                Profile
-                            </a>
+                            <!-- check to see if the logged in user has an entry in artist_details table -->
+                            <?php
+                            $sql = "SELECT * FROM artist_details
+                                    WHERE artist_id = {$_SESSION['user_id']}";
+
+                            $result = $mysqli->query($sql);
+
+                            // if the logged user has an entry, show the add a piece button, else, direct them to the profile page
+                            if ($result->num_rows > 0) {
+                            ?>
+                                <!-- show nothing -->
+                            <?php
+                            } else {
+                            ?>
+                                <a class='nav-link' href='artist-profile.php'>
+                                    <i class='bi bi-plus' style='font-size: 22px;'></i>
+                                    Profile
+                                </a>
+                            <?php
+                            }
+                            ?>
                         </li>
                     </ul>
                 </div>

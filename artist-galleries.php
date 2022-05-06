@@ -204,7 +204,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php
                     }
                 } else {
-                    echo "<center class='fs-5 mt-6'>No galleries found. Try <a href='artist-create-gallery  .php'>creating one.</a> </center>";
+                    echo "<center class='fs-5 mt-6'>No galleries found. Try <a href='artist-create-gallery.php'>creating one.</a> </center>";
                 }
                 ?>
 
