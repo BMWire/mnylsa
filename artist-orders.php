@@ -84,10 +84,48 @@ if (isset($_SESSION['user_id'])) {
 
             <!-- Start of main -->
             <main class='col-md-9 col-lg-10'>
+                <div class='row'>
+                    <div class='col-lg-8 col-md-6 pt-3 pb-2 mb-3'>
+                        <h1 class='fs-2'>Orders.</h1>
+                        <!-- <?= $_SESSION['user_id'] ?> -->
+                        <p class='fs-6 ps-4 space-cadet'>
+                            Get to view the orders that were made by people who bought your art or bought tickets to your galleries.
+                        </p>
+                    </div>
+                    <div class='col-lg-4 col-md-6 pt-3 pb-2 mb-3'>
+                        <span class='col-lg-8 badge badge-imperial mr-3 mb-1'>
+                            <!-- sum all the piece_price fields from art_orders -->
+                            <?php
+                            $art_orders = "SELECT SUM(piece_price) AS total_art_price FROM art_orders WHERE artist_id = {$_SESSION['user_id']}";
+
+                            $art_result = $mysqli->query($art_orders);
+
+                            $art_price = $art_result->fetch_assoc();
+
+                            $art_sales = $art_price['total_art_price'];
+                            $lisa_art_sales = $art_sales * 0.9;
+                            ?>
+                            Kshs <?= number_format($lisa_art_sales) ?> from Art Sales.
+                        </span>
+                        <span class='col-lg-8 badge badge-imperial mr-3 mb-1'>
+                            <!-- sum all the gallery_fee fields from gallery_orders -->
+                            <?php
+                            $gallery_orders = "SELECT SUM(gallery_fee) AS total_gallery_fee FROM gallery_orders WHERE artist_id = {$_SESSION['user_id']}";
+
+                            $gallery_result = $mysqli->query($gallery_orders);
+
+                            $gallery_price = $gallery_result->fetch_assoc();
+
+                            $gallery_sales = $gallery_price['total_gallery_fee'];
+                            $lisa_gallery_sales = $gallery_sales * 0.9;
+                            ?>
+                            Kshs <?= number_format($lisa_gallery_sales) ?> from Ticket Sales.
+                        </span>
+                    </div>
+                </div>
                 <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
                     <h1 class='fs-2'>Orders.</h1>
                     <p class='fs-6 ps-4 space-cadet'>
-                        Get to view the orders that were made by people who bought your art or bought tickets to your galleries.
                     </p>
                 </div>
                 <hr class='mobile-hide hr' />

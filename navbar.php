@@ -41,7 +41,7 @@
                 <?php else : ?>
 
                     <div class='col-lg-12'>
-                        <p><a href='signin.php'>Sign In</a> or <a href='signup.html'>Sign Up</a></p>
+                        <p><a href='signin.php'>Sign In</a> or <a href='signup.php'>Sign Up</a></p>
                     </div>
 
                 <?php endif; ?>
