@@ -106,6 +106,8 @@ $piece = $result->fetch_assoc();
 
                                 if ($result->num_rows > 0) {
                                     echo "Piece has been sold";
+                                    echo "<br>";
+                                    echo "<br>";
                                     echo "More by <a href='artist-portfolio.php?id={$piece['artist_id']}'>{$piece['artist_name']}</a>";
                                 } else {
                                     echo "<a href='cart.php?id={$piece['id']}'>

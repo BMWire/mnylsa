@@ -217,7 +217,7 @@ $gallery_count = $gallery_count_result->fetch_assoc();
                         <?php
                             }
                         } else {
-                            echo "<center class='fs-5 mt-6 space-cadet'> This artist hasn't uploaded art yet. Come back later. </center>";
+                            echo "<center class='fs-5 mt-6 imperial-red'> This artist hasn't uploaded art yet. Come back later. </center>";
                         }
                         ?>
                     </div>

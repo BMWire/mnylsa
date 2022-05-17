@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id'])) {
 
     <!-- Start of main -->
     <main>
-        <div class='container-flex'>
+        <div class='container-cart'>
             <div class='row p-2'>
 
                 <!-- Fetch all the artist record entries that have entries in the artist_details page -->

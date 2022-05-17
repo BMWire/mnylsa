@@ -48,7 +48,7 @@ $art = $piece_result->fetch_assoc();
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Art Orders' ?> </title>
+    <title> <?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Piece Collection' ?> </title>
 
     <!-- Styling imports -->
     <link rel='stylesheet' href='styles/main.css'>
@@ -66,7 +66,18 @@ $art = $piece_result->fetch_assoc();
     <main>
         <div class='container-cart'>
             <div class='row mt-6'>
-                <div class='col-lg-8 col-md-8 col-sm-12'>
+                <div class='col-lg-6 col-md-4 col-sm-12 px-2'>
+                    <div class='card p-2'>
+                        <center>
+                            <h2>Collection point</h2>
+                            
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8332266053517!2d36.80274791533132!3d-1.273235635972611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1738049f49e3%3A0xbb1b3bf04c4f84d6!2sUniversity%20Of%20Nairobi%20-%20Chiromo%20Campus!5e0!3m2!1sen!2ske!4v1652812488504!5m2!1sen!2ske" width="750" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </center>
+
+
+                    </div>
+                </div>
+                <div class='col-lg-6 col-md-8 col-sm-12'>
 
                     <div class='col-lg-12 col-md-8 px-2'>
                         <div class='row'>
@@ -94,13 +105,13 @@ $art = $piece_result->fetch_assoc();
                             ?>
                                 <!-- Start of order -->
                                 <div class='row'>
-                                    <div class='col-lg-12 col-md-8 col-sm-12 px-2'>
+                                    <div class='col-lg-12 col-md-8 col-sm-12 px-1'>
                                         <div class='card card-short mb-5'>
                                             <div class='row'>
                                                 <div class='col-lg-3 col-md-8 col-sm-12'>
                                                     <img src='<?= $art['img_path'] ?>' style='max-height: 20vh !important;' alt='<?= $art['title'] ?>' class='p-4'>
                                                 </div>
-                                                <div class='col-lg-9 col-md-4 col-sm-12 ps-3 py-3'>
+                                                <div class='col-lg-9 col-md-4 col-sm-12 ps-1 py-3'>
                                                     <div class='card-body'>
                                                         <div class='row'>
                                                             <div class='col-5 col-md-5 col-sm-12'>
@@ -113,18 +124,10 @@ $art = $piece_result->fetch_assoc();
                                                             </div>
                                                             <div class='row pt-4'>
                                                                 <div class='col-4'>
-                                                                    <span class='card-text fs-5 pt-3'>Kshs.&nbsp;<?= $art_price ?></span>
+                                                                    <span class='card-text fs-6 pt-3'>Kshs.&nbsp;<?= $art_price ?></span>
                                                                 </div>
                                                                 <div class='col-4'>
-                                                                    <span class='card-text fs-5 pt-3'><?= date('d M Y, g:i A', strtotime($order['created_at'])); ?></span>
-                                                                </div>
-                                                                <div class='col-4'>
-                                                                    <!-- implement delete art order button -->
-                                                                    <form action='process-delete-art-order.php' method='POST'>
-                                                                        <input type='hidden' name='art_id' value='<?= $art['id'] ?>'>
-                                                                        <input type='hidden' name='user_id' value='<?= $user['id'] ?>'>
-                                                                        <button type='submit' class='btn btn-sm btn-imperial mb-2'>Delete</button>
-                                                                    </form>
+                                                                    <span class='card-text fs-6 pt-3'><?= date('d M Y, g:i A', strtotime($order['created_at'])); ?></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -140,11 +143,11 @@ $art = $piece_result->fetch_assoc();
                                 <center>
                                     <div class='row'>
                                         <div class='col-lg-3 col-md-3 col-sm-12 ps-3 py-2'>
-                                            <h1>Total Price</h1>
+                                            <h2>Total Price</h2>
                                         </div>
                                         <div class='col-lg-9 col-md-4 col-sm-12 ps-3 py-2'>
                                             <div class='card-body'>
-                                                <span class='card-text fs-2 pt-3'>Kshs.&nbsp;<?= number_format($cart_price, 2) ?></span>
+                                                <span class='card-text fs-4 pt-3'>Kshs.&nbsp;<?= number_format($cart_price, 2) ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -155,21 +158,6 @@ $art = $piece_result->fetch_assoc();
                     </div>
                 </div>
 
-                <div class='col-lg-4 col-md-4 col-sm-12 px-2'>
-                    <div class='card card-checkout p-2'>
-                        <center>
-                            <h2>Checkout</h2>
-                        </center>
-                        <p class='px-4'>
-                            There is an option - more preferred where you can pay on piece collection
-                        </p>
-                        <a href='piece-collection.php?id=<?= $_GET['id'] ?>' class='btn btn-imperial btn-checkout'>Pay on collection</a>
-
-
-                        <!-- Paypal Implementation -->
-                        <div id='paypal-button-container' class='p-4'></div>
-                    </div>
-                </div>
             </div>
 
 

@@ -164,6 +164,8 @@ $gallery = $gallery_result->fetch_assoc();
                             The ticket will be paid for at the entrance.
                         </p>
 
+                        <a href='enthusiast-gallery-orders.php?id=<?= $_GET['id'] ?>' class='btn btn-imperial btn-checkout'>Pay at the entrance</a>
+
                         <!-- Paypal Implementation -->
                         <div id='paypal-button-container' class='p-4'></div>
                     </div>

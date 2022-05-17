@@ -87,9 +87,6 @@ $gallery_count = $gallery_count_result->fetch_assoc();
     <!-- Start of main -->
     <main>
         <div class='container-cart'>
-            <span>
-                Artist id: <?= $artist['id'] ?>
-            </span>
             <div class='row'>
                 <div class='col-md-12 col-lg-12'>
 

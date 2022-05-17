@@ -533,6 +533,11 @@ textarea::placeholder {
 	color: var(--cultured);
 }
 
+.btn-checkout {
+	width: 455px;
+	line-height: 1.8;
+}
+
 .btn-disabled {
 	display: inline-block;
 	line-height: 1.5;
