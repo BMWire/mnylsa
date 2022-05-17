@@ -8,6 +8,7 @@
 	--manatee: #8d99aeff;
 	--cultured: #edf2f4ff;
 	--imperial-red: #ef233cff;
+	--imperial-red-light: #f25f5cff;
 
 	/* CSS HSL */
 	--space-cadet: hsla(235, 21%, 21%, 1);
@@ -179,6 +180,10 @@ a {
 .border-cadet,
 .border-right {
 	border-right: solid 1px var(--space-cadet);
+}
+
+.bg-imperial-light {
+	background-color: var(--imperial-red-light);
 }
 
 .manatee {

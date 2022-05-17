@@ -48,8 +48,32 @@ if (isset($_SESSION["user_id"])) {
     <!-- Start of main -->
     <main>
         <div class='container'>
-            <div class='row'>
+            <div class='col-12 bg-imperial-light'>
+                <div class='row'>
+                    <div class='col-8 p-3 border-right'>
+                        <h1 class='cultured'>One stop store for paintings and photographs.</h1>
+                        <p class='cultured fs-5'>
+                            4 simple steps.
+                        </p>
+                    </div>
 
+                    <div class='col-4 p-3'>
+                        <p class='cultured'>
+                            1. Create your account then sign in.
+                            <br>
+                            <br>
+                            2. Browse through the art - paintings and photographs.
+                            <br>
+                            <br>
+                            3.Select a piece.
+                            <br>
+                            <br>
+                            4. Checkout then collect your order.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
                 <!-- Fetch all the art entries by the artist who is logged in -->
                 <!-- Render a card for each piece -->
                 <?php
