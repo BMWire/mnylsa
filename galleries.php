@@ -42,6 +42,36 @@ if (isset($_SESSION['user_id'])) {
     <!-- Start of main -->
     <main>
         <div class='container-flex'>
+            <div class='container'>
+                <div class='col-12 bg-imperial-light'>
+                    <div class='row'>
+                        <div class='col-8 p-3 border-right'>
+                            <h1 class='cultured'>View open exhibitions and galleries.</h1>
+                            <p class='cultured fs-6 ps-5'>
+                                A curated list of gallery openings by your favorite artists.
+                            </p>
+                            <p class='cultured fs-5'>
+                                4 simple steps.
+                            </p>
+                        </div>
+
+                        <div class='col-4 p-3'>
+                            <p class='cultured'>
+                                1. Create your account then sign in.
+                                <br>
+                                <br>
+                                2. Browse through the gallery openings.
+                                <br>
+                                <br>
+                                3. Add a ticket to your cart.
+                                <br>
+                                <br>
+                                4. Checkout then attend the gallery.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class='row p-2'>
 
                 <!-- Fetch all the gallery record entries by the artist who is logged in -->
@@ -63,41 +93,41 @@ if (isset($_SESSION['user_id'])) {
                         $gallery_date = $row['date'];
                         $gallery_imgDir = $row['coverImg'];
                 ?>
-                            <div class='col-lg-6 col-md-12 p-3'>
-                                <div class='card mb-3'>
-                                    <div class='row'>
-                                        <div class='col-md-4'>
-                                            <img src='<?= $gallery_imgDir ?>' class='card-img-top' alt='<? $gallery_name ?>'>
-                                        </div>
-                                        <div class='col-md-8 px-5'>
-                                            <div class='card-body'>
-                                                <h3 class='space-cadet cadet-underlined'><?= $gallery_name ?></h3>
-                                                <p class='card-text'>
-                                                    <i class='bi bi-geo-fill manatee' style='font-size:22px;'></i>
-                                                    <?= $gallery_location ?>
-                                                </p>
-                                                <p class='card-text'>
-                                                    <i class='bi bi-lightbulb-fill manatee' style='font-size:22px;'></i>
-                                                    <?= $gallery_story ?>
-                                                </p>
-                                                <p class='card-text'>
-                                                    <i class='bi bi-cash-coin manatee' style='font-size:22px;'></i>
-                                                    Kshs <?= $gallery_fee ?>
-                                                </p>
-                                                <p class='card-text'>
-                                                    <i class='bi bi-calendar-date manatee' style='font-size:22px;'></i>
-                                                    <?= substr($gallery_date, 0, strpos($gallery_date, ' ')) ?>
-                                                </p>
-                                                <center>
-                                                    <a href='gallery-details.php?id=<?= $gallery_id ?>' class='btn btn-imperial'>
-                                                        View gallery
-                                                    </a>
-                                                </center>
-                                            </div>
+                        <div class='col-lg-6 col-md-12 p-3'>
+                            <div class='card mb-3'>
+                                <div class='row'>
+                                    <div class='col-md-4'>
+                                        <img src='<?= $gallery_imgDir ?>' class='card-img-top' alt='<? $gallery_name ?>'>
+                                    </div>
+                                    <div class='col-md-8 px-5'>
+                                        <div class='card-body'>
+                                            <h3 class='space-cadet cadet-underlined'><?= $gallery_name ?></h3>
+                                            <p class='card-text'>
+                                                <i class='bi bi-geo-fill manatee' style='font-size:22px;'></i>
+                                                <?= $gallery_location ?>
+                                            </p>
+                                            <p class='card-text'>
+                                                <i class='bi bi-lightbulb-fill manatee' style='font-size:22px;'></i>
+                                                <?= $gallery_story ?>
+                                            </p>
+                                            <p class='card-text'>
+                                                <i class='bi bi-cash-coin manatee' style='font-size:22px;'></i>
+                                                Kshs <?= number_format($gallery_fee, 2) ?>
+                                            </p>
+                                            <p class='card-text'>
+                                                <i class='bi bi-calendar-date manatee' style='font-size:22px;'></i>
+                                                <?= substr($gallery_date, 0, strpos($gallery_date, ' ')) ?>
+                                            </p>
+                                            <center>
+                                                <a href='gallery-details.php?id=<?= $gallery_id ?>' class='btn btn-imperial'>
+                                                    View gallery
+                                                </a>
+                                            </center>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                 <?php
                     }
                 } else {
