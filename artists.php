@@ -49,7 +49,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php
                 $mysqli = require __DIR__ . '/database.php';
 
-                $fetch_stmt = "SELECT * FROM artist_details";
+                $fetch_stmt = "SELECT * FROM artist_details ORDER BY artist_name ASC";
 
                 $result = $mysqli->query($fetch_stmt);
 

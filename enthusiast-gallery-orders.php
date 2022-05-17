@@ -60,12 +60,6 @@ if (isset($_SESSION['user_id'])) {
                                 Gallery Tickets
                             </a>
                         </li>
-                        <!-- <li class='nav-item'>
-                            <a class='nav-link' href='enthusiast-acc.php'>
-                                <i class='bi bi-brush-fill' style='font-size: 22px;'></i>&nbsp;
-                                Account settings
-                            </a>
-                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -73,18 +67,6 @@ if (isset($_SESSION['user_id'])) {
 
             <!-- Start of main -->
             <main class='col-md-9 col-lg-10'>
-
-                <?php if (isset($user)) : ?>
-                    My name is <?= $user['name'] ?>.
-                    My user id is <?= $user['id'] ?>.
-                <?php else : ?>
-                    <p class='nav-link'>
-                        <a href='signin.php'>Sign In</a>
-                        or
-                        <a href='signup.html'>Sign Up</a>
-                    </p>
-                <?php endif; ?>
-
 
                 <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
                     <h1 class='fs-2'>Gallery Ticket Orders</h1>

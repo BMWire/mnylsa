@@ -74,12 +74,12 @@ if (isset($_SESSION["user_id"])) {
                 </div>
             </div>
             <div class='row'>
-                <!-- Fetch all the art entries by the artist who is logged in -->
-                <!-- Render a card for each piece -->
+                <!-- Render a card for each piece in the art table start with the pieces that are not sold -->
+
                 <?php
                 $mysqli = require __DIR__ . '/database.php';
 
-                $fetch_stmt = "SELECT * FROM art";
+                $fetch_stmt = "SELECT * FROM art ORDER BY created_at DESC";
 
                 $result = $mysqli->query($fetch_stmt);
 
@@ -97,6 +97,8 @@ if (isset($_SESSION["user_id"])) {
                             <div class='card'>
                                 <!-- check if the piece_id is in the art_orders table -->
                                 <?php
+                                $mysqli = require __DIR__ . '/database.php';
+                                
                                 $check_stmt = "SELECT * FROM art_orders WHERE piece_id = {$piece_id}";
 
                                 $check_result = $mysqli->query($check_stmt);
@@ -106,7 +108,7 @@ if (isset($_SESSION["user_id"])) {
                                     <img src='<?= $piece_dir ?>' class='card-img-top' alt='<? $piece_title ?>'>
                                     <div class='card-body'>
                                         <div class='row ml-1'>
-                                            <div class='col-6'>
+                                            <div class='col-5 pe-2'>
                                                 <a href='art-piece-details.php?id=<?= $piece_id ?>'>
                                                     <h4 class='space-cadet cadet-underlined'><?= $piece_title ?></h4>
                                                 </a>
@@ -117,11 +119,6 @@ if (isset($_SESSION["user_id"])) {
                                                 </a>
                                             </div>
                                         </div>
-                                        <!-- <div class='row ml-1 pt-2'>
-                                            <div class='col-12'>
-                                                <span class='imperial-red fs-6 bold'>Kshs <?= number_format($piece_price, 2) ?></span>
-                                            </div>
-                                        </div> -->
                                     </div>
 
                                     <button class='btn btn-outline-danger btn-sm' disabled>Sold</button>
@@ -129,7 +126,7 @@ if (isset($_SESSION["user_id"])) {
                                     <img src='<?= $piece_dir ?>' class='card-img-top' alt='<? $piece_title ?>'>
                                     <div class='card-body'>
                                         <div class='row ml-1'>
-                                            <div class='col-6'>
+                                            <div class='col-5 pe-2'>
                                                 <a href='art-piece-details.php?id=<?= $piece_id ?>'>
                                                     <h4 class='space-cadet cadet-underlined'><?= $piece_title ?></h4>
                                                 </a>

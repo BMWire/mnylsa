@@ -85,14 +85,14 @@ if (isset($_SESSION['user_id'])) {
                             // if the logged user has an entry, show the add a piece button, else, direct them to the profile page
                             if ($result->num_rows > 0) {
                             ?>
-                            <!-- show nothing -->
+                                <!-- show nothing -->
                             <?php
                             } else {
                             ?>
-                            <a class='nav-link' href='artist-profile.php'>
-                                <i class='bi bi-plus' style='font-size: 22px;'></i>
-                                Profile
-                            </a>
+                                <a class='nav-link' href='artist-profile.php'>
+                                    <i class='bi bi-plus' style='font-size: 22px;'></i>
+                                    Profile
+                                </a>
                             <?php
                             }
                             ?>
@@ -180,7 +180,10 @@ if (isset($_SESSION['user_id'])) {
                                                 </p>
                                                 <p class='card-text'>
                                                     <i class='bi bi-calendar-date manatee' style='font-size:22px;'></i>
-                                                    <?= substr($gallery_date, 0, strpos($gallery_date, ' ')) ?>
+                                                    <?php
+                                                    $date = date_create($gallery_date);
+                                                    echo date_format($date, 'F j, Y');
+                                                    ?>
                                                 </p>
                                                 <div class='row'>
                                                     <div class='col-6'>

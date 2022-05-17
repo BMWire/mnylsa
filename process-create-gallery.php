@@ -67,10 +67,10 @@ if ($_FILES['img']['error']) {
 } elseif ($ext_error) {
     echo "Invalid file extension. Only .jpeg or .jpg or .png or .gif are allowed";
 } else {
-    echo "Success! Image has been uploaded";
+    // echo "Success! Image has been uploaded";
     // If there is no error, move the file to the uploads folder
     move_uploaded_file($_FILES['img']['tmp_name'], 'uploads/gallery/' . $_FILES['img']['name']);
-    echo "File uploaded successfully";
+    // echo "File uploaded successfully";
 }
 
 $img_dir = 'uploads/gallery/' . $_FILES['img']['name'];

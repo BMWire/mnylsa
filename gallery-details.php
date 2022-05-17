@@ -75,7 +75,9 @@ $gallery = $result->fetch_assoc();
                                     <h1 class=''><?= $gallery['title'] ?></h1>
                                 </div>
                                 <div class='col-lg-6 col-md-6 col-sm-12'>
-                                    <h3 class='pt-3'><?= $gallery['artist_name'] ?></h3>
+                                    <a target='_blank' href='artist-portfolio.php?id=<?= $gallery['artist_id'] ?>' class='imperial-red'>
+                                        <h3 class='pt-3'><?= $gallery['artist_name'] ?></h3>
+                                    </a>
                                 </div>
                             </div>
 
@@ -98,11 +100,11 @@ $gallery = $result->fetch_assoc();
                                 </div>
                             </div>
 
-                            <p class='card-text text-spacing'>
-                                <?= $gallery['story'] ?>.
+                            <p class='card-text text-spacing fs-5'>
+                                <?= $gallery['story'] ?>
                             </p>
 
-                            <span class='card-text fs-4'>Ksh <?= number_format($gallery['fee'], 2) ?></span>
+                            <span class='card-text fs-3'>Ksh <?= number_format($gallery['fee'], 2) ?></span>
                         </div>
 
                         <?php if ($user['isArtist'] == 'yes') : ?>

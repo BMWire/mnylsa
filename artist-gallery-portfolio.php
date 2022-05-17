@@ -200,7 +200,10 @@ $gallery_count = $gallery_count_result->fetch_assoc();
                                                     </p>
                                                     <p class='card-text'>
                                                         <i class='bi bi-calendar-date manatee' style='font-size:22px;'></i>
-                                                        <?= substr($gallery_date, 0, strpos($gallery_date, ' ')) ?>
+                                                        <?php
+                                                        $date = date_create($gallery_date);
+                                                        echo date_format($date, 'F j, Y');
+                                                        ?>
                                                     </p>
                                                     <center>
                                                         <a href='gallery-details.php?id=<?= $gallery_id ?>' class='btn btn-imperial'>

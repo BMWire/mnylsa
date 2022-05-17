@@ -81,11 +81,6 @@ if (isset($_SESSION['user_id'])) {
             <!-- Start of main -->
             <main class='col-md-9 col-lg-10'>
 
-                <?php if (isset($user)) : ?>
-                    My name is <?= $user['name'] ?>.
-                    My artist id is <?= $user['id'] ?>.
-                <?php endif; ?>
-
                 <div class='row'>
                     <div class='col-lg-6 col-md-6 pt-3 pb-2 mb-3'>
                         <h1 class='fs-2'>Add Piece</h1>
