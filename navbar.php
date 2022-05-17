@@ -18,9 +18,19 @@
         </a>
         <ul class='navbar-nav'>
             <li class='nav-item'>
-                <a href='enthusiast-art-orders.php?id=<?= $_SESSION['user_id'] ?>' class='nav-link'>
-                    Account
-                </a>
+                <!-- Check to see if there is a user session -->
+                <?php if (isset($user)) : ?>
+                    <a href='enthusiast-art-orders.php?id=<?= $_SESSION['user_id'] ?>' class='nav-link'>
+                        Account
+                    </a>
+
+                <?php else : ?>
+                    <a href='signin.php' class='nav-link'>
+                        Account
+                    </a>
+
+                <?php endif; ?>
+
             </li>
         </ul>
         <ul class='navbar-nav'>
@@ -35,8 +45,6 @@
                         |
                         <a href='logout.php' class='space-cadet'>Log out</a>
                     </p>
-
-                    <p></p>
 
                 <?php else : ?>
 
@@ -64,12 +72,7 @@
             <li class='nav-item'>
                 <a href='galleries.php' class='nav-link'>Galleries</a>
             </li>
-            <!-- <li class='nav-item'>
-                <a href='/home.php' class='nav-link'>Artists</a>
-            </li> -->
-            <!-- <li class='nav-item'>
-                <a href='/home.php' class='nav-link'>Trending</a>
-            </li> -->
+
             <!-- Check to see if there is a user session -->
             <?php if (isset($user)) : ?>
                 <li class='nav-item'>
