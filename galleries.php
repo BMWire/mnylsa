@@ -55,7 +55,7 @@ if (isset($_SESSION['user_id'])) {
                             </p>
                         </div>
 
-                        <div class='col-4 p-3'>
+                        <div class='col-4 p-3 bg-cadet-light'>
                             <p class='cultured'>
                                 1. Create your account then sign in.
                                 <br>
@@ -97,7 +97,9 @@ if (isset($_SESSION['user_id'])) {
                             <div class='card mb-3'>
                                 <div class='row'>
                                     <div class='col-md-4'>
-                                        <img src='<?= $gallery_imgDir ?>' class='card-img-top' alt='<? $gallery_name ?>'>
+                                        <center>
+                                            <img src='<?= $gallery_imgDir ?>' class='card-img-top' alt='<? $gallery_name ?>'>
+                                        </center>
                                     </div>
                                     <div class='col-md-8 px-5'>
                                         <div class='card-body'>
@@ -116,7 +118,10 @@ if (isset($_SESSION['user_id'])) {
                                             </p>
                                             <p class='card-text'>
                                                 <i class='bi bi-calendar-date manatee' style='font-size:22px;'></i>
-                                                <?= substr($gallery_date, 0, strpos($gallery_date, ' ')) ?>
+                                                <?php
+                                                $date = date_create($gallery_date);
+                                                echo date_format($date, 'F j, Y');
+                                                ?>
                                             </p>
                                             <center>
                                                 <a href='gallery-details.php?id=<?= $gallery_id ?>' class='btn btn-imperial'>

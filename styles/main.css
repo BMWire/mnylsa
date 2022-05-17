@@ -5,6 +5,7 @@
 	/* Color scheme */
 	/* CSS HEX */
 	--space-cadet: #2b2d42ff;
+	--space-cadet-light: #2b2d42ff;
 	--manatee: #8d99aeff;
 	--cultured: #edf2f4ff;
 	--imperial-red: #ef233cff;
@@ -184,6 +185,14 @@ a {
 
 .bg-imperial-light {
 	background-color: var(--imperial-red-light);
+}
+
+.bg-cadet-light {
+	background-color: var(--space-cadet-light);
+}
+
+.imperial-light {
+	color: var(--imperial-red-light);
 }
 
 .manatee {

@@ -113,9 +113,18 @@ $gallery_count = $gallery_count_result->fetch_assoc();
                                         </div>
                                     </div>
                                     <div class='col-md-7 col-lg-7 px-3'>
-                                        <p class='fs-6'>
+                                        <p class='fs-5'>
                                             <?= $artist_details['story'] ?>
-                                            <?= $artist_details['story'] ?>
+                                        </p>
+                                        <p class='fs-5'>
+                                            <?= $artist_details['artist_name'] ?> works on the art that he does from <?= $artist_details['building'] ?> on <?= $artist_details['street'] ?>, <?= $artist_details['town'] ?>, <?= $artist_details['county'] ?> in Kenya.
+
+                                            <br />
+                                            <br />
+                                            This artist has been with us since <?php
+                                                                                $date = date_create($artist_details['created_at']);
+                                                                                echo date_format($date, 'F j, Y');
+                                                                                ?>.
                                         </p>
                                     </div>
 
@@ -218,7 +227,7 @@ $gallery_count = $gallery_count_result->fetch_assoc();
                         <?php
                             }
                         } else {
-                            echo "<center class='fs-5 mt-6 imperial-red'>No galleries yet. Come back later. </center>";
+                            echo "<center class='fs-5 mt-6 imperial-red'>" . $artist_details['artist_name'] . " has no galleries yet. Come back later. </center>";
                         }
                         ?>
 

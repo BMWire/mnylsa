@@ -124,7 +124,10 @@ $gallery_count = $gallery_count_result->fetch_assoc();
 
                                             <br />
                                             <br />
-                                            This artist has been with us since <?= date('d M Y', strtotime($artist_details['created_at'])) ?>.
+                                            This artist has been with us since <?php
+                                                                                $date = date_create($artist_details['created_at']);
+                                                                                echo date_format($date, 'F j, Y');
+                                                                                ?>.
                                         </p>
                                     </div>
 
@@ -217,7 +220,7 @@ $gallery_count = $gallery_count_result->fetch_assoc();
                         <?php
                             }
                         } else {
-                            echo "<center class='fs-5 mt-6 imperial-red'> This artist hasn't uploaded art yet. Come back later. </center>";
+                            echo "<center class='fs-5 mt-6 imperial-red'>" . $artist_details['artist_name'] . " has not uploaded art yet. Come back later. </center>";
                         }
                         ?>
                     </div>
