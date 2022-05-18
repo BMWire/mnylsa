@@ -54,6 +54,9 @@ $piece = $result->fetch_assoc();
     <!-- Start of main -->
     <main>
         <div class='container'>
+            <div class='header'>
+                <h4><?= substr($user['name'], 0, strpos($user['name'], ' ')) . '\'s Art Cart' ?></h4>
+            </div>
             <div class='card card-short mt-6'>
                 <div class='row'>
                     <!-- Render the image for the piece -->
